@@ -1,7 +1,8 @@
 import { Box } from '@mui/material';
-import { Carousel } from '../Components/Carousel/Carousel';
+import { Carousel } from '../components/Carousel/Carousel';
 
 const Test = () => {
+  const images = ['/1.png', '/2.png', '/3.png'];
   return (
     <Box
       sx={{
@@ -12,7 +13,7 @@ const Test = () => {
         aignItems: 'center',
       }}
     >
-      <Carousel />
+      <Carousel images={images} />
     </Box>
   );
 };

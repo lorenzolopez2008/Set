@@ -1,13 +1,18 @@
 'use client';
 
-import useEmblaCarousel from 'embla-carousel-react';
+import { Box } from '@mui/material';
 import {
   NextButton,
   PrevButton,
   usePrevNextButtons,
 } from './CarouselButtons/CarouselButtons';
+import useEmblaCarousel from 'embla-carousel-react';
 
-export const Carousel = () => {
+interface Props {
+  images: string[];
+}
+
+export const Carousel = ({ images }: Props) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
 
   const {
@@ -18,27 +23,27 @@ export const Carousel = () => {
   } = usePrevNextButtons(emblaApi);
 
   return (
-    <div className="embla">
-      <div className="embla__viewport" ref={emblaRef}>
-        <div className="embla__container">
-          <div className="embla__slide">
-            <div className="embla__slide__number">1</div>
-          </div>
-          <div className="embla__slide">
-            <div className="embla__slide__number">2</div>
-          </div>
-          <div className="embla__slide flex items-center justify-center">
-            <div className="embla__slide__number">3</div>
-          </div>
-        </div>
-      </div>
+    <Box className="embla">
+      <Box className="embla__viewport" ref={emblaRef}>
+        <Box className="embla__container">
+          {images.map((image) => {
+            return (
+              <Box className="embla__slide">
+                <Box className="embla__slide__number">
+                  <img src={image} alt="" />
+                </Box>
+              </Box>
+            );
+          })}
+        </Box>
+      </Box>
 
-      <div className="embla__controls">
-        <div className="embla__buttons">
+      <Box className="embla__controls">
+        <Box className="embla__buttons">
           <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
           <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   );
 };
