@@ -12,7 +12,7 @@ const page = () => {
         gap: '2rem',
       }}
     >
-      <HeadingSection page="Home" section="Nosotros" />
+      <HeadingSection text="¿Quienes somos?" page="Home" section="Nosotros" />
       <TextWithSideBar
         color="red"
         variant="title"

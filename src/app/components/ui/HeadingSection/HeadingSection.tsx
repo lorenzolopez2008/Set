@@ -4,9 +4,11 @@ import { Box, Typography } from '@mui/material';
 export const HeadingSection = ({
   page,
   section,
+  text,
 }: {
   page: string;
   section: string;
+  text: string;
 }) => {
   return (
     <Box
@@ -16,9 +18,11 @@ export const HeadingSection = ({
         alignItems: 'center',
         justifyContent: 'center',
         height: pxToRem(450),
+        position: 'relative',
       }}
     >
-      <Typography variant="main">¿Quienes somos?</Typography>
+      <Typography variant="shadow">{text}</Typography>
+      <Typography variant="main">{text}</Typography>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
         <Typography variant="paragraph" sx={{ color: '#008428' }}>
           {page}

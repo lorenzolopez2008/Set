@@ -7,6 +7,7 @@ declare module '@mui/material/Typography' {
     main: true;
     title: true;
     paragraph: true;
+    shadow: true;
   }
 }
 
@@ -39,6 +40,18 @@ export const theme = createTheme({
                 fontSize: `clamp(${pxToRem(31)}, 3vw, ${pxToRem(60)})`,
                 fontFamily: inter.style.fontFamily,
                 fontWeight: 800,
+              },
+            },
+            {
+              props: { variant: 'shadow' },
+              style: {
+                color: '#1D1D1F',
+                opacity: 0.06,
+                fontSize: `clamp(${pxToRem(85)}, 9vw, ${pxToRem(225)})`,
+                fontFamily: inter.style.fontFamily,
+                fontWeight: 900,
+                position: 'absolute',
+                top: '5rem',
               },
             },
             {
