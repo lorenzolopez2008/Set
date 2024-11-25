@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Button } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import {
   NextButton,
   PrevButton,
@@ -8,6 +8,7 @@ import {
 } from './CarouselButtons/CarouselButtons';
 import useEmblaCarousel from 'embla-carousel-react';
 import Image from 'next/image';
+import { DiagonalArrow } from '../svg/DiagonalArrow';
 
 interface Props {
   images: string[];
@@ -43,11 +44,66 @@ export const Carousel = ({ images }: Props) => {
         </Box>
       </Box>
 
-      <Box className="embla__controls">
-        <Box className="embla__buttons">
-          <Button variant="mainGreen">Boton</Button>
-          <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
-          <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
+      <Box
+        position={'absolute'}
+        right={'5%'}
+        display={'flex'}
+        width={'62.5rem'}
+        height={'18.75rem'}
+        alignItems={'center'}
+        justifyContent={'end'}
+      >
+        <Box width={'80%'}>
+          <Box>
+            <Typography
+              fontWeight={'bold'}
+              color="#008428"
+              fontSize={'2.25rem'}
+              lineHeight={'91%'}
+            >
+              Servicios de <br /> Mantenimiento
+            </Typography>
+            <Typography
+              fontWeight={'semibold'}
+              color="#848282"
+              fontSize={'1.75rem'}
+              lineHeight={'2.094rem'}
+              paddingTop={'2rem'}
+              paddingBottom={'3rem'}
+            >
+              Servico de mantenimiento
+              <br /> correctivo, preventivo y<br /> implementación de
+              tecnología.
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              display: 'flex',
+              width: '25rem',
+              justifyContent: 'space-between',
+            }}
+          >
+            <PrevButton
+              onClick={onPrevButtonClick}
+              disabled={prevBtnDisabled}
+            />
+            <NextButton
+              onClick={onNextButtonClick}
+              disabled={nextBtnDisabled}
+            />
+          </Box>
+        </Box>
+        <Box
+          sx={{
+            display: 'flex',
+            height: '100%',
+            alignItems: 'end',
+            paddingBottom: '2rem',
+          }}
+        >
+          <Button variant="mainGreen" endIcon={<DiagonalArrow />}>
+            Servicios
+          </Button>
         </Box>
       </Box>
     </Box>

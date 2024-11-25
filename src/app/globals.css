@@ -1,6 +1,5 @@
 .embla {
-  min-width: 70rem;
-  margin: auto;
+  margin-top: 15rem;
 
   --slide-spacing: 1rem;
   --slide-size: 100%;
@@ -11,6 +10,7 @@
 }
 .embla__viewport {
   rotate: 350deg;
+  width: clamp(600px, 80vw, 2000px);
 }
 .embla__container {
   backface-visibility: hidden;
@@ -20,7 +20,7 @@
 }
 
 .embla__slide {
-  min-width: 0;
+  min-width: 200px;
   flex: 0 0 var(--slide-size);
   padding-left: var(--slide-spacing);
 }
@@ -42,20 +42,7 @@
 }
 
 /*controls*/
-.embla__controls {
-  justify-content: space-between;
-  gap: 1.2rem;
-  margin-top: 1.8rem;
-  display: 'flex';
-  align-items: center;
-  justify-items: center;
-}
-.embla__buttons {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.6rem;
-  align-items: center;
-}
+
 .embla__button {
   -webkit-tap-highlight-color: rgba(var(--text-high-contrast-rgb-value), 0.5);
   -webkit-appearance: none;
