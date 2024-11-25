@@ -2,6 +2,8 @@ import { Button, Typography } from '@mui/material';
 import { DiagonalArrow } from './svg/DiagonalArrow';
 import { TextWithSideBar } from './ui/TextWithParagraph/TextWithSideBar';
 import { HeadingSection } from './ui/HeadingSection/HeadingSection';
+import { ProductCard } from './ui/ProductCard/ProductCard';
+import { SpeechBubble } from './ui/SpeechBubble/SpeechBubble';
 
 const page = () => {
   return (
@@ -18,7 +20,7 @@ const page = () => {
         variant="title"
         text="Los equipos con el retorno de inversión más rapido"
       />
-      <Button variant="main" endIcon={<DiagonalArrow />}>
+      <Button variant="mainGreen" endIcon={<DiagonalArrow />}>
         Contactanos
       </Button>
       <TextWithSideBar
@@ -35,6 +37,10 @@ const page = () => {
         iure, explicabo ratione quibusdam quo nesciunt illum, temporibus officia
         mollitia perspiciatis.
       </Typography>
+
+      <ProductCard />
+
+      <SpeechBubble>Pedrinho</SpeechBubble>
     </div>
   );
 };
