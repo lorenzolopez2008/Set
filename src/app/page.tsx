@@ -1,5 +1,14 @@
+import Title from '@/components/Title';
 import { Box } from '@mui/material';
 
 export default function Home() {
-  return <Box>Set Page</Box>;
+  return (
+    <Box>
+      <Title
+        title="¿Quienes somos?"
+        location="Quienes Somos"
+        titleShadow="Quienes Somos"
+      />
+    </Box>
+  );
 }
