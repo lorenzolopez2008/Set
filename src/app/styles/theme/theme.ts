@@ -6,6 +6,7 @@ declare module '@mui/material/Typography' {
   interface TypographyPropsVariantOverrides {
     main: true;
     title: true;
+    paragraph: true;
   }
 }
 
@@ -28,7 +29,7 @@ export const theme = createTheme({
                 color: '#008428',
                 fontSize: pxToRem(102),
                 fontFamily: inter.style.fontFamily,
-                fontWeight: 600,
+                fontWeight: 800,
               },
             },
             {
@@ -36,6 +37,15 @@ export const theme = createTheme({
               style: {
                 color: '#000',
                 fontSize: `clamp(${pxToRem(31)}, 3vw, ${pxToRem(60)})`,
+                fontFamily: inter.style.fontFamily,
+                fontWeight: 800,
+              },
+            },
+            {
+              props: { variant: 'paragraph' },
+              style: {
+                color: '#000',
+                fontSize: `clamp(${pxToRem(14)}, 2vw, ${pxToRem(23)})`,
                 fontFamily: inter.style.fontFamily,
                 fontWeight: 600,
               },

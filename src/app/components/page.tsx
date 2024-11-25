@@ -1,6 +1,7 @@
-import { Button, Typography } from '@mui/material';
+import { Button } from '@mui/material';
 import { DiagonalArrow } from './svg/DiagonalArrow';
-import { SubTitle } from './ui/SubTitle';
+import { TextWithSideBar } from './ui/TextWithParagraph/TextWithSideBar';
+import { HeadingSection } from './ui/HeadingSection/HeadingSection';
 
 const page = () => {
   return (
@@ -10,8 +11,12 @@ const page = () => {
         flexDirection: 'column',
       }}
     >
-      <Typography variant="main">¿Quienes somos?</Typography>
-      <SubTitle text="Los equipos con el retorno de inversión más rapido" />
+      <HeadingSection page="Home" section="Nosotros" />
+      <TextWithSideBar
+        color="red"
+        variant="title"
+        text="Los equipos con el retorno de inversión más rapido"
+      />
       <Button variant="main" endIcon={<DiagonalArrow />}>
         Contactanos
       </Button>
