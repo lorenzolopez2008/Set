@@ -19,7 +19,11 @@ declare module '@mui/material/Button' {
     mainBlue: true;
   }
 }
-
+declare module '@mui/material/Container' {
+  interface ContainerPropsVariantOverrides {
+    '2xl': true;
+  }
+}
 export const theme = createTheme({
   cssVariables: true,
   components: {
@@ -121,6 +125,19 @@ export const theme = createTheme({
           ],
         },
       },
-    },
+    }, MuiContainer: {
+      styleOverrides: {
+        root: {
+          variants: [
+            {
+              props: { variant: '2xl' },
+              style: {
+                maxWidth: '1920px',
+              },
+            },
+          ],
+        },
+      }
+    }
   },
 });

@@ -1,3 +1,4 @@
+import Footer from '@/components/Footer';
 import Title from '@/components/Title';
 import { Box } from '@mui/material';
 
@@ -9,6 +10,7 @@ export default function Home() {
         location="Quienes Somos"
         titleShadow="Quienes Somos"
       />
+      <Footer />
     </Box>
   );
 }
