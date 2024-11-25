@@ -27,7 +27,7 @@ export const theme = createTheme({
               props: { variant: 'main' },
               style: {
                 color: '#008428',
-                fontSize: pxToRem(102),
+                fontSize: `clamp(${pxToRem(40)}, 3vw ,${pxToRem(102)})`,
                 fontFamily: inter.style.fontFamily,
                 fontWeight: 800,
               },
@@ -44,8 +44,8 @@ export const theme = createTheme({
             {
               props: { variant: 'paragraph' },
               style: {
-                color: '#000',
-                fontSize: `clamp(${pxToRem(14)}, 2vw, ${pxToRem(23)})`,
+                color: '#86868B',
+                fontSize: `clamp(${pxToRem(14)}, 1.3vw, ${pxToRem(23)})`,
                 fontFamily: inter.style.fontFamily,
                 fontWeight: 600,
               },
