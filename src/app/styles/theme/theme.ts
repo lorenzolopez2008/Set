@@ -8,12 +8,15 @@ declare module '@mui/material/Typography' {
     title: true;
     paragraph: true;
     shadow: true;
+    productTitle: true;
+    productDescription: true;
   }
 }
 
 declare module '@mui/material/Button' {
   interface ButtonPropsVariantOverrides {
-    main: true;
+    mainGreen: true;
+    mainBlue: true;
   }
 }
 
@@ -63,6 +66,24 @@ export const theme = createTheme({
                 fontWeight: 600,
               },
             },
+            {
+              props: { variant: 'productTitle' },
+              style: {
+                color: '#00346D',
+                fontSize: `clamp(${pxToRem(28)}, 1.3vw, ${pxToRem(30)})`,
+                fontFamily: inter.style.fontFamily,
+                fontWeight: 800,
+              },
+            },
+            {
+              props: { variant: 'productDescription' },
+              style: {
+                color: '#86868B',
+                fontSize: `clamp(${pxToRem(16)}, 1.3vw, ${pxToRem(23)})`,
+                fontFamily: inter.style.fontFamily,
+                fontWeight: 600,
+              },
+            },
           ],
         },
       },
@@ -72,7 +93,7 @@ export const theme = createTheme({
         root: {
           variants: [
             {
-              props: { variant: 'main' },
+              props: { variant: 'mainGreen' },
               style: {
                 backgroundColor: '#008428',
                 fontSize: pxToRem(14),
@@ -80,6 +101,19 @@ export const theme = createTheme({
                 borderRadius: `0 ${pxToRem(12)} 0 ${pxToRem(12)}`,
                 height: pxToRem(53),
                 width: pxToRem(180),
+                display: 'flex',
+                justifyContent: 'space-around',
+              },
+            },
+            {
+              props: { variant: 'mainBlue' },
+              style: {
+                backgroundColor: '#00598F',
+                fontSize: pxToRem(14),
+                color: '#fff',
+                borderRadius: `0 ${pxToRem(12)} 0 ${pxToRem(12)}`,
+                height: pxToRem(53),
+                width: pxToRem(200),
                 display: 'flex',
                 justifyContent: 'space-around',
               },
