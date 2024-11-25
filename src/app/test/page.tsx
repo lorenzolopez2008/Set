@@ -11,6 +11,7 @@ const Test = () => {
         display: 'flex',
         justifyContent: 'center',
         aignItems: 'center',
+        overflowX: 'hidden',
       }}
     >
       <Carousel images={images} />
