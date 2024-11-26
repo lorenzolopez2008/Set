@@ -19,6 +19,7 @@ export const HeadingSection = ({
         justifyContent: 'center',
         height: pxToRem(450),
         position: 'relative',
+        width: '100%',
       }}
     >
       <Typography variant="shadow">{text}</Typography>
