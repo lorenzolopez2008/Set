@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import React from 'react';
 
 interface Props {
@@ -17,6 +17,7 @@ function Title({ title, location, titleShadow }: Props) {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+        overflowX: 'hidden',
       }}
     >
       <Box
@@ -75,7 +76,8 @@ function Title({ title, location, titleShadow }: Props) {
             fontSize: 'clamp(1.625rem, 2vw, 2.023rem)',
           }}
         >
-          //{location}
+          {'//'}
+          {location}
         </Typography>
       </Box>
     </Box>
