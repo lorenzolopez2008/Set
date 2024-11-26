@@ -26,7 +26,7 @@ export const Carousel = ({ images }: Props) => {
 
   return (
     <>
-      <Box style={{ width: '80%' }}>
+      <Box style={{ width: '76%' }}>
         <Box className="embla">
           <Box className="embla__viewport" ref={emblaRef}>
             <Box className="embla__container">
@@ -50,13 +50,13 @@ export const Carousel = ({ images }: Props) => {
       </Box>
       {/* buttons */}
       <Box
+        width={'100%'}
         display={'flex'}
-        width={'62.5rem'}
-        height={'18.75rem'}
         alignItems={'center'}
-        justifyContent={'end'}
+        justifyContent={'center'}
+        padding={'0 5rem'}
       >
-        <Box width={'80%'}>
+        <Box sx={{ marginLeft: 'auto' }}>
           <Box>
             <Typography
               fontWeight={'bold'}
@@ -82,8 +82,10 @@ export const Carousel = ({ images }: Props) => {
           <Box
             sx={{
               display: 'flex',
-              width: '25rem',
+              width: '100%',
+              maxWidth: '420rem',
               justifyContent: 'space-between',
+              padding: '0 .5rem',
             }}
           >
             <PrevButton
@@ -102,6 +104,7 @@ export const Carousel = ({ images }: Props) => {
             height: '100%',
             alignItems: 'end',
             paddingBottom: '2rem',
+            marginLeft: 'auto',
           }}
         >
           <Button variant="mainGreen" endIcon={<DiagonalArrow />}>
