@@ -25,28 +25,31 @@ export const Carousel = ({ images }: Props) => {
   } = usePrevNextButtons(emblaApi);
 
   return (
-    <Box className="embla">
-      <Box className="embla__viewport" ref={emblaRef}>
-        <Box className="embla__container">
-          {images.map((image) => {
-            return (
-              <Box className="embla__slide">
-                <Box
-                  className="embla__slide__number"
-                  width="clamp(13.353rem, 50vw, 35.064rem)"
-                  height="clamp(13.353rem, 50vw, 50.064rem)"
-                >
-                  <Image src={image} alt="" fill />
-                </Box>
-              </Box>
-            );
-          })}
+    <>
+      <Box style={{ width: '80%' }}>
+        <Box className="embla">
+          <Box className="embla__viewport" ref={emblaRef}>
+            <Box className="embla__container">
+              {images.map((image) => {
+                return (
+                  <Box className="embla__slide">
+                    <img
+                      src={image}
+                      alt=""
+                      style={{
+                        height: 'clamp(13.353rem, 40vw, 37.298rem)',
+                        width: 'clamp(13.353rem, 40vw, 37.298rem)',
+                      }}
+                    />
+                  </Box>
+                );
+              })}
+            </Box>
+          </Box>
         </Box>
       </Box>
-
+      {/* buttons */}
       <Box
-        position={'absolute'}
-        right={'5%'}
         display={'flex'}
         width={'62.5rem'}
         height={'18.75rem'}
@@ -106,6 +109,6 @@ export const Carousel = ({ images }: Props) => {
           </Button>
         </Box>
       </Box>
-    </Box>
+    </>
   );
 };

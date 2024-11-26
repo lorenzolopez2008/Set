@@ -9,8 +9,9 @@ const Test = () => {
         width: '100%',
         height: '100vh',
         display: 'flex',
+        flexDirection: 'column',
         justifyContent: 'center',
-        aignItems: 'center',
+        alignItems: 'center',
         overflowX: 'hidden',
       }}
     >
