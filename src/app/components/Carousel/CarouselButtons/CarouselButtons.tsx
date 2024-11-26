@@ -68,7 +68,7 @@ export const PrevButton: React.FC<PropType> = (props) => {
           color: '#464646',
           fontWeight: 'bolder',
           fontSize: '0.875rem',
-          paddingLeft: '1rem',
+          paddingLeft: '.2rem',
         }}
       >
         Ant
@@ -93,7 +93,7 @@ export const NextButton: React.FC<PropType> = (props) => {
           color: '#464646',
           fontWeight: 'bolder',
           fontSize: '0.875rem',
-          paddingRight: '1rem',
+          paddingRight: '.2rem',
         }}
       >
         Sig

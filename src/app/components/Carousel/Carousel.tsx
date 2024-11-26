@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Typography, useMediaQuery } from '@mui/material';
 import {
   NextButton,
   PrevButton,
@@ -17,6 +17,8 @@ interface Props {
 export const Carousel = ({ images }: Props) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
 
+  const isMobile = useMediaQuery('(min-width: 600px)');
+
   const {
     prevBtnDisabled,
     nextBtnDisabled,
@@ -30,9 +32,9 @@ export const Carousel = ({ images }: Props) => {
         <Box className="embla">
           <Box className="embla__viewport" ref={emblaRef}>
             <Box className="embla__container">
-              {images.map((image) => {
+              {images.map((image, index) => {
                 return (
-                  <Box className="embla__slide">
+                  <Box className="embla__slide" key={index}>
                     <img
                       src={image}
                       alt=""
@@ -49,69 +51,147 @@ export const Carousel = ({ images }: Props) => {
         </Box>
       </Box>
       {/* buttons */}
-      <Box
-        width={'100%'}
-        display={'flex'}
-        alignItems={'center'}
-        justifyContent={'center'}
-        padding={'0 5rem'}
-      >
-        <Box sx={{ marginLeft: 'auto' }}>
-          <Box>
-            <Typography
-              fontWeight={'bold'}
-              color="#008428"
-              fontSize={'2.25rem'}
-              lineHeight={'91%'}
+      {isMobile ? (
+        <Box
+          width={'100%'}
+          display={'flex'}
+          alignItems={'center'}
+          justifyContent={'center'}
+          padding={'0 5rem'}
+        >
+          <Box sx={{ marginLeft: 'auto' }}>
+            <Box>
+              <Typography
+                fontWeight={'bold'}
+                color="#008428"
+                fontSize={'2.25rem'}
+                lineHeight={'91%'}
+              >
+                Servicios de <br /> Mantenimiento
+              </Typography>
+              <Typography
+                fontWeight={'semibold'}
+                color="#848282"
+                fontSize={'1.75rem'}
+                lineHeight={'2.094rem'}
+                paddingTop={'2rem'}
+                paddingBottom={'3rem'}
+              >
+                Servico de mantenimiento
+                <br /> correctivo, preventivo y<br /> implementación de
+                tecnología.
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                width: '100%',
+                maxWidth: '420rem',
+                justifyContent: 'space-between',
+                padding: '0 .5rem',
+              }}
             >
-              Servicios de <br /> Mantenimiento
-            </Typography>
-            <Typography
-              fontWeight={'semibold'}
-              color="#848282"
-              fontSize={'1.75rem'}
-              lineHeight={'2.094rem'}
-              paddingTop={'2rem'}
-              paddingBottom={'3rem'}
-            >
-              Servico de mantenimiento
-              <br /> correctivo, preventivo y<br /> implementación de
-              tecnología.
-            </Typography>
+              <PrevButton
+                onClick={onPrevButtonClick}
+                disabled={prevBtnDisabled}
+              />
+              <NextButton
+                onClick={onNextButtonClick}
+                disabled={nextBtnDisabled}
+              />
+            </Box>
           </Box>
           <Box
             sx={{
               display: 'flex',
-              width: '100%',
-              maxWidth: '420rem',
-              justifyContent: 'space-between',
-              padding: '0 .5rem',
+              height: '100%',
+              alignItems: 'end',
+              paddingBottom: '2rem',
+              marginLeft: 'auto',
             }}
           >
-            <PrevButton
-              onClick={onPrevButtonClick}
-              disabled={prevBtnDisabled}
-            />
-            <NextButton
-              onClick={onNextButtonClick}
-              disabled={nextBtnDisabled}
-            />
+            <Button variant="mainGreen" endIcon={<DiagonalArrow />}>
+              Servicios
+            </Button>
           </Box>
         </Box>
+      ) : (
         <Box
-          sx={{
-            display: 'flex',
-            height: '100%',
-            alignItems: 'end',
-            paddingBottom: '2rem',
-            marginLeft: 'auto',
-          }}
+          width={'100%'}
+          display={'flex'}
+          alignItems={'center'}
+          justifyContent={'center'}
+          padding={'0 2rem'}
+          marginTop={'1rem'}
         >
-          <Button variant="mainGreen" endIcon={<DiagonalArrow />}>
-            Servicios
-          </Button>
+          <Box sx={{ marginLeft: 'auto' }}>
+            <Box>
+              <Typography
+                fontWeight={'bold'}
+                color="#008428"
+                fontSize={'2.25rem'}
+                lineHeight={'91%'}
+              >
+                Hola que hace
+              </Typography>
+
+              <Typography
+                fontWeight={'semibold'}
+                color="#848282"
+                fontSize={'1.75rem'}
+                lineHeight={'2.094rem'}
+                paddingTop={'2rem'}
+                paddingBottom={'3rem'}
+              >
+                Servico de mantenimiento
+                <br /> correctivo, preventivo y<br /> implementación de
+                tecnología.
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                width: '100%',
+                maxWidth: '420rem',
+                justifyContent: 'space-between',
+              }}
+            >
+              <Box
+                sx={{
+                  width: '60%',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  paddingRight: '5rem',
+                }}
+              >
+                <PrevButton
+                  onClick={onPrevButtonClick}
+                  disabled={prevBtnDisabled}
+                />
+                <NextButton
+                  onClick={onNextButtonClick}
+                  disabled={nextBtnDisabled}
+                />
+              </Box>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  width: '40%',
+                }}
+              >
+                <Button
+                  variant="mainGreen"
+                  sx={{ padding: 1 }}
+                  endIcon={<DiagonalArrow />}
+                >
+                  Servicios
+                </Button>
+              </Box>
+            </Box>
+          </Box>
         </Box>
-      </Box>
+      )}
     </>
   );
 };
