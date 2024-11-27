@@ -7,7 +7,6 @@ import {
   usePrevNextButtons,
 } from './CarouselButtons/CarouselButtons';
 import useEmblaCarousel from 'embla-carousel-react';
-import Image from 'next/image';
 import { DiagonalArrow } from '../svg/DiagonalArrow';
 
 interface Props {

@@ -1,5 +1,5 @@
 'use client';
-import { Box, Button, Typography, useMediaQuery } from '@mui/material';
+import { Box, Typography, useMediaQuery } from '@mui/material';
 import React from 'react';
 import Image from 'next/image';
 import { pxToRem } from '@/helpers/pxToRem';

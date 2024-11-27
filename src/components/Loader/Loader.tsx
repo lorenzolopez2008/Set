@@ -62,7 +62,7 @@ const Loader = () => {
         alignItems: 'center',
         flexDirection: 'column',
         backgroundColor: '#f0f0f0',
-        zIndex: 10,
+        zIndex: 90,
       }}
       className="container-loader"
     >
@@ -80,7 +80,7 @@ const Loader = () => {
         <Box
           sx={{
             backgroundColor: '#f0f0f0',
-            zIndex: 13,
+            zIndex: 93,
             width: '100%',
             height: '100%',
             position: 'absolute',
@@ -116,7 +116,7 @@ const Loader = () => {
           alt="Set Image"
           style={{
             objectFit: 'contain',
-            zIndex: 14,
+            zIndex: 94,
             opacity: progress === 100 ? 1 : 0,
             transition: 'opacity 1s ease-in-out',
           }}
@@ -132,7 +132,7 @@ const Loader = () => {
           position: 'absolute',
           bottom: 64,
           left: 64,
-          zIndex: 14,
+          zIndex: 94,
         }}
       >
         {text}

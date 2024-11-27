@@ -1,8 +1,7 @@
 'use client';
 
 import { DiagonalArrow } from '@/app/components/svg/DiagonalArrow';
-import { Box, Button, Typography, useMediaQuery } from '@mui/material';
-import { useGSAP } from '@gsap/react';
+import { Box, Button, useMediaQuery } from '@mui/material';
 import Image from 'next/image';
 
 export const Navbar = () => {
@@ -17,7 +16,7 @@ export const Navbar = () => {
       justifyContent={'space-between'}
       top={0}
       padding={'2rem'}
-      zIndex={100}
+      zIndex={80}
     >
       <Image
         style={{

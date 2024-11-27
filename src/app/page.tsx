@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <Box>
       <HomePage />
-      <Footer />
+      {/* <Footer /> */}
     </Box>
   );
 }

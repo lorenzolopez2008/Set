@@ -1,6 +1,5 @@
 'use client';
 import { Box, useMediaQuery } from '@mui/material';
-import { HeadingSection } from '../components/ui/HeadingSection/HeadingSection';
 import Title from '@/components/Title';
 import { DecoratedText } from '@/components/contactComponents/DecoratedText';
 import Map from '@/components/contactComponents/Map';

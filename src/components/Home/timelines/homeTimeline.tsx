@@ -4,7 +4,6 @@ const createTimeline = (
   config: gsap.TimelineVars = { defaults: { paused: true } }
 ) => {
   const tl = gsap.timeline(config);
-  let playingForward = true;
 
   tl.addLabel('first')
     .fromTo(
