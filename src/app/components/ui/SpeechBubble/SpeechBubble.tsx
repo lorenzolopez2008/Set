@@ -1,7 +1,6 @@
 'use client';
 import { pxToRem } from '@/helpers/pxToRem';
 import { Box, Typography } from '@mui/material';
-import brother from '@/public/assets/brother.png';
 import Image from 'next/image';
 import { Star } from '../Star/Star';
 import { useGetScreen } from '@/hooks/useGetScreen';
@@ -34,7 +33,7 @@ export const SpeechBubble = ({ children }: { children: React.ReactNode }) => {
           }}
         >
           <Box sx={{ borderRadius: `0 ${pxToRem(15)} 0 ${pxToRem(15)}` }}>
-            <Image src={brother} alt="brother" width={50} height={50} />
+            <Image src={'/brother.png'} alt="brother" width={50} height={50} />
           </Box>
         </Box>
 

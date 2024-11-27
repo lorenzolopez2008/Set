@@ -1,6 +1,5 @@
 'use client';
 import Image from 'next/image';
-import arrow from '@/public/assets/icons/diagonalArrow.png';
 import { Box } from '@mui/material';
 
 export const DiagonalArrow = () => {
@@ -16,7 +15,12 @@ export const DiagonalArrow = () => {
         height: '32px',
       }}
     >
-      <Image src={arrow} alt="arrow" width={13} height={13} />
+      <Image
+        src={'/icons/diagonalArrow.png'}
+        alt="arrow"
+        width={13}
+        height={13}
+      />
     </Box>
   );
 };

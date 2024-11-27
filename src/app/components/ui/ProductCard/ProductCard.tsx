@@ -1,5 +1,4 @@
 import { pxToRem } from '@/helpers/pxToRem';
-import maquinola from '@/public/assets/maquinola.png';
 import { Box, Button, Typography } from '@mui/material';
 import Image from 'next/image';
 import { DiagonalArrow } from '../../svg/DiagonalArrow';
@@ -29,7 +28,12 @@ export const ProductCard = () => {
           padding: `${pxToRem(36)}`,
         }}
       >
-        <Image src={maquinola} alt="maquinola" width={470} height={240} />
+        <Image
+          src={'/maquinola.png'}
+          alt="maquinola"
+          width={470}
+          height={240}
+        />
         <Typography variant="productTitle">Maquinola</Typography>
         <Typography variant="productDescription">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Id corporis
