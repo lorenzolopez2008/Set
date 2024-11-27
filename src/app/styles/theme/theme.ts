@@ -64,10 +64,10 @@ export const theme = createTheme({
             {
               props: { variant: 'paragraph' },
               style: {
-                color: '#86868B',
-                fontSize: `clamp(${pxToRem(14)}, 1.3vw, ${pxToRem(23)})`,
+                color: '#272727',
+                fontSize: `${pxToRem(18)}`,
                 fontFamily: inter.style.fontFamily,
-                fontWeight: 600,
+                fontWeight: 400,
               },
             },
             {
