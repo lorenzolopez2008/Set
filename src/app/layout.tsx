@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import ThemeRegistryProvider from '../providers/ThemeRegistryProvider';
 import { Navbar } from '@/components/Navbar';
+import { GsapProvider } from '@/providers/GsapProvider';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,8 +18,10 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ThemeRegistryProvider>
-          <Navbar />
-          {children}
+          <GsapProvider>
+            <Navbar />
+            {children}
+          </GsapProvider>
         </ThemeRegistryProvider>
       </body>
     </html>
