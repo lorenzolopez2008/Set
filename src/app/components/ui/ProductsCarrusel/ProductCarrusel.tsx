@@ -13,6 +13,7 @@ import useEmblaCarousel from 'embla-carousel-react';
 import './ProductCard.css';
 import { Box } from '@mui/material';
 import { pxToRem } from '@/helpers/pxToRem';
+import { CarruselButtons } from './CarruselButtons/CarruselButtons';
 
 const TWEEN_FACTOR_BASE = 0.52;
 
@@ -20,7 +21,7 @@ const numberWithinRange = (number: number, min: number, max: number): number =>
   Math.min(Math.max(number, min), max);
 
 export const ProductCarrusel = () => {
-  const options: EmblaOptionsType = { loop: true };
+  const options: EmblaOptionsType = { loop: true, watchDrag: false };
   const slides = [photo1, photo2, photo3];
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
   const tweenFactor = useRef(0);
@@ -90,7 +91,7 @@ export const ProductCarrusel = () => {
       .on('reInit', tweenScale)
       .on('scroll', tweenScale)
       .on('slideFocus', tweenScale);
-  }, [emblaApi, tweenScale]);
+  }, [emblaApi, tweenScale, setTweenFactor, setTweenNodes]);
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -106,6 +107,7 @@ export const ProductCarrusel = () => {
                       width: `clamp(${pxToRem(523)}, 35vw, ${pxToRem(1061)})`,
                       height: `clamp(${pxToRem(318)}, 25vw, ${pxToRem(726)})`,
                     }}
+                    alt={img.src}
                   />
                 </Box>
               </Box>
@@ -113,6 +115,7 @@ export const ProductCarrusel = () => {
           </Box>
         </Box>
       </Box>
+      <CarruselButtons emblaApi={emblaApi} />
     </Box>
   );
 };
