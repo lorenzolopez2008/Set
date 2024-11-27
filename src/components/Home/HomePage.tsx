@@ -7,6 +7,8 @@ import gsap from 'gsap';
 import { TextWithHighlight } from './homeComponents/TextWithHighlight';
 import { Machine } from './homeComponents/Machine';
 
+import { useVisibility } from '@/providers/Testing';
+
 gsap.registerPlugin(Observer);
 
 export default function HomePage() {
@@ -45,7 +47,8 @@ export default function HomePage() {
       }
     );
   });
-
+  const { isVisible } = useVisibility('HomePage');
+  if (!isVisible) return null;
   return (
     <Box
       sx={{

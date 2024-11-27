@@ -6,6 +6,7 @@ import { pxToRem } from '@/helpers/pxToRem';
 import { MobileCurve } from './MobileCurve';
 import { ArrowUp, MailIcon, PhoneIcon } from './icons/Icons';
 import { useGetScreen } from '@/hooks/useGetScreen';
+import { useVisibility } from '@/providers/Testing';
 
 export default function Footer() {
   const { screen: isDesktop } = useGetScreen('lg');
@@ -65,7 +66,8 @@ export default function Footer() {
       text: '+52 33 2301 6197',
     },
   ];
-
+  const { isVisible } = useVisibility('Footer');
+  if (!isVisible) return null;
   return (
     <Box
       component="footer"

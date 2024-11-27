@@ -4,6 +4,7 @@ import ThemeRegistryProvider from '../providers/ThemeRegistryProvider';
 import Loader from '@/components/Loader/Loader';
 import { Navbar } from '@/components/Navbar';
 import { GsapProvider } from '@/providers/GsapProvider';
+import { VisibilityProvider } from '@/providers/Testing';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -18,13 +19,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Loader />
-        <ThemeRegistryProvider>
-          <GsapProvider>
-            <Navbar />
-            {children}
-          </GsapProvider>
-        </ThemeRegistryProvider>
+        <VisibilityProvider>
+          <Loader />
+          <ThemeRegistryProvider>
+            <GsapProvider>
+              <Navbar />
+              {children}
+            </GsapProvider>
+          </ThemeRegistryProvider>
+        </VisibilityProvider>
       </body>
     </html>
   );

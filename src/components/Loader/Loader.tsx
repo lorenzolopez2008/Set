@@ -5,6 +5,8 @@ import { gsap } from 'gsap';
 import Image from 'next/image';
 import { Box, LinearProgress, Typography } from '@mui/material';
 
+import { useVisibility } from '@/providers/Testing';
+
 const Loader = () => {
   const [progress, setProgress] = useState(0);
   const [text, setText] = useState('0%');
@@ -29,24 +31,29 @@ const Loader = () => {
 
   useEffect(() => {
     // Animación de relleno utilizando GSAP
-    gsap
-      .timeline()
-      .to('.progress-fill', {
-        width: `${100 - progress}%`,
-        duration: 1,
-        ease: 'ease.inOut',
-      })
-      .to('.container-loader', {
-        opacity: 0,
-        duration: 1,
-        delay: 6,
-        ease: 'ease.inOut',
-        onComplete: () => {
-          // Ocultar el componente Loader
-          containerRef.current!.style.display = 'none';
-        },
-      });
+    if (containerRef.current) {
+      gsap
+        .timeline()
+        .to('.progress-fill', {
+          width: `${100 - progress}%`,
+          duration: 1,
+          ease: 'ease.inOut',
+        })
+        .to('.container-loader', {
+          opacity: 0,
+          duration: 1,
+          delay: 6,
+          ease: 'ease.inOut',
+          onComplete: () => {
+            // Ocultar el componente Loader
+            containerRef.current!.style.display = 'none';
+          },
+        });
+    }
   }, [progress]);
+
+  const { isVisible } = useVisibility('Loader');
+  if (!isVisible) return null;
 
   return (
     <Box
