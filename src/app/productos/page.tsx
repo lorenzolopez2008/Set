@@ -2,7 +2,7 @@ import { Box, Button, Typography } from '@mui/material';
 import { HeadingSection } from '../components/ui/HeadingSection/HeadingSection';
 import { pxToRem } from '@/helpers/pxToRem';
 import { DiagonalArrow } from '../components/svg/DiagonalArrow';
-import ProductCarrusel from '../components/ui/ProductsCarrusel/ProductCarrusel';
+import { ProductCarrusel } from '../components/ui/ProductsCarrusel/ProductCarrusel';
 
 const page = () => {
   return (
