@@ -19,7 +19,11 @@ declare module '@mui/material/Button' {
     mainBlue: true;
   }
 }
-
+declare module '@mui/material/Container' {
+  interface ContainerPropsVariantOverrides {
+    '2xl': true;
+  }
+}
 export const theme = createTheme({
   cssVariables: true,
   components: {
@@ -60,10 +64,10 @@ export const theme = createTheme({
             {
               props: { variant: 'paragraph' },
               style: {
-                color: '#86868B',
-                fontSize: `clamp(${pxToRem(14)}, 1.3vw, ${pxToRem(23)})`,
+                color: '#272727',
+                fontSize: `${pxToRem(18)}`,
                 fontFamily: inter.style.fontFamily,
-                fontWeight: 600,
+                fontWeight: 400,
               },
             },
             {
@@ -121,6 +125,19 @@ export const theme = createTheme({
           ],
         },
       },
-    },
+    }, MuiContainer: {
+      styleOverrides: {
+        root: {
+          variants: [
+            {
+              props: { variant: '2xl' },
+              style: {
+                maxWidth: '1920px',
+              },
+            },
+          ],
+        },
+      }
+    }
   },
 });
