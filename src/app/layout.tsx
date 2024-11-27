@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import ThemeRegistryProvider from '../providers/ThemeRegistryProvider';
+import Loader from '@/components/Loader/Loader';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -15,6 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Loader />
         <ThemeRegistryProvider>{children}</ThemeRegistryProvider>
       </body>
     </html>
