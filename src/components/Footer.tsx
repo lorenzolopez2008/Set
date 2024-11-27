@@ -1,10 +1,12 @@
 'use client';
 import React from 'react';
 import { Box, Typography, Link, IconButton } from '@mui/material';
-import { Email, Phone, ArrowUpward } from '@mui/icons-material';
+import { ArrowUpward } from '@mui/icons-material';
 import Image from 'next/image';
 import { pxToRem } from '@/helpers/pxToRem';
 import { MobileCurve } from './MobileCurve';
+import { MailIcon, PhoneIcon } from './icons/Icons';
+import { DeskCurve } from './DeskCurve';
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -41,11 +43,11 @@ export default function Footer() {
   ];
   const clientSupportItems = [
     {
-      icon: <Email fontSize="small" color="action" />,
+      icon: <MailIcon />,
       text: 'Clientes@setindutry.com',
     },
     {
-      icon: <Phone fontSize="small" color="action" />,
+      icon: <PhoneIcon />,
       text: '+52 33 2171 1832',
     },
     {
@@ -54,11 +56,11 @@ export default function Footer() {
       mt: true,
     },
     {
-      icon: <Email fontSize="small" color="action" />,
+      icon: <MailIcon />,
       text: 'Administracion@setindutry.com',
     },
     {
-      icon: <Phone fontSize="small" color="action" />,
+      icon: <PhoneIcon />,
       text: '+52 33 2301 6197',
     },
   ];
@@ -284,11 +286,11 @@ export default function Footer() {
                     |
                   </Typography>
                 </Typography>
+
                 <Link
                   href="#"
                   color="text.secondary"
                   sx={{
-                    textDecoration: 'none',
                     '&:hover': { color: 'primary.main' },
                   }}
                 >
@@ -301,7 +303,6 @@ export default function Footer() {
                   href="#"
                   color="text.secondary"
                   sx={{
-                    textDecoration: 'none',
                     '&:hover': { color: 'primary.main' },
                   }}
                 >
@@ -313,7 +314,7 @@ export default function Footer() {
             <Box
               sx={{
                 position: 'absolute',
-                left: { xs: '14%', lg: '30%' },
+                left: { xs: '13%', lg: '30%' },
                 bottom: 0,
               }}
             >
@@ -322,19 +323,21 @@ export default function Footer() {
                   position: 'relative',
                   display: 'flex',
                   justifyContent: 'center',
-                  width: pxToRem(88 * 3),
+                  width: { xs: pxToRem(58 * 3), lg: pxToRem(88 * 3) },
                   fill: { xs: '#008428', lg: '#00000017' },
+                  stroke: { xs: '#008428', lg: '#00000017' },
                 }}
               >
                 <Box
                   sx={{
                     position: 'absolute',
-                    bottom: { xs: '-35px', lg: '-36px' },
+                    bottom: { xs: '-10px', lg: '-10px' },
                     backgroundColor: '#FFF',
                     width: '100%',
                   }}
                 >
-                  <MobileCurve />
+                  {/* <MobileCurve /> */}
+                  <DeskCurve />
                 </Box>
                 <IconButton
                   onClick={scrollToTop}
@@ -345,7 +348,7 @@ export default function Footer() {
                     fontSize: { xs: pxToRem(13), lg: pxToRem(18) },
                     color: 'red',
                     fontWeight: 600,
-                    transformOrigin: 'center',
+                    margin: { lg: '-1rem' },
                   }}
                 >
                   <ArrowUpward
