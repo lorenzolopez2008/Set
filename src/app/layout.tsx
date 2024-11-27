@@ -4,6 +4,7 @@ import ThemeRegistryProvider from '../providers/ThemeRegistryProvider';
 import Loader from '@/components/Loader/Loader';
 import { Navbar } from '@/components/Navbar';
 import { GsapProvider } from '@/providers/GsapProvider';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -19,7 +20,6 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Loader />
-        <ThemeRegistryProvider>{children}</ThemeRegistryProvider>
         <ThemeRegistryProvider>
           <GsapProvider>
             <Navbar />

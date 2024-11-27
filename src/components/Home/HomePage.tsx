@@ -47,7 +47,12 @@ export default function HomePage() {
   });
 
   return (
-    <Box>
+    <Box
+      sx={{
+        width: '100vw',
+        height: '100vh',
+      }}
+    >
       <TextWithHighlight />
       <Machine />
     </Box>
