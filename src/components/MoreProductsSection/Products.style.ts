@@ -3,5 +3,5 @@ export const containerStyles = {
   flexDirection: { lg: 'row', xs: 'column' },
   justifyContent: { lg: 'space-between', xs: 'center' },
   alignContent: { lg: 'start', xs: 'center' },
-  padding: '3.313rem',
+  padding: {xs:'1rem',lg:'3.313rem'},
 };

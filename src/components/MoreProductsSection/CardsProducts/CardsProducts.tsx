@@ -52,8 +52,8 @@ export const CardsProducts = () => {
   return (
     <Box sx={containerStyles}>
       {products.map((product, index) => (
-        <CardGradient>
-          <Box key={index} sx={cardStyles}>
+        <CardGradient key={index}>
+          <Box sx={cardStyles}>
             <Box
               sx={{
                 display: 'flex',
