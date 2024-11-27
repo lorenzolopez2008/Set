@@ -15,6 +15,7 @@ export const Navbar = () => {
       justifyContent={'space-between'}
       top={0}
       padding={'2rem'}
+      zIndex={100}
     >
       <Image src={'/logo.svg'} alt="logo" width={107} height={56} />
       <Box
