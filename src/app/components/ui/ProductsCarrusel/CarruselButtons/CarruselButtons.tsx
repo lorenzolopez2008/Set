@@ -20,6 +20,8 @@ export const CarruselButtons = ({ emblaApi }: CarruselButtonsProps) => {
       sx={{
         display: 'flex',
         justifyContent: 'space-between',
+        marginTop: '2rem',
+        paddingX: '2rem',
       }}
     >
       <Button

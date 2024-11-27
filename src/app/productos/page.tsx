@@ -12,6 +12,8 @@ const page = () => {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+        position: 'relative',
+        paddingBottom: '2rem',
       }}
     >
       <HeadingSection
@@ -24,12 +26,21 @@ const page = () => {
         sx={{
           fontSize: pxToRem(44),
           fontWeight: 700,
+          marginBottom: '3rem',
         }}
       >
         Impresión digital
       </Typography>
       <ProductCarrusel />
-      <Button variant="mainGreen" endIcon={<DiagonalArrow />}>
+
+      <Button
+        variant="mainGreen"
+        sx={{
+          position: 'absolute',
+          bottom: '2rem',
+        }}
+        endIcon={<DiagonalArrow />}
+      >
         Ver más
       </Button>
     </Box>
