@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 import ThemeRegistryProvider from '../providers/ThemeRegistryProvider';
 import Loader from '@/components/Loader/Loader';
+import { Navbar } from '@/components/Navbar';
+import { GsapProvider } from '@/providers/GsapProvider';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -18,6 +20,12 @@ export default function RootLayout({
       <body>
         <Loader />
         <ThemeRegistryProvider>{children}</ThemeRegistryProvider>
+        <ThemeRegistryProvider>
+          <GsapProvider>
+            <Navbar />
+            {children}
+          </GsapProvider>
+        </ThemeRegistryProvider>
       </body>
     </html>
   );

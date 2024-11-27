@@ -2,6 +2,7 @@
 
 import { DiagonalArrow } from '@/app/components/svg/DiagonalArrow';
 import { Box, Button, Typography, useMediaQuery } from '@mui/material';
+import { useGSAP } from '@gsap/react';
 import Image from 'next/image';
 
 export const Navbar = () => {
@@ -10,18 +11,38 @@ export const Navbar = () => {
   return (
     <Box
       position={'sticky'}
+      height={'8rem'}
       display={'flex'}
       alignItems={'center'}
       justifyContent={'space-between'}
       top={0}
       padding={'2rem'}
+      zIndex={100}
     >
-      <Image src={'/logo.svg'} alt="logo" width={107} height={56} />
+      <Image
+        style={{
+          position: 'absolute',
+          left: 0,
+          top: 0,
+          marginLeft: '2rem',
+          marginTop: '2rem',
+        }}
+        src={'/logo.svg'}
+        alt="logo"
+        width={107}
+        height={56}
+        id="logo"
+      />
       <Box
+        position={'absolute'}
+        right={0}
+        top={0}
         display={'flex'}
         alignItems={'center'}
         justifyContent={'center'}
         gap={2}
+        sx={{ marginRight: '2rem', marginTop: '2rem' }}
+        id="navbarButtons"
       >
         {isMobile && (
           <Button
