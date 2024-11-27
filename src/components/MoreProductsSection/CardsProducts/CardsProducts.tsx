@@ -70,6 +70,7 @@ export const CardsProducts = () => {
                     width: '100%',
                     height: '100%',
                     aspectRatio: 'auto',
+                    filter: 'drop-shadow(30px 10px 4px #4444dd)',
                   }}
                 />
               </Box>
