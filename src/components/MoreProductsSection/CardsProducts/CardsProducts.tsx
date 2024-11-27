@@ -2,11 +2,7 @@ import { DiagonalArrow } from '@/app/components/svg/DiagonalArrow';
 import { CardGradient } from '@/components/base/CardGradient';
 import { Box, Button, Typography } from '@mui/material';
 import Image from 'next/image';
-import HontecImg from '@/public/assets/products/hontec.png';
-import DmsImg from '@/public/assets/products/dms.png';
-import HciImg from '@/public/assets/products/hci.png';
-import DymImg from '@/public/assets/products/dym.png';
-import ImavisionImg from '@/public/assets/products/imavision.png';
+
 import {
   buttonStyles,
   cardStyles,
@@ -19,31 +15,31 @@ import {
 export const CardsProducts = () => {
   const products = [
     {
-      img: HontecImg,
+      img: '/products/hontec.png',
       title: 'Hontec',
       description:
         'Empresa dedicada a la manufactura y desarrollo de equipos de acabado e impresión Flexo.',
     },
     {
-      img: DmsImg,
+      img: '/products/dms.png',
       title: 'DMS',
       description:
         'Tecnología digital de primer nivel especializada en acabado de cold & hot foil.',
     },
     {
-      img: HciImg,
+      img: '/products/hci.png',
       title: 'HCI Manga Te',
       description:
         'Especialista en equipos de conversión y maquinaria cortadora para paquetes flexibles y semiconductores.',
     },
     {
-      img: DymImg,
+      img: '/products/dym.png',
       title: 'DYM (Equipos Non-Stop)',
       description:
         'Tecnología Non-stop para automatizar la impresión de etiquetas con tensión sub-acoplada y de matriz',
     },
     {
-      img: ImavisionImg,
+      img: '/products/imavision.png',
       title: 'IMAVISIÓN',
       description:
         'Inspección de impresión para reducir desperdicios, prevenir etiquetas defectuosas y mejorar calidad.',
@@ -52,8 +48,8 @@ export const CardsProducts = () => {
   return (
     <Box sx={containerStyles}>
       {products.map((product, index) => (
-        <CardGradient>
-          <Box key={index} sx={cardStyles}>
+        <CardGradient key={index}>
+          <Box sx={cardStyles}>
             <Box
               sx={{
                 display: 'flex',
@@ -66,6 +62,9 @@ export const CardsProducts = () => {
                 <Image
                   src={product.img}
                   alt="product image"
+                  layout="responsive"
+                  width={100}
+                  height={100}
                   style={{
                     width: '100%',
                     height: '100%',
