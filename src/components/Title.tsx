@@ -1,4 +1,5 @@
-import { Box, Button, Typography } from '@mui/material';
+'use client';
+import { Box, Button, Typography, useMediaQuery } from '@mui/material';
 import React from 'react';
 
 interface Props {
@@ -8,6 +9,7 @@ interface Props {
 }
 
 function Title({ title, location, titleShadow }: Props) {
+  const isMobile = useMediaQuery('(max-width:780px)');
   return (
     <Box
       sx={{
@@ -17,12 +19,27 @@ function Title({ title, location, titleShadow }: Props) {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+        overflow: 'hidden',
       }}
     >
+      {!isMobile ? (
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '-15%',
+            left: '17%',
+            borderRadius: '100%',
+            background: `radial-gradient(circle, rgba(0, 132, 40, 0.05) 60%, rgba(0, 132, 40, 0) 70%)`,
+            width: '35rem',
+            height: '35rem',
+          }}
+        ></Box>
+      ) : null}
+
       <Box
         sx={{
           width: '100%',
-          height: '12.875rem',
+          height: '8.875rem',
           color: '#008428',
           display: 'flex',
           flexDirection: 'column',
@@ -33,7 +50,7 @@ function Title({ title, location, titleShadow }: Props) {
         <Box
           sx={{
             position: 'absolute',
-            fontSize: 'clamp(5.313rem, 10vw, 14.063rem)',
+            fontSize: 'clamp(3.313rem, 10vw, 14.063rem)',
             whiteSpace: 'nowrap',
             fontWeight: 'bold',
             opacity: '4%',
