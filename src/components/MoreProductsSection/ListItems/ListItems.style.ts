@@ -1,6 +1,6 @@
 import { inter } from '@/fonts';
 
-export const labelStyles = () => ({
+export const labelStyles = {
   display: 'flex',
   alignItems: 'center',
   gap: '0.9rem',
@@ -21,4 +21,4 @@ export const labelStyles = () => ({
     color: '#00598F',
     cursor: 'pointer',
   },
-});
+};
