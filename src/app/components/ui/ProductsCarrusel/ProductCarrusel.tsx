@@ -1,87 +1,3 @@
-// 'use client';
-// import { Box } from '@mui/material';
-// import useEmblaCarousel from 'embla-carousel-react';
-// import { useEffect, useState, useCallback } from 'react';
-// import Image from 'next/image';
-
-// import photo1 from '@/public/assets/products/photo-1.png';
-// import photo2 from '@/public/assets/products/photo-2.png';
-// import photo3 from '@/public/assets/products/photo-3.png';
-
-// const ProductCarrusel = () => {
-//   const [emblaRef, emblaApi] = useEmblaCarousel({
-//     loop: true,
-//     align: 'center',
-//     skipSnaps: false,
-//   });
-//   const [selectedIndex, setSelectedIndex] = useState(0);
-
-//   const images = [photo1, photo2, photo3];
-
-//   const onSelect = useCallback(() => {
-//     if (!emblaApi) return;
-//     setSelectedIndex(emblaApi.selectedScrollSnap());
-//   }, [emblaApi]);
-
-//   useEffect(() => {
-//     if (emblaApi) {
-//       emblaApi.scrollTo(0);
-//       emblaApi.on('select', onSelect);
-//     }
-//   }, [emblaApi, onSelect]);
-
-//   return (
-//     <Box
-//       ref={emblaRef}
-//       sx={{
-//         overflow: 'hidden',
-//         width: '100%',
-//         position: 'relative',
-//       }}
-//     >
-//       <Box
-//         sx={{
-//           display: 'flex',
-//           willChange: 'transform',
-//         }}
-//       >
-//         {images.map((image, index) => {
-//           const isActive = index === selectedIndex;
-
-//           return (
-//             <Box
-//               key={index}
-//               sx={{
-//                 flex: '0 0 80%', // Cada elemento ocupa el ancho completo
-//                 transform: `scale(${isActive ? 1.1 : 1})`, // Aumenta el tamaño del activo
-//                 opacity: isActive ? 1 : 0.6,
-//                 transition:
-//                   'transform 0.3s ease-in-out, opacity 0.3s ease-in-out',
-//                 textAlign: 'center',
-//               }}
-//             >
-//               <Image
-//                 src={image}
-//                 alt={`Product ${index + 1}`}
-//                 width={400} // Ajusta este valor según el tamaño deseado
-//                 height={400}
-//                 style={{
-//                   borderRadius: '8px',
-//                   boxShadow: isActive
-//                     ? '0px 8px 20px rgba(0, 0, 0, 0.3)'
-//                     : 'none',
-//                 }}
-//               />
-//             </Box>
-//           );
-//         })}
-//       </Box>
-//     </Box>
-//   );
-// };
-
-// export default ProductCarrusel;
-
 'use client';
 import photo1 from '@/public/assets/products/photo-1.png';
 import photo2 from '@/public/assets/products/photo-2.png';
@@ -110,9 +26,8 @@ const ProductCarrusel = () => {
   const tweenNodes = useRef<HTMLElement[]>([]);
 
   const setTweenNodes = useCallback((emblaApi: EmblaCarouselType): void => {
-    tweenNodes.current = emblaApi.slideNodes().map((slideNode) => {
-      return slideNode.querySelector('.embla__slide__number') as HTMLElement;
-    });
+    // Selecciona los nodos del slide directamente
+    tweenNodes.current = emblaApi.slideNodes();
   }, []);
 
   const setTweenFactor = useCallback((emblaApi: EmblaCarouselType) => {
@@ -153,7 +68,9 @@ const ProductCarrusel = () => {
           const tweenValue = 1 - Math.abs(diffToTarget * tweenFactor.current);
           const scale = numberWithinRange(tweenValue, 0, 1).toString();
           const tweenNode = tweenNodes.current[slideIndex];
-          //   tweenNode.style.transform = `scale(${scale})`;
+          if (tweenNode) {
+            tweenNode.style.transform = `scale(${scale})`;
+          }
         });
       });
     },
