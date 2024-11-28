@@ -8,7 +8,7 @@ export const ListItems = () => {
       sx={{
         width: { lg: '30%', xs: '100%' },
         display: { lg: 'block', xs: 'flex' },
-        overflow: 'auto',
+        overflow: { lg: 'hidden', xs: 'auto' },
         marginBottom: { lg: '0', xs: '2.5rem' },
       }}
     >

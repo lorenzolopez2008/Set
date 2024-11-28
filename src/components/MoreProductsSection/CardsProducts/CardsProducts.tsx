@@ -1,6 +1,6 @@
 import { DiagonalArrow } from '@/app/components/svg/DiagonalArrow';
 import { CardGradient } from '@/components/base/CardGradient';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Grid2, Typography } from '@mui/material';
 import Image from 'next/image';
 
 import {
@@ -46,7 +46,16 @@ export const CardsProducts = () => {
     },
   ];
   return (
-    <Box sx={containerStyles}>
+    <Grid2
+      container
+      spacing={2}
+      gap={'4.563rem'}
+      sx={{
+        alignnItems: 'center',
+        margin: '0 auto',
+        width: { lg: '70%', xs: '100%' },
+      }}
+    >
       {products.map((product, index) => (
         <CardGradient key={index}>
           <Box sx={cardStyles}>
@@ -62,14 +71,11 @@ export const CardsProducts = () => {
                 <Image
                   src={product.img}
                   alt="product image"
-                  layout="responsive"
-                  width={100}
-                  height={100}
+                  fill
+                  sizes="100%"
                   style={{
-                    width: '100%',
-                    height: '100%',
                     aspectRatio: 'auto',
-                    filter: 'drop-shadow(30px 10px 4px #4444dd)',
+                    filter: 'drop-shadow(0px 20px 8px #7C7C7C)',
                   }}
                 />
               </Box>
@@ -88,6 +94,6 @@ export const CardsProducts = () => {
           </Box>
         </CardGradient>
       ))}
-    </Box>
+    </Grid2>
   );
 };

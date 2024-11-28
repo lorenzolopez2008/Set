@@ -2,7 +2,7 @@ import { inter } from '@/fonts';
 
 export const containerStyles = {
   display: 'flex',
-  justifyContent: 'center',
+  justifyContent: { lg: 'flex-start', xs: 'center' },
   flexWrap: 'wrap',
   gap: '4.563rem',
   width: { lg: '70%', xs: '100%' },
@@ -19,6 +19,7 @@ export const cardStyles = {
 };
 
 export const containerImageStyles = {
+  position: 'relative',
   minWidth: {
     lg: '27.125rem',
     sm: '20.875rem',
@@ -45,15 +46,15 @@ export const containerTitleStyles = {
 };
 
 export const titleStyles = {
-  fontSize: { lg: '1.875rem', xs: '1.75rem' },
+  fontSize: 'clamp(1.75rem, 1.7065rem + 0.2174vw, 1.875rem)',
   fontWeight: '700',
   fontFamily: inter.style.fontFamily,
   color: '#00346D',
 };
 
 export const buttonStyles = {
-  width: { xs: '12.938rem', lg: '18.063rem' },
-  height: { lg: '3.813rem', xs: '3.563rem' },
+  width: 'clamp(12.9375rem, 11.1549rem + 8.913vw, 18.0625rem)',
+  height: 'clamp(3.5625rem, 3.4755rem + 0.4348vw, 3.8125rem)',
   background: '#00598F',
   color: 'white',
   display: 'flex',
@@ -62,7 +63,7 @@ export const buttonStyles = {
   borderRadius: '0 0.75rem',
   gap: '1rem',
   marginRight: 'auto',
-  fontSize: { lg: '1.625rem', xs: '1.188rem' },
+  fontSize: 'clamp(1.1875rem, 1.0353rem + 0.7609vw, 1.625rem)',
   fontWeight: '500',
   fontFamily: inter.style.fontFamily,
   textTransform: 'none',
