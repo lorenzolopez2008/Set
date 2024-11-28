@@ -2,6 +2,7 @@ import { pxToRem } from '@/helpers/pxToRem';
 import { Box, Typography } from '@mui/material';
 
 export const ProductsIcons = () => {
+  const services = ['Impresión', 'Acabado', 'Periféricos', 'Complementos'];
   return (
     <Box
       sx={{
@@ -13,7 +14,20 @@ export const ProductsIcons = () => {
       }}
       id="productsIcons"
     >
-      <Box></Box>
+      <Box display="flex ">
+        {services.map((service, index) => {
+          return (
+            <Box>
+              <Typography
+                variant={'productDescription'}
+                color={index === 0 ? 'black' : ''}
+              >
+                {service}
+              </Typography>
+            </Box>
+          );
+        })}
+      </Box>
       <Box></Box>
     </Box>
   );
