@@ -6,6 +6,9 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { TestimonialCard } from '../Home/homeComponents/TestimonialCard';
 import OurClientsCard from './OurClientsCard';
+import { Canvas } from '@react-three/fiber';
+import { SphereClients } from './SphereClients';
+import { Environment, PerspectiveCamera, Stage } from '@react-three/drei';
 export const OurClients = () => {
   const containerRef = useRef(null);
   const ourClientsRef = useRef(null);
@@ -38,6 +41,7 @@ export const OurClients = () => {
     <Box
       sx={{
         overflowX: 'hidden',
+        minHeight: '100vh',
         marginBottom: '11.6875rem',
         paddingTop: '5.1875rem',
       }}
@@ -66,15 +70,21 @@ export const OurClients = () => {
         </Box>
         <Box
           sx={{
-            minWidth: { xs: '25.185rem', lg: pxToRem(813) },
-            height: { xs: '24.9375rem', lg: pxToRem(803) },
+            minWidth: { xs: '25.185rem', lg: pxToRem(1220) },
+            height: { xs: '24.9375rem', lg: pxToRem(1208) },
             marginTop: { xs: '3.8125rem', lg: 0 },
             marginInline: { xs: 'auto', lg: '0 10.1875rem' },
-            backgroundImage: 'url(esfera.png)',
             backgroundSize: 'contain',
             backgroundRepeat: 'no-repeat',
+            position: 'relative',
           }}
-        ></Box>
+        >
+          <Canvas camera={{ position: [2.2, 0.5, 0] }}>
+            <Environment preset="city" />
+            <SphereClients />
+            <PerspectiveCamera />
+          </Canvas>
+        </Box>
         <Box
           sx={{
             minWidth: pxToRem(813),
