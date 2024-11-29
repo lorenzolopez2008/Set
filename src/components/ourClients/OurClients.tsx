@@ -25,7 +25,7 @@ export const OurClients = () => {
               trigger: containerRef.current,
               pin: true,
               start: 'top top',
-              end: '+=500',
+              end: '+=2500',
               scrub: 1,
             },
           });
@@ -41,9 +41,10 @@ export const OurClients = () => {
     <Box
       sx={{
         overflowX: 'hidden',
-        minHeight: '100vh',
-        marginBottom: '11.6875rem',
-        paddingTop: '5.1875rem',
+        // minHeight: '100vh',
+        // marginBottom: '11.6875rem',
+        // marginTop: '11.6875rem',
+        // paddingTop: '5.1875rem',
       }}
       ref={containerRef}
     >
@@ -54,50 +55,67 @@ export const OurClients = () => {
           flexDirection: { xs: 'column', lg: 'row' },
           justifyContent: 'center',
           alignItems: 'center',
-          paddingLeft: { xs: pxToRem(18), lg: pxToRem(102) },
-          paddingRight: { xs: pxToRem(18), lg: 0 },
+          paddingLeft: '5rem',
         }}
         ref={ourClientsRef}
       >
         <Box
           sx={{
-            minWidth: { xs: 0, lg: pxToRem(669) },
+            width: '50vw',
+            // width: {
+            //   xs: 0,
+            //   lg: `clamp(${pxToRem(400)},40vw,${pxToRem(669)})`,
+            // },
+            marginRight: '10rem',
             height: 'fit-content',
-            marginRight: { xs: 0, lg: pxToRem(524) },
           }}
         >
           <OurClientsCard />
         </Box>
+        {/* <Box */}
+        {/*   sx={{ */}
+        {/*     minWidth: { xs: '25.185rem', lg: pxToRem(1220) }, */}
+        {/*     height: { xs: '24.9375rem', lg: pxToRem(1208) }, */}
+        {/*     marginTop: { xs: '3.8125rem', lg: 0 }, */}
+        {/*     marginInline: { xs: 'auto', lg: '0 10.1875rem' }, */}
+        {/*     backgroundSize: 'contain', */}
+        {/*     backgroundRepeat: 'no-repeat', */}
+        {/*     position: 'relative', */}
+        {/*   }} */}
+        {/* > */}
+        {/* </Box> */}
+
         <Box
           sx={{
-            minWidth: { xs: '25.185rem', lg: pxToRem(1220) },
-            height: { xs: '24.9375rem', lg: pxToRem(1208) },
-            marginTop: { xs: '3.8125rem', lg: 0 },
-            marginInline: { xs: 'auto', lg: '0 10.1875rem' },
-            backgroundSize: 'contain',
-            backgroundRepeat: 'no-repeat',
-            position: 'relative',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '100vw',
           }}
         >
-          <Canvas camera={{ position: [2.2, 0.5, 0] }}>
+          <Canvas
+            style={{
+              width: '40vw',
+              height: `70vh`,
+            }}
+          >
             <Environment preset="city" />
             <SphereClients />
-            <PerspectiveCamera />
           </Canvas>
-        </Box>
-        <Box
-          sx={{
-            minWidth: pxToRem(813),
-            height: pxToRem(803),
-            display: { xs: 'none', lg: 'flex' },
-            justifyContent: 'center',
-            alignItems: 'baseline',
-            flexDirection: 'column',
-            gap: pxToRem(81),
-          }}
-        >
-          <Typography variant="title"> Testimonios</Typography>
-          <TestimonialCard />
+          <Box
+            sx={{
+              width: 'clamp(19.6875rem, 45vw, 39.6875rem)',
+              height: 'clamp(9.375rem,  35.4348vw, 50rem)',
+              display: { xs: 'none', lg: 'flex' },
+              paddingRight: '2.25rem',
+              justifyContent: 'center',
+              flexDirection: 'column',
+              gap: '2.25rem',
+            }}
+          >
+            <Typography variant="title"> Testimonios</Typography>
+            <TestimonialCard />
+          </Box>
         </Box>
       </Box>
     </Box>

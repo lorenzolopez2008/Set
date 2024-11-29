@@ -6,8 +6,8 @@ export default function OurClientsCard() {
   return (
     <Box
       sx={{
-        width: '100%',
-        padding: { xs: '1.2125rem', lg: `5.3125rem 1.9375rem 1.3125rem 4rem` },
+        width: `clamp(${pxToRem(400)},40vw,${pxToRem(669)})`,
+        padding: { xs: '1.2125rem', lg: `2rem` },
         borderRadius: '2rem',
         backgroundImage: { xs: 'none', lg: 'url(dashedRectangle.svg)' },
         backgroundSize: 'contain',
@@ -20,26 +20,29 @@ export default function OurClientsCard() {
           flexDirection: 'column',
           gap: '1.475rem',
           justifyContent: 'center',
-          alignItems: 'center',
         }}
       >
-        <Typography variant="title" sx={{ textWrap: 'nowrap' }}>
+        <Typography
+          variant="title"
+          sx={{
+            textWrap: 'nowrap',
+            fontSize: 'clamp(1.9375rem, 1.3071rem + 1.1522vw, 3.75rem)',
+          }}
+        >
           Nuestros clientes
         </Typography>
         <Typography
           variant="paragraph"
           sx={{
-            fontSize: { xs: '0.872rem', lg: '1.75rem' },
+            fontSize: 'clamp(0.875rem, 0.5707rem + 1vw, 1.75rem)',
             color: '#848282',
             fontWeight: 600,
-            textAlign: 'center',
           }}
         >
           Nuestros clientes nos identifican como la empresa
           <Typography
             variant="paragraph"
             sx={{
-              fontSize: { xs: '0.872rem', lg: '1.75rem' },
               color: '#008428',
               fontWeight: 600,
             }}
@@ -54,7 +57,7 @@ export default function OurClientsCard() {
             display: { xs: 'none', lg: 'inline-flex' },
             alignItems: 'center',
             gap: '1rem',
-            marginTop: '4.75rem',
+            marginTop: '2rem',
             marginLeft: pxToRem(35),
           }}
         >
