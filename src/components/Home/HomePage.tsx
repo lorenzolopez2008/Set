@@ -2,64 +2,98 @@
 import { Observer } from 'gsap/dist/Observer';
 import { useGSAP } from '@gsap/react';
 import { Box } from '@mui/material';
-import createTimeline from './timelines/homeTimeline';
+// import createTimeline from './timelines/homeTimeline';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { TextWithHighlight } from './homeComponents/TextWithHighlight';
 import { Machine } from './homeComponents/Machine';
 
 import { useVisibility } from '@/providers/Testing';
-import OurClientsCard from '../ourClients/OurClientsCard';
-import { OurClients } from '../ourClients/OurClients';
+// import OurClientsCard from '../ourClients/OurClientsCard';
+// import { OurClients } from '../ourClients/OurClients';
+import { HomeQuienes } from './homeComponents/HomeQuienes';
+import { ProductsIcons } from './homeComponents/ProductsIcons';
 
 gsap.registerPlugin(Observer);
 
 export default function HomePage() {
   useGSAP(() => {
-    const mm = gsap.matchMedia();
+    gsap.registerPlugin(ScrollTrigger);
+    const tl = gsap.timeline({ defaults: { duration: 1.5 } });
+    tl.fromTo(
+      '#navbarButtons',
+      { top: -100, opacity: 0 },
+      { top: 0, opacity: 1 },
+      '<'
+    )
+      .fromTo('#logo', { top: -100, opacity: 0 }, { top: 0, opacity: 1 }, '<')
+      .fromTo(
+        '#textHigh',
+        { left: '-50%', opacity: 0 },
+        { left: '5%', opacity: 1 },
+        '<'
+      )
+      .fromTo(
+        '#machine',
+        { scale: 0.2, opacity: 0 },
+        { scale: 1, opacity: 1 },
+        '<'
+      )
+      .fromTo('#machine-buttons', { opacity: 0 }, { opacity: 1 }, '<');
 
-    let animating = false;
-
-    function tweenToLabel(direction: string, timeline: GSAPTimeline) {
-      animating = true;
-      timeline.tweenTo(direction, {
-        onComplete: () => {
-          animating = false;
-        },
-      });
-    }
-
-    mm.add(
-      { isDesktop: '(min-width:500px)', isMobile: '(max-width:499px)' },
-      (context) => {
-        const conditions = context.conditions;
-        if (conditions?.isDesktop) {
-          const tl = createTimeline({
-            paused: true,
-            defaults: { duration: 1 },
-          });
-          Observer.create({
-            type: 'wheel',
-            wheelSpeed: -1,
-            onDown: () => !animating && tweenToLabel(tl.previousLabel(), tl),
-            onUp: () => !animating && tweenToLabel(tl.nextLabel(), tl),
-            tolerance: 50,
-            preventDefault: true,
-          });
-        }
-      }
-    );
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#container',
+        start: '-100px top',
+        end: '400px top',
+        pin: '#container',
+        pinSpacing: false,
+        scrub: true,
+        markers: true,
+      },
+    });
+    timeline
+      .fromTo('#textHigh', { opacity: 1 }, { opacity: 0, top: '-20%' })
+      .fromTo('#machine', { scaleX: 1 }, { scaleX: -1 }, '<')
+      .fromTo(
+        '#machine-buttons',
+        { width: '90%', opacity: 1 },
+        { width: '120%', opacity: 0 },
+        '<'
+      )
+      .fromTo(
+        '#homeQuienes',
+        { left: '5%', top: '60%', opacity: 0 },
+        { left: '5%', opacity: 1, top: '0%' },
+        '<'
+      );
+    const timeline2 = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#container',
+        start: '-99px top',
+        end: '20% top',
+        pin: '#container',
+        pinSpacing: false,
+        scrub: true,
+        markers: true,
+      },
+    });
   });
+
   const { isVisible } = useVisibility('HomePage');
   if (!isVisible) return null;
   return (
     <Box
       sx={{
         width: '100%',
-        height: '100vh',
+        height: '200vh',
       }}
+      id="container"
     >
       <TextWithHighlight />
       <Machine />
+      <HomeQuienes />
+      <ProductsIcons />
     </Box>
   );
 }

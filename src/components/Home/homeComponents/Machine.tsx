@@ -15,7 +15,7 @@ export const Machine = () => {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        top: '35%',
+        top: '10%',
       }}
     >
       <Box
