@@ -41,9 +41,9 @@ export default function HomePage() {
 
     const timeline = gsap.timeline({
       scrollTrigger: {
-        trigger: '#navbar',
-        start: '1px top',
-        end: 'bottom bottom',
+        trigger: '#container',
+        start: '-100px top',
+        end: '400px top',
         pin: '#container',
         pinSpacing: false,
         scrub: true,
@@ -65,6 +65,17 @@ export default function HomePage() {
         { left: '5%', opacity: 1, top: '0%' },
         '<'
       );
+    const timeline2 = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#container',
+        start: '-99px top',
+        end: '20% top',
+        pin: '#container',
+        pinSpacing: false,
+        scrub: true,
+        markers: true,
+      },
+    });
   });
 
   const { isVisible } = useVisibility('HomePage');
