@@ -1,5 +1,5 @@
-import { pxToRem } from '@/helpers/pxToRem';
 import { Box, Typography } from '@mui/material';
+import Image from 'next/image';
 
 export const ProductsIcons = () => {
   const services = ['Impresión', 'Acabado', 'Periféricos', 'Complementos'];
@@ -13,7 +13,7 @@ export const ProductsIcons = () => {
   return (
     <Box
       sx={{
-        position: 'absolute',
+        position: 'relative',
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
@@ -53,11 +53,14 @@ export const ProductsIcons = () => {
           justifyContent: 'center',
         }}
       >
-        {images.map((image) => {
+        {images.map((image, i) => {
           return (
-            <img
+            <Image
+              key={i}
               src={image}
-              alt="Logo"
+              alt=""
+              width={145}
+              height={145}
               style={{
                 height: 'clamp(2.188, 45vw, 3.25rem)',
                 width: 'clamp(6.063, 40vw, 9.063rem)',
