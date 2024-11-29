@@ -13,8 +13,7 @@ export const FadeUpImage = () => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
-        pin: true,
-        start: 'top top',
+        start: '-=800 top',
         end: '+=500',
         scrub: 3,
         markers: true,
@@ -33,8 +32,7 @@ export const FadeUpImage = () => {
   return (
     <Box
       sx={{
-        overflow: 'hidden',
-        minHeight: { xs: '50vh', lg: '100vh' },
+        /* minHeight: { xs: '50vh', lg: '100vh' }, */
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',

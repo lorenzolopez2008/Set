@@ -106,7 +106,6 @@ export const ProductCarrusel = () => {
 
   useGSAP(() => {
     if (!containerRef.current) return;
-
     gsap.to(`.${styles.embla__slide}`, {
       flex: '0 0 58%',
     });
@@ -157,34 +156,13 @@ export const ProductCarrusel = () => {
         },
       }
     );
-
-    gsap.from('#product-buttons', {
-      scaleX: 1.1,
-      duration: 1,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: `#product-buttons`,
-        start: 'top 90%',
-        end: 'top 20%',
-        scrub: true,
-      },
-    });
-
-    gsap.from('#bg-carousel', {
-      opacity: 0,
-      scale: 0.8,
-      y: 100,
-      scrollTrigger: {
-        trigger: '#bg-carousel',
-        start: 'top 80%',
-        end: 'top 30%',
-        scrub: true,
-      },
-    });
   }, []);
 
   return (
-    <Box sx={{ position: 'relative' }}>
+    <Box
+      sx={{ position: 'relative', opacity: 0, paddingTop: '5rem' }}
+      id="productCarrusel"
+    >
       <Image
         id="bg-carousel"
         src={'/bg-carousel.png'}
@@ -218,7 +196,7 @@ export const ProductCarrusel = () => {
           <Box className={styles.embla__viewport} ref={emblaRef}>
             <Box className={styles.embla__container}>
               {slides.map((img, index) => (
-                <Box className={styles.embla__slide} key={index} id="machine">
+                <Box className={styles.embla__slide} key={index}>
                   <Box className={styles.embla__slide__number}>
                     <Box
                       sx={{
