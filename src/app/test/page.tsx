@@ -1,22 +1,25 @@
 import { Box } from '@mui/material';
-import { Carousel } from '../components/Carousel/Carousel';
+import { ProductCarrusel } from '../components/ui/ProductsCarrusel/ProductCarrusel';
 
-const Test = () => {
-  const images = ['/1.png', '/2.png', '/3.png', '/1.png', '/2.png', '/3.png'];
+const page = () => {
   return (
-    <Box
-      sx={{
-        width: '100%',
-        minHeight: '100vh',
-        // // display: 'flex',
-        // // flexDirection: 'column',
-        // // justifyContent: 'center',
-        // alignItems: 'center',
-        overflowX: 'hidden',
-      }}
-    >
-      <Carousel images={images} />
-    </Box>
+    <>
+      <Box
+        sx={{
+          width: '100%',
+          height: '100vh',
+        }}
+      />
+
+      <ProductCarrusel />
+      <Box
+        sx={{
+          width: '100%',
+          height: '100vh',
+        }}
+      />
+    </>
   );
 };
-export default Test;
+
+export default page;
