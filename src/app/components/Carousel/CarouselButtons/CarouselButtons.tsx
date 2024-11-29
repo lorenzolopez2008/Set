@@ -71,7 +71,7 @@ export const PrevButton: React.FC<PropType> = (props) => {
           paddingLeft: '.2rem',
         }}
       >
-        Ant
+        ANT
       </Box>
 
       {children}
@@ -96,7 +96,7 @@ export const NextButton: React.FC<PropType> = (props) => {
           paddingRight: '.2rem',
         }}
       >
-        Sig
+        SIG
       </Box>
       <Image
         src={'/icons/forwardArrow.svg'}
