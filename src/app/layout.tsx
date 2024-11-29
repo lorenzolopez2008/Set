@@ -4,13 +4,9 @@ import ThemeRegistryProvider from '../providers/ThemeRegistryProvider';
 import Loader from '@/components/Loader/Loader';
 import { Navbar } from '@/components/Navbar';
 import { GsapProvider } from '@/providers/GsapProvider';
-<<<<<<< Updated upstream
 import { VisibilityProvider } from '@/providers/Testing';
 import DevTools from '@/hooks/Panel';
 import Footer from '@/components/Footer';
-=======
-import { ProductCarrusel } from './components/ui/ProductsCarrusel/ProductCarrusel';
->>>>>>> Stashed changes
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -25,7 +21,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-<<<<<<< Updated upstream
         <VisibilityProvider>
           <Loader />
           <ThemeRegistryProvider>
@@ -37,15 +32,6 @@ export default function RootLayout({
             <DevTools />
           </ThemeRegistryProvider>
         </VisibilityProvider>
-=======
-        {/* <Loader /> */}
-        <ThemeRegistryProvider>
-          <GsapProvider>
-            {/* <Navbar /> */}
-            {children}
-          </GsapProvider>
-        </ThemeRegistryProvider>
->>>>>>> Stashed changes
       </body>
     </html>
   );
