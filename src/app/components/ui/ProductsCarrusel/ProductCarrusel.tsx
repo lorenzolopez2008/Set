@@ -106,7 +106,6 @@ export const ProductCarrusel = () => {
 
   useGSAP(() => {
     if (!containerRef.current) return;
-
     gsap.to(`.${styles.embla__slide}`, {
       flex: '0 0 58%',
     });
@@ -160,7 +159,10 @@ export const ProductCarrusel = () => {
   }, []);
 
   return (
-    <Box sx={{ position: 'relative' }} id="productCarrusel">
+    <Box
+      sx={{ position: 'relative', opacity: 0, paddingTop: '5rem' }}
+      id="productCarrusel"
+    >
       <Image
         id="bg-carousel"
         src={'/bg-carousel.png'}

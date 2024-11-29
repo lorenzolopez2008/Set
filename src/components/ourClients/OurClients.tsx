@@ -1,7 +1,7 @@
 'use client';
 import { pxToRem } from '@/helpers/pxToRem';
 import { useGSAP } from '@gsap/react';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, useMediaQuery } from '@mui/material';
 import { useRef } from 'react';
 import gsap from 'gsap';
 import { TestimonialCard } from '../Home/homeComponents/TestimonialCard';
@@ -12,7 +12,7 @@ import { Environment, PerspectiveCamera, Stage } from '@react-three/drei';
 export const OurClients = () => {
   const containerRef = useRef(null);
   const ourClientsRef = useRef(null);
-
+  const isMobile = useMediaQuery('(max-width: 768px)');
   useGSAP(() => {
     const mm = gsap.matchMedia();
     mm.add(
@@ -25,7 +25,7 @@ export const OurClients = () => {
               trigger: containerRef.current,
               pin: true,
               start: 'top top',
-              end: '+=2500',
+              end: '+=1500',
               scrub: 1,
             },
           });
@@ -55,7 +55,7 @@ export const OurClients = () => {
           flexDirection: { xs: 'column', lg: 'row' },
           justifyContent: 'center',
           alignItems: 'center',
-          paddingLeft: '5rem',
+          paddingLeft: { lg: '5rem' },
         }}
         ref={ourClientsRef}
       >
@@ -95,7 +95,7 @@ export const OurClients = () => {
         >
           <Canvas
             style={{
-              width: '40vw',
+              width: isMobile ? '100%' : '40vw',
               height: `70vh`,
             }}
           >

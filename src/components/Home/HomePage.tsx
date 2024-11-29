@@ -15,10 +15,15 @@ import { HomeQuienes } from './homeComponents/HomeQuienes';
 import { ProductsIcons } from './homeComponents/ProductsIcons';
 import { ProductCarrusel } from '@/app/components/ui/ProductsCarrusel/ProductCarrusel';
 import styles from '@/app/components/ui/ProductsCarrusel/ProductCard.module.css';
+import { OurServices } from './homeComponents/OurServices';
+import { FadeUpImage } from './homeComponents/FadeUpImage';
+import { Carousel } from '@/app/components/Carousel/Carousel';
+import { OurClients } from '../ourClients/OurClients';
 
 gsap.registerPlugin(Observer);
 
 export default function HomePage() {
+  const images = ['/1.png', '/2.png', '/3.png'];
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
     const tl = gsap.timeline({ defaults: { duration: 1.5 } });
@@ -112,11 +117,15 @@ export default function HomePage() {
         '<'
       )
       .to('#machine', { opacity: 0 }, '<')
-      /*  .to('#productCarrusel', { opacity: 1 }, '<') */
+      .to('#productCarrusel', { opacity: 1 }, '<')
 
-      .to(`.${styles.embla__slide}`, {
-        flex: '0 0 58%',
-      })
+      .to(
+        `.${styles.embla__slide}`,
+        {
+          flex: '0 0 58%',
+        },
+        '<'
+      )
       .fromTo(
         `.${styles.embla__slide}`,
         {
@@ -124,14 +133,16 @@ export default function HomePage() {
         },
         {
           flex: '0 0 58%',
-        }
+        },
+        '<'
       )
       .fromTo(
         '#machine-carrousel',
         { opacity: 0, y: 50 },
         {
           opacity: 1,
-        }
+        },
+        '<'
       )
       .fromTo(
         '#product-title',
@@ -141,33 +152,48 @@ export default function HomePage() {
         {
           left: '5%',
           duration: 1,
-        }
+        },
+        '<'
       )
-      .from('#product-buttons', {
-        scaleX: 1.1,
-        duration: 1,
-      })
-      .from('#bg-carousel', {
-        opacity: 0,
-        scale: 0.8,
-        y: 100,
-      });
+      .from(
+        '#product-buttons',
+        {
+          scaleX: 1.1,
+          duration: 1,
+        },
+        '<'
+      )
+      .from(
+        '#bg-carousel',
+        {
+          opacity: 0,
+          scale: 0.8,
+          y: 100,
+        },
+        '<'
+      );
   });
 
   const { isVisible } = useVisibility('HomePage');
   if (!isVisible) return null;
   return (
-    <Box
-      sx={{
-        width: '100%',
-        height: '300vh',
-      }}
-      id="container"
-    >
-      <TextWithHighlight />
-      <Machine />
-      <HomeQuienes />
-      <ProductCarrusel />
-    </Box>
+    <>
+      <Box
+        sx={{
+          width: '100%',
+          height: '230vh',
+        }}
+        id="container"
+      >
+        <TextWithHighlight />
+        <Machine />
+        <HomeQuienes />
+        <ProductCarrusel />
+      </Box>
+      <OurServices />
+      <FadeUpImage />
+      <Carousel images={images} />
+      <OurClients />
+    </>
   );
 }
