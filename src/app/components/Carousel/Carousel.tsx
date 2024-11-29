@@ -50,6 +50,7 @@ export const Carousel = ({ images }: Props) => {
       emblaApi.scrollSnapList().forEach((scrollSnap, snapIndex) => {
         let diffToTarget = scrollSnap - scrollProgress;
         const slidesInSnap = engine.slideRegistry[snapIndex];
+        const middleIndex = emblaApi.selectedScrollSnap();
 
         slidesInSnap.forEach((slideIndex) => {
           if (isScrollEvent && !slidesInView.includes(slideIndex)) return;
@@ -71,15 +72,29 @@ export const Carousel = ({ images }: Props) => {
             });
           }
 
-          const tweenValue = 1 - Math.abs(diffToTarget * tweenFactor.current);
-          const scale = numberWithinRange(tweenValue, 0, 1).toString();
+          // const tweenValue = 1 - Math.abs(diffToTarget * tweenFactor.current);
+          // const scale = numberWithinRange(tweenValue, 0, 1).toString();
           const tweenNode = tweenNodes.current[slideIndex];
-          tweenNode.style.transform = `scale(${scale})`;
+          console.log(slideIndex, middleIndex);
+          const [before, after] = getIndex(middleIndex, slides.length);
+          if (before === slideIndex) {
+            tweenNode.style.transform = `perspective(800px) rotateY(30deg)`;
+          } else if (after === slideIndex) {
+            tweenNode.style.transform = `perspective(800px) rotateY(-30deg)`;
+          } else {
+            tweenNode.style.transform = `perspective(800px) rotateY(0deg)`;
+          }
         });
       });
     },
     []
   );
+
+  const getIndex = (index: number, length: number): number[] => {
+    const before = index - 1 < 0 ? length - 1 : index - 1;
+    const after = index + 1 > length - 1 ? 0 : index + 1;
+    return [before, after];
+  };
 
   const { screen } = useGetScreen('md');
 
