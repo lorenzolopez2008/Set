@@ -8,6 +8,8 @@ import { TextWithHighlight } from './homeComponents/TextWithHighlight';
 import { Machine } from './homeComponents/Machine';
 
 import { useVisibility } from '@/providers/Testing';
+import OurClientsCard from '../ourClients/OurClientsCard';
+import { OurClients } from '../ourClients/OurClients';
 
 gsap.registerPlugin(Observer);
 
