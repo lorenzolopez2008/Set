@@ -13,6 +13,8 @@ import { useVisibility } from '@/providers/Testing';
 // import { OurClients } from '../ourClients/OurClients';
 import { HomeQuienes } from './homeComponents/HomeQuienes';
 import { ProductsIcons } from './homeComponents/ProductsIcons';
+import { ProductCarrusel } from '@/app/components/ui/ProductsCarrusel/ProductCarrusel';
+import styles from '@/app/components/ui/ProductsCarrusel/ProductCard.module.css';
 
 gsap.registerPlugin(Observer);
 
@@ -45,7 +47,7 @@ export default function HomePage() {
       scrollTrigger: {
         trigger: '#container',
         start: '-100px top',
-        end: '400px top',
+        end: '300px top',
         pin: '#container',
         pinSpacing: false,
         scrub: true,
@@ -71,7 +73,7 @@ export default function HomePage() {
       scrollTrigger: {
         trigger: '#container',
         start: '-90px top',
-        end: '30% top',
+        end: '300px top',
         pin: '#container',
         pinSpacing: false,
         scrub: true,
@@ -87,6 +89,69 @@ export default function HomePage() {
         { opacity: 1, bottom: '-15%' },
         '<'
       );
+    const timeline3 = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#container',
+        start: '-55px top',
+        end: '500px top',
+        pin: '#container',
+        pinSpacing: false,
+        scrub: true,
+        markers: true,
+      },
+    });
+    timeline3
+      .to('#productsIcons', { opacity: 0, bottom: '-40%' })
+      .to(
+        '#circle',
+        {
+          top: '-10%',
+          left: '75%',
+          scale: 0.5,
+        },
+        '<'
+      )
+      .to('#machine', { opacity: 0 }, '<')
+      /*  .to('#productCarrusel', { opacity: 1 }, '<') */
+
+      .to(`.${styles.embla__slide}`, {
+        flex: '0 0 58%',
+      })
+      .fromTo(
+        `.${styles.embla__slide}`,
+        {
+          flex: '0 0 100%',
+        },
+        {
+          flex: '0 0 58%',
+        }
+      )
+      .fromTo(
+        '#machine-carrousel',
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+        }
+      )
+      .fromTo(
+        '#product-title',
+        {
+          left: '-50%',
+        },
+        {
+          left: '5%',
+          duration: 1,
+        }
+      )
+      .from('#product-buttons', {
+        scaleX: 1.1,
+        duration: 1,
+      })
+      .from('#bg-carousel', {
+        opacity: 0,
+        scale: 0.8,
+        y: 100,
+      });
   });
 
   const { isVisible } = useVisibility('HomePage');
@@ -102,6 +167,7 @@ export default function HomePage() {
       <TextWithHighlight />
       <Machine />
       <HomeQuienes />
+      <ProductCarrusel />
     </Box>
   );
 }
