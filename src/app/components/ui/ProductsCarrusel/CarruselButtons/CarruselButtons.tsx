@@ -4,9 +4,10 @@ import { EmblaCarouselType } from 'embla-carousel';
 
 interface CarruselButtonsProps {
   emblaApi?: EmblaCarouselType | null;
+  id: string;
 }
 
-export const CarruselButtons = ({ emblaApi }: CarruselButtonsProps) => {
+export const CarruselButtons = ({ emblaApi, id }: CarruselButtonsProps) => {
   const handlePrev = () => {
     emblaApi?.scrollPrev();
   };
@@ -17,6 +18,7 @@ export const CarruselButtons = ({ emblaApi }: CarruselButtonsProps) => {
 
   return (
     <Box
+      id={id}
       sx={{
         display: 'flex',
         justifyContent: 'space-between',

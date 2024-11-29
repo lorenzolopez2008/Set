@@ -1,7 +1,4 @@
 'use client';
-import photo1 from '@/public/assets/products/photo-1.png';
-import photo2 from '@/public/assets/products/photo-2.png';
-import photo3 from '@/public/assets/products/photo-3.png';
 
 import { useCallback, useEffect, useRef } from 'react';
 import {
@@ -10,10 +7,16 @@ import {
   EmblaOptionsType,
 } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
-import './ProductCard.css';
-import { Box } from '@mui/material';
+import styles from './ProductCard.module.css';
+import { Box, Typography } from '@mui/material';
 import { pxToRem } from '@/helpers/pxToRem';
 import { CarruselButtons } from './CarruselButtons/CarruselButtons';
+import Image from 'next/image';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const TWEEN_FACTOR_BASE = 0.52;
 
@@ -22,14 +25,22 @@ const numberWithinRange = (number: number, min: number, max: number): number =>
 
 export const ProductCarrusel = () => {
   const options: EmblaOptionsType = { loop: true, watchDrag: false };
-  const slides = [photo1, photo2, photo3];
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
   const tweenFactor = useRef(0);
   const tweenNodes = useRef<HTMLElement[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const slides = [
+    '/products/photo-1.png',
+    '/products/photo-2.png',
+    '/products/photo-3.png',
+  ];
 
   const setTweenNodes = useCallback((emblaApi: EmblaCarouselType): void => {
     tweenNodes.current = emblaApi.slideNodes().map((slideNode) => {
-      return slideNode.querySelector('.embla__slide__number') as HTMLElement;
+      return slideNode.querySelector(
+        `.${styles.embla__slide__number}`
+      ) as HTMLElement;
     });
   }, []);
 
@@ -93,29 +104,145 @@ export const ProductCarrusel = () => {
       .on('slideFocus', tweenScale);
   }, [emblaApi, tweenScale, setTweenFactor, setTweenNodes]);
 
+  useGSAP(() => {
+    if (!containerRef.current) return;
+
+    gsap.to(`.${styles.embla__slide}`, {
+      flex: '0 0 58%',
+    });
+    gsap.fromTo(
+      `.${styles.embla__slide}`,
+      {
+        flex: '0 0 100%',
+      },
+      {
+        flex: '0 0 58%',
+        duration: 1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '#product-title',
+          start: 'top 80%',
+          end: 'top 30%',
+          scrub: true,
+        },
+      }
+    );
+    gsap.fromTo(
+      containerRef.current,
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        duration: 1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: containerRef.current,
+        },
+      }
+    );
+
+    gsap.fromTo(
+      '#product-title',
+      {
+        left: '-50%',
+      },
+      {
+        left: '5%',
+        duration: 1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '#product-title',
+          start: 'top 80%',
+          end: 'top 30%',
+          scrub: true,
+        },
+      }
+    );
+
+    gsap.from('#product-buttons', {
+      scaleX: 1.1,
+      duration: 1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: `#product-buttons`,
+        start: 'top 90%',
+        end: 'top 20%',
+        scrub: true,
+      },
+    });
+
+    gsap.from('#bg-carousel', {
+      opacity: 0,
+      scale: 0.8,
+      y: 100,
+      scrollTrigger: {
+        trigger: '#bg-carousel',
+        start: 'top 80%',
+        end: 'top 30%',
+        scrub: true,
+      },
+    });
+  }, []);
+
   return (
-    <Box sx={{ width: '100%' }}>
-      <Box className="embla">
-        <Box className="embla__viewport" ref={emblaRef}>
-          <Box className="embla__container">
-            {slides.map((img, index) => (
-              <Box className="embla__slide" key={index}>
-                <Box className="embla__slide__number">
-                  <img
-                    src={img.src}
-                    style={{
-                      width: `clamp(${pxToRem(523)}, 35vw, ${pxToRem(1061)})`,
-                      height: `clamp(${pxToRem(318)}, 25vw, ${pxToRem(726)})`,
-                    }}
-                    alt={img.src}
-                  />
+    <Box sx={{ position: 'relative' }}>
+      <Image
+        id="bg-carousel"
+        src={'/bg-carousel.png'}
+        alt="bg"
+        fill
+        sizes="100%"
+        style={{
+          position: 'absolute',
+          objectFit: 'cover',
+          transform: 'scaleY(1.3)',
+          opacity: 1,
+        }}
+      />
+      <Typography
+        id="product-title"
+        variant="main"
+        sx={{
+          color: 'black',
+          paddingLeft: '5%',
+          position: 'absolute',
+          marginBottom: '15rem',
+        }}
+      >
+        Productos{' '}
+        <Typography component="span" variant="main">
+          más vendidos
+        </Typography>
+      </Typography>
+      <Box sx={{ width: '100%' }} id="machine-carrousel" ref={containerRef}>
+        <Box className={styles.embla}>
+          <Box className={styles.embla__viewport} ref={emblaRef}>
+            <Box className={styles.embla__container}>
+              {slides.map((img, index) => (
+                <Box className={styles.embla__slide} key={index} id="machine">
+                  <Box className={styles.embla__slide__number}>
+                    <Box
+                      sx={{
+                        width: `clamp(${pxToRem(850)}, 35vw, ${pxToRem(1061)})`,
+                        height: `clamp(${pxToRem(600)}, 25vw, ${pxToRem(726)})`,
+                        position: 'relative',
+                      }}
+                    >
+                      <Image
+                        src={img}
+                        alt={img}
+                        fill
+                        sizes="100%"
+                        style={{ objectFit: 'cover' }}
+                      />
+                    </Box>
+                  </Box>
                 </Box>
-              </Box>
-            ))}
+              ))}
+            </Box>
           </Box>
         </Box>
+        <CarruselButtons id={'product-buttons'} emblaApi={emblaApi} />
       </Box>
-      <CarruselButtons emblaApi={emblaApi} />
     </Box>
   );
 };
