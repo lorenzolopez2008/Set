@@ -13,19 +13,24 @@ export const ProductsIcons = () => {
   return (
     <Box
       sx={{
+        position: 'absolute',
+        width: '100%',
         display: 'flex',
         flexDirection: 'column',
-        position: 'absolute',
-        alignItems: 'stretch',
-        gap: '1rem',
-        left: 'clamp(1.25rem, 10vw, 10.625rem)',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 10,
       }}
       id="productsIcons"
     >
-      <Box sx={{}}>
+      <Box
+        sx={{ display: 'flex', itemsAlign: 'center', justifyContent: 'center' }}
+      >
         <Box
           sx={{
             display: 'flex',
+            itemsAlign: 'center',
+            justifyContent: 'center',
             gap: '1rem',
             width: 'clamp( 34.063rem, 80vw,50.563rem)',
           }}
