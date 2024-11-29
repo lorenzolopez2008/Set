@@ -32,7 +32,7 @@ export default function HomePage() {
         '<'
       )
       .fromTo(
-        '#machine',
+        '#machinePage',
         { scale: 0.2, opacity: 0 },
         { scale: 1, opacity: 1 },
         '<'
@@ -68,14 +68,23 @@ export default function HomePage() {
     const timeline2 = gsap.timeline({
       scrollTrigger: {
         trigger: '#container',
-        start: '-99px top',
-        end: '20% top',
+        start: '-90px top',
+        end: '30% top',
         pin: '#container',
         pinSpacing: false,
         scrub: true,
         markers: true,
       },
     });
+    timeline2
+      .to('#homeQuienes', { left: '-20%', opacity: 0 })
+      .fromTo('#machinePage', { top: '5%' }, { top: '-1%' }, '<')
+      .fromTo(
+        '#productsIcons',
+        { opacity: 0, bottom: '-20%' },
+        { opacity: 1, bottom: '-15%' },
+        '<'
+      );
   });
 
   const { isVisible } = useVisibility('HomePage');
@@ -84,14 +93,13 @@ export default function HomePage() {
     <Box
       sx={{
         width: '100%',
-        height: '200vh',
+        height: '300vh',
       }}
       id="container"
     >
       <TextWithHighlight />
       <Machine />
       <HomeQuienes />
-      <ProductsIcons />
     </Box>
   );
 }
