@@ -43,7 +43,7 @@ export const theme = createTheme({
             {
               props: { variant: 'title' },
               style: {
-                color: '#000',
+                color: '#1D1D1F',
                 fontSize: `clamp(${pxToRem(31)}, 3vw, ${pxToRem(60)})`,
                 fontFamily: inter.style.fontFamily,
                 fontWeight: 800,
