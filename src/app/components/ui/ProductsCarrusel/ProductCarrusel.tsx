@@ -1,7 +1,7 @@
 'use client';
-import photo1 from '@/public/assets/products/photo-1.png';
-import photo2 from '@/public/assets/products/photo-2.png';
-import photo3 from '@/public/assets/products/photo-3.png';
+import photo1 from '@/../public/products/photo-1.png';
+import photo2 from '@/../public/products/photo-2.png';
+import photo3 from '@/../public/products/photo-3.png';
 
 import { useCallback, useEffect, useRef } from 'react';
 import {
