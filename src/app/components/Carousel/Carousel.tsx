@@ -1,6 +1,6 @@
 'use client';
 
-import { Box } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import useEmblaCarousel from 'embla-carousel-react';
 import {
   EmblaCarouselType,
@@ -8,14 +8,15 @@ import {
   EmblaOptionsType,
 } from 'embla-carousel';
 import { useCallback, useEffect, useRef } from 'react';
-import { CarruselButtons } from '../ui/ProductsCarrusel/CarruselButtons/CarruselButtons';
-import { pxToRem } from '@/helpers/pxToRem';
 import './Carousel.css';
+import { DiagonalArrow } from '../svg/DiagonalArrow';
+import { NextButton, PrevButton } from './CarouselButtons/CarouselButtons';
+import { useGetScreen } from '@/hooks/useGetScreen';
 
 interface Props {
   images: string[];
 }
-
+const TWEEN_FACTOR_BASE = 0.52;
 const numberWithinRange = (number: number, min: number, max: number): number =>
   Math.min(Math.max(number, min), max);
 
@@ -33,6 +34,10 @@ export const Carousel = ({ images }: Props) => {
     tweenNodes.current = emblaApi.slideNodes().map((slideNode) => {
       return slideNode.querySelector('.embla__slide__number') as HTMLElement;
     });
+  }, []);
+
+  const setTweenFactor = useCallback((emblaApi: EmblaCarouselType) => {
+    tweenFactor.current = TWEEN_FACTOR_BASE * emblaApi.scrollSnapList().length;
   }, []);
 
   const tweenScale = useCallback(
@@ -76,10 +81,13 @@ export const Carousel = ({ images }: Props) => {
     []
   );
 
+  const { screen } = useGetScreen('md');
+
   useEffect(() => {
     if (!emblaApi) return;
 
     setTweenNodes(emblaApi);
+    setTweenFactor(emblaApi);
     tweenScale(emblaApi);
 
     emblaApi
@@ -87,10 +95,10 @@ export const Carousel = ({ images }: Props) => {
       .on('reInit', tweenScale)
       .on('scroll', tweenScale)
       .on('slideFocus', tweenScale);
-  }, [emblaApi, tweenScale, setTweenNodes]);
+  }, [emblaApi, tweenScale, setTweenFactor, setTweenNodes]);
 
   return (
-    <Box sx={{}}>
+    <Box>
       <Box sx={{ width: '100%', position: 'relative' }}>
         <Box className="embla">
           <Box className="embla__viewport" ref={emblaRef}>
@@ -101,7 +109,7 @@ export const Carousel = ({ images }: Props) => {
                     <img
                       src={img}
                       style={{
-                        width: `clamp(13.3531rem, 7.1275rem + 31.1283vw, 31.2519rem)`,
+                        width: `clamp(13.3531rem, 10.389rem + 14.8207vw, 21.875rem)`,
                         height: 'auto',
                       }}
                       alt={img}
@@ -113,182 +121,175 @@ export const Carousel = ({ images }: Props) => {
           </Box>
         </Box>
       </Box>
-      {/* <Box
-        sx={{
-          position: 'relative',
-          top: '30rem',
-          width: '30%',
-          margin: 'auto',
-        }}
-      > */}
-      <CarruselButtons emblaApi={emblaApi} />
-      {/* </Box> */}
-    </Box>
-    // <>
-    //   <Box style={{ width: '76%' }}>
-    //     <Box className="embla">
-    //       <Box className="embla__viewport" ref={emblaRef}>
-    //         <Box className="embla__container">
-    //           {images.map((image, index) => {
-    //             return (
-    //               <Box className="embla__slide" key={index}>
-    //                 <img
-    //                   src={image}
-    //                   alt=""
-    //                   style={{
-    //                     height: 'clamp(13.353rem, 40vw, 37.298rem)',
-    //                     width: 'clamp(13.353rem, 40vw, 37.298rem)',
-    //                   }}
-    //                 />
-    //               </Box>
-    //             );
-    //           })}
-    //         </Box>
-    //       </Box>
-    //     </Box>
-    //   </Box>
-    //   {/* buttons */}
-    //   {isMobile ? (
-    //     <Box
-    //       width={'100%'}
-    //       display={'flex'}
-    //       alignItems={'center'}
-    //       justifyContent={'center'}
-    //       padding={'0 5rem'}
-    //     >
-    //       <Box sx={{ marginLeft: 'auto' }}>
-    //         <Box>
-    //           <Typography
-    //             fontWeight={'bold'}
-    //             color="#008428"
-    //             fontSize={'2.25rem'}
-    //             lineHeight={'91%'}
-    //           >
-    //             Servicios de <br /> Mantenimiento
-    //           </Typography>
-    //           <Typography
-    //             fontWeight={'semibold'}
-    //             color="#848282"
-    //             fontSize={'1.75rem'}
-    //             lineHeight={'2.094rem'}
-    //             paddingTop={'2rem'}
-    //             paddingBottom={'3rem'}
-    //           >
-    //             Servico de mantenimiento
-    //             <br /> correctivo, preventivo y<br /> implementación de
-    //             tecnología.
-    //           </Typography>
-    //         </Box>
-    //         <Box
-    //           sx={{
-    //             display: 'flex',
-    //             width: '100%',
-    //             maxWidth: '420rem',
-    //             justifyContent: 'space-between',
-    //             padding: '0 .5rem',
-    //           }}
-    //         >
-    //           <PrevButton
-    //             onClick={onPrevButtonClick}
-    //             disabled={prevBtnDisabled}
-    //           />
-    //           <NextButton
-    //             onClick={onNextButtonClick}
-    //             disabled={nextBtnDisabled}
-    //           />
-    //         </Box>
-    //       </Box>
-    //       <Box
-    //         sx={{
-    //           display: 'flex',
-    //           height: '100%',
-    //           alignItems: 'end',
-    //           paddingBottom: '2rem',
-    //           marginLeft: 'auto',
-    //         }}
-    //       >
-    //         <Button variant="mainGreen" endIcon={<DiagonalArrow />}>
-    //           Servicios
-    //         </Button>
-    //       </Box>
-    //     </Box>
-    //   ) : (
-    //     <Box
-    //       width={'100%'}
-    //       display={'flex'}
-    //       alignItems={'center'}
-    //       justifyContent={'center'}
-    //       padding={'0 2rem'}
-    //       marginTop={'1rem'}
-    //     >
-    //       <Box sx={{ marginLeft: 'auto' }}>
-    //         <Box>
-    //           <Typography
-    //             fontWeight={'bold'}
-    //             color="#008428"
-    //             fontSize={'2.25rem'}
-    //             lineHeight={'91%'}
-    //           >
-    //             Hola que hace
-    //           </Typography>
+      {!screen ? (
+        <Box
+          width={'100%'}
+          position={'relative'}
+          padding={'4.5rem 5rem 0 5rem'}
+        >
+          <Box
+            sx={{
+              margin: 'auto',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              width: 'fit-content',
+            }}
+          >
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                gap: '0.375rem',
+              }}
+            >
+              <Typography
+                fontWeight={'bold'}
+                color="#008428"
+                fontSize={'2.25rem'}
+                lineHeight={'91%'}
+              >
+                Servicios de <br /> Mantenimiento
+              </Typography>
+              <Typography
+                fontWeight={'semibold'}
+                color="#848282"
+                fontSize={'clamp(0.875rem, 0.5707rem + 1.5217vw, 1.75rem)'}
+                lineHeight={'2.094rem'}
+              >
+                Servico de mantenimiento
+                <br /> correctivo, preventivo y<br /> implementación de
+                tecnología.
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                width: '100%',
+                maxWidth: '420rem',
+                justifyContent: 'space-between',
+                padding: '0 .5rem',
+              }}
+            >
+              <PrevButton
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.625rem',
+                }}
+                onClick={() => {
+                  emblaApi?.scrollPrev();
+                }}
+              />
+              <NextButton
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.625rem',
+                }}
+                onClick={() => {
+                  emblaApi?.scrollNext();
+                }}
+              />
+            </Box>
+          </Box>
+          <Box
+            sx={{
+              position: 'relative',
+              display: 'flex',
+              justifyContent: 'flex-end',
+              bottom: '6rem',
+            }}
+          >
+            <Button variant="mainGreen" endIcon={<DiagonalArrow />}>
+              Servicios
+            </Button>
+          </Box>
+        </Box>
+      ) : (
+        <Box
+          width={'100%'}
+          display={'flex'}
+          alignItems={'center'}
+          justifyContent={'center'}
+          marginTop={'1rem'}
+          padding={'5rem 5rem 0 5rem'}
+        >
+          <Box sx={{ marginRight: 'auto' }}>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                gap: '0.375rem',
+              }}
+            >
+              <Typography
+                fontWeight={'bold'}
+                color="#008428"
+                fontSize={'2.25rem'}
+                lineHeight={'91%'}
+              >
+                Servicios de <br /> Mantenimiento
+              </Typography>
+              <Typography
+                fontWeight={'semibold'}
+                color="#848282"
+                fontSize={'clamp(0.875rem, 0.5707rem + 1.5217vw, 1.75rem)'}
+              >
+                Servico de mantenimiento
+                <br /> correctivo, preventivo y<br /> implementación de
+                tecnología.
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                width: '100%',
+                maxWidth: '420rem',
+                justifyContent: 'space-between',
+              }}
+            >
+              <Box
+                sx={{
+                  width: '60%',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  paddingRight: '5rem',
+                }}
+              >
+                <PrevButton
+                  onClick={() => {
+                    emblaApi?.scrollPrev();
+                  }}
+                />
 
-    //           <Typography
-    //             fontWeight={'semibold'}
-    //             color="#848282"
-    //             fontSize={'1.75rem'}
-    //             lineHeight={'2.094rem'}
-    //             paddingTop={'2rem'}
-    //             paddingBottom={'3rem'}
-    //           >
-    //             Servico de mantenimiento
-    //             <br /> correctivo, preventivo y<br /> implementación de
-    //             tecnología.
-    //           </Typography>
-    //         </Box>
-    //         <Box
-    //           sx={{
-    //             display: 'flex',
-    //             width: '100%',
-    //             maxWidth: '420rem',
-    //             justifyContent: 'space-between',
-    //           }}
-    //         >
-    //           <Box
-    //             sx={{
-    //               width: '60%',
-    //               display: 'flex',
-    //               justifyContent: 'space-between',
-    //               paddingRight: '5rem',
-    //             }}
-    //           >
-    //             <PrevButton
-    //               onClick={onPrevButtonClick}
-    //               disabled={prevBtnDisabled}
-    //             />
-    //             <NextButton
-    //               onClick={onNextButtonClick}
-    //               disabled={nextBtnDisabled}
-    //             />
-    //           </Box>
-    //           <Box
-    //             sx={{
-    //               display: 'flex',
-    //               alignItems: 'center',
-    //               width: '40%',
-    //             }}
-    //           >
-    //             <Button
-    //               variant="mainGreen"
-    //               sx={{ padding: 1 }}
-    //               endIcon={<DiagonalArrow />}
-    //             >
-    //               Servicios
-    //             </Button>
-    //           </Box>
-    //         </Box>
-    //       </Box>
-    //     </Box>
-    //   )}
-    // </>
+                <NextButton
+                  onClick={() => {
+                    emblaApi?.scrollNext();
+                  }}
+                />
+              </Box>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  width: '40%',
+                }}
+              >
+                <Button
+                  variant="mainGreen"
+                  sx={{ padding: 1 }}
+                  endIcon={<DiagonalArrow />}
+                >
+                  Servicios
+                </Button>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+      )}
+    </Box>
   );
 };
