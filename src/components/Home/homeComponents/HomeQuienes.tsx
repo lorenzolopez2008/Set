@@ -10,6 +10,7 @@ export const HomeQuienes = () => {
         position: 'absolute',
         alignItems: 'stretch',
         gap: '1rem',
+        opacity: 0,
       }}
       id="homeQuienes"
     >

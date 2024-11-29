@@ -12,6 +12,7 @@ export const VisibilityContext = createContext<
 
 // Recuperar la visibilidad inicial desde localStorage
 const getInitialVisibility = (): Record<string, boolean> => {
+  if (!localStorage) return {};
   const storedVisibility = localStorage.getItem('devVisibility');
   return storedVisibility ? JSON.parse(storedVisibility) : {};
 };
