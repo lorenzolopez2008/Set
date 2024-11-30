@@ -1,142 +1,154 @@
 'use client';
 
-import { Box, Button, Typography } from '@mui/material';
-import useEmblaCarousel from 'embla-carousel-react';
-import {
-  EmblaCarouselType,
-  EmblaEventType,
-  EmblaOptionsType,
-} from 'embla-carousel';
-import { useCallback, useEffect, useRef } from 'react';
-import './Carousel.css';
-import { DiagonalArrow } from '../svg/DiagonalArrow';
-import { NextButton, PrevButton } from './CarouselButtons/CarouselButtons';
-import { useGetScreen } from '@/hooks/useGetScreen';
+import { Box } from '@mui/material';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { Draggable } from 'gsap/Draggable';
+import { useRef } from 'react';
 
 interface Props {
   images: string[];
 }
-const TWEEN_FACTOR_BASE = 0.52;
-const numberWithinRange = (number: number, min: number, max: number): number =>
-  Math.min(Math.max(number, min), max);
+
+gsap.registerPlugin(Draggable);
 
 export const Carousel = ({ images }: Props) => {
-  const options: EmblaOptionsType = {
-    loop: true,
-    watchDrag: true,
-  };
-  const slides = images;
-  const [emblaRef, emblaApi] = useEmblaCarousel(options);
-  const tweenFactor = useRef(0);
-  const tweenNodes = useRef<HTMLElement[]>([]);
+  const currentRotationY = useRef(0);
+  const container = useRef(null);
+  const slider = useRef(null);
+  const dragger = useRef(null);
+  const timeline = useRef(gsap.timeline({ paused: false }));
 
-  const setTweenNodes = useCallback((emblaApi: EmblaCarouselType): void => {
-    tweenNodes.current = emblaApi.slideNodes().map((slideNode) => {
-      return slideNode.querySelector('.embla__slide__number') as HTMLElement;
-    });
-  }, []);
+  useGSAP(
+    () => {
+      //gsap timeline
 
-  const setTweenFactor = useCallback((emblaApi: EmblaCarouselType) => {
-    tweenFactor.current = TWEEN_FACTOR_BASE * emblaApi.scrollSnapList().length;
-  }, []);
+      gsap.set(container.current, {
+        // rotateZ: 10,
+        // rotateX: -20,
+      });
+      gsap.set(slider.current, {
+        yPercent: 50,
 
-  const tweenScale = useCallback(
-    (emblaApi: EmblaCarouselType, eventName?: EmblaEventType) => {
-      const engine = emblaApi.internalEngine();
-      const scrollProgress = emblaApi.scrollProgress();
-      const slidesInView = emblaApi.slidesInView();
-      const isScrollEvent = eventName === 'scroll';
+        transformOrigin: (i, a, b) => {
+          console.log(b);
+          return `50% 50% ${b[0].clientWidth}px`;
+        },
 
-      emblaApi.scrollSnapList().forEach((scrollSnap, snapIndex) => {
-        let diffToTarget = scrollSnap - scrollProgress;
-        const slidesInSnap = engine.slideRegistry[snapIndex];
-        const middleIndex = emblaApi.selectedScrollSnap();
+        // rotateY: 0,
+      });
 
-        slidesInSnap.forEach((slideIndex) => {
-          if (isScrollEvent && !slidesInView.includes(slideIndex)) return;
+      gsap.to('.img', {
+        rotateY: (i) => i * images.length * -17.75,
+        transformOrigin: '50% 50% 1000px',
+        // translateZ: 500,
+      });
 
-          if (engine.options.loop) {
-            engine.slideLooper.loopPoints.forEach((loopItem) => {
-              const target = loopItem.target();
+      Draggable.create(dragger.current, {
+        type: 'x',
+        onDragStart: (e) => {
+          if (e.touches) e.clientX = e.touches[0].clientX;
+          currentRotationY.current = Math.round(e.clientX);
+        },
 
-              if (slideIndex === loopItem.index && target !== 0) {
-                const sign = Math.sign(target);
+        onDrag: (e) => {
+          if (e.touches) e.clientX = e.touches[0].clientX;
 
-                if (sign === -1) {
-                  diffToTarget = scrollSnap - (1 + scrollProgress);
-                }
-                if (sign === 1) {
-                  diffToTarget = scrollSnap + (1 - scrollProgress);
-                }
-              }
-            });
-          }
+          gsap.to('#slider', {
+            rotationY:
+              '-=' + ((Math.round(e.clientX) - currentRotationY.current) % 360),
+          });
 
-          // const tweenValue = 1 - Math.abs(diffToTarget * tweenFactor.current);
-          // const scale = numberWithinRange(tweenValue, 0, 1).toString();
-          const tweenNode = tweenNodes.current[slideIndex];
-          console.log(slideIndex, middleIndex);
-          const [before, after] = getIndex(middleIndex, slides.length);
-          if (before === slideIndex) {
-            tweenNode.style.transform = `perspective(800px) rotateY(30deg)`;
-          } else if (after === slideIndex) {
-            tweenNode.style.transform = `perspective(800px) rotateY(-30deg)`;
-          } else {
-            tweenNode.style.transform = `perspective(800px) rotateY(0deg)`;
-          }
-        });
+          currentRotationY.current = Math.round(e.clientX);
+        },
+
+        onDragEnd: () => {
+          // gsap.to(ring, { rotationY: Math.round(gsap.getProperty(ring,'rotationY')/36)*36 }) // move to nearest photo...at the expense of the inertia effect
+          gsap.set(dragger.current, { x: 0 }); // reset drag layer
+        },
       });
     },
-    []
+    { scope: container }
   );
 
-  const getIndex = (index: number, length: number): number[] => {
-    const before = index - 1 < 0 ? length - 1 : index - 1;
-    const after = index + 1 > length - 1 ? 0 : index + 1;
-    return [before, after];
-  };
-
-  const { screen } = useGetScreen('md');
-
-  useEffect(() => {
-    if (!emblaApi) return;
-
-    setTweenNodes(emblaApi);
-    setTweenFactor(emblaApi);
-    tweenScale(emblaApi);
-
-    emblaApi
-      .on('reInit', setTweenNodes)
-      .on('reInit', tweenScale)
-      .on('scroll', tweenScale)
-      .on('slideFocus', tweenScale);
-  }, [emblaApi, tweenScale, setTweenFactor, setTweenNodes]);
-
   return (
-    <Box>
-      <Box sx={{ width: '100%', position: 'relative' }}>
-        <Box className="embla">
-          <Box className="embla__viewport" ref={emblaRef}>
-            <Box className="embla__container">
-              {slides.map((img, index) => (
-                <Box className="embla__slide" key={index}>
-                  <Box className="embla__slide__number">
-                    <img
-                      src={img}
-                      style={{
-                        width: `clamp(13.3531rem, 10.389rem + 14.8207vw, 21.875rem)`,
-                        height: 'auto',
-                      }}
-                      alt={img}
-                    />
-                  </Box>
-                </Box>
-              ))}
-            </Box>
-          </Box>
-        </Box>
-      </Box>
-      {!screen ? (
+    // <Box
+    //   sx={{
+    //     width: '100%',
+    //     height: '100%',
+    //   }}
+    // >
+    <div
+      style={{
+        width: '100%',
+        minHeight: '100vh',
+        transformStyle: 'preserve-3d',
+        userSelect: 'none',
+        overflow: 'hidden',
+        background: 'black',
+      }}
+    >
+      <div
+        ref={container}
+        id="container"
+        style={{
+          perspective: '2000px',
+          // perspectiveOrigin: '50%',
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+          top: '0%',
+          left: '0%',
+          // translate: '-50%, -50%',
+        }}
+      >
+        <div
+          ref={slider}
+          id="slider"
+          style={{
+            position: 'absolute',
+            // perspectiveOrigin: '50% 50%',
+            width: '100%',
+            height: '100%',
+            transformStyle: 'preserve-3d',
+            userSelect: 'none',
+          }}
+        >
+          {images.map((img, index) => (
+            <img
+              key={index}
+              src={img}
+              className={`img`}
+              style={{
+                position: 'absolute',
+                borderRadius: '0 2.125rem 0 2.125rem',
+                width: `clamp(13.3531rem, 10.389rem + 14.8207vw, 30.875rem)`,
+                height: 'auto',
+                transformStyle: 'preserve-3d',
+                userSelect: 'none',
+                // transform: `rotateY(${
+                //   index * (360 / images.length)
+                // }deg) translateZ(500px)`,
+              }}
+              alt={img}
+            />
+          ))}
+        </div>
+        <div
+          ref={dragger}
+          style={{
+            position: 'absolute',
+            transformStyle: 'preserve-3d',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            cursor: 'grab',
+          }}
+        ></div>
+      </div>
+    </div>
+    /* {!screen ? (
         <Box
           width={'100%'}
           position={'relative'}
@@ -304,7 +316,7 @@ export const Carousel = ({ images }: Props) => {
             </Box>
           </Box>
         </Box>
-      )}
-    </Box>
+      // )} */
+    // </Box>
   );
 };
