@@ -11,22 +11,38 @@ import * as THREE from 'three';
 
 export const SphereClients = ({
   handleSetTestimonialSelected,
+  isAnimation,
 }: {
   handleSetTestimonialSelected: (testimonial: string) => void;
+  isAnimation: boolean;
 }) => {
   const groupRef = useRef<THREE.Group>(null as unknown as THREE.Group);
   const { nodes, animations } = useGLTF('/models/ssphere-set.glb');
   const { actions } = useAnimations(animations, groupRef);
   const isMobile = useMediaQuery('(max-width: 990px)');
 
-  useEffect(() => {
+  const handleAnimation = (play: boolean) => {
     Object.keys(actions).forEach((actionName) => {
       const action = actions[actionName];
       if (!action) return;
       action.timeScale = 0.3; // Reduce la velocidad al 50%
-      action.play();
+
+      if (play) {
+        action.play();
+        action.paused = false;
+      } else {
+        action.paused = true;
+      }
     });
-  }, [actions]);
+  };
+
+  useEffect(() => {
+    if (isAnimation) {
+      handleAnimation(true);
+    } else {
+      handleAnimation(false);
+    }
+  }, [isAnimation]);
 
   return (
     <group ref={groupRef} dispose={null}>
@@ -53,7 +69,7 @@ export const SphereClients = ({
             rotation={[-Math.PI, -0.034, -1.321]}
             scale={[0.092, 0.075, 0.228]}
           >
-            <Html scale={1}>
+            <Html scale={1} zIndexRange={[0, 10]}>
               <SpeechBubble
                 name={'Mario Veliz'}
                 rate={4.8}
@@ -68,7 +84,7 @@ export const SphereClients = ({
             rotation={[1.53, -0.317, 1.44]}
             scale={[0.242, 0.242, 0.11]}
           >
-            <Html scale={1}>
+            <Html scale={1} zIndexRange={[0, 10]}>
               <SpeechBubble
                 name={'Juan Sanchez'}
                 rate={4.8}
@@ -83,7 +99,7 @@ export const SphereClients = ({
             rotation={[1.609, -0.387, 1.671]}
             scale={[0.242, 0.242, 0.11]}
           >
-            <Html scale={1} position={[0, 0, 2]}>
+            <Html scale={1} position={[0, 0, 2]} zIndexRange={[0, 10]}>
               <SpeechBubble
                 name={'Esteban Ibarra'}
                 rate={4.8}
@@ -98,7 +114,7 @@ export const SphereClients = ({
             rotation={[1.602, -0.24, 1.701]}
             scale={[0.242, 0.242, 0.11]}
           >
-            <Html scale={1}>
+            <Html scale={1} zIndexRange={[0, 10]}>
               <SpeechBubble
                 name={'Mario Veliz'}
                 rate={4.8}
@@ -113,7 +129,7 @@ export const SphereClients = ({
             rotation={[1.559, -0.316, 1.532]}
             scale={[0.242, 0.242, 0.11]}
           >
-            <Html scale={1}>
+            <Html scale={1} zIndexRange={[0, 10]}>
               <SpeechBubble
                 name={'Juan Sanchez'}
                 rate={4.8}
