@@ -20,8 +20,10 @@ export const SpeechBubble = ({
 
   return (
     <Box
+      id="bubble"
       onClick={() => handleClick(name)}
       sx={{
+        pointerEvents: 'all',
         position: 'relative',
         backgroundColor: 'black',
         color: 'white',
@@ -40,7 +42,14 @@ export const SpeechBubble = ({
         },
       }}
     >
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+      <Box
+        sx={{
+          pointerEvents: 'none',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '1rem',
+        }}
+      >
         <Box
           sx={{
             display: 'flex',
