@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Box } from '@mui/material';
 import { ProductsIcons } from './ProductsIcons';
-import ImageNext from 'next/image';
+import { Circle } from './Circle';
 
 export const Machine: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -122,20 +122,7 @@ export const Machine: React.FC = () => {
         />
       </Box>
       <Box position={'absolute'} top={0} id="circle">
-        <Box
-          sx={{
-            position: 'relative',
-            width: 'clamp(30rem, 60vw, 55rem)',
-            height: 'clamp(15rem, 60vw, 37rem)',
-          }}
-        >
-          <ImageNext
-            src={'/circle.png'}
-            alt="circle"
-            fill
-            style={{ aspectRatio: '1/1' }}
-          />
-        </Box>
+        <Circle />
       </Box>
       <ProductsIcons />
     </Box>

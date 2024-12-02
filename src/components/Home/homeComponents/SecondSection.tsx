@@ -30,7 +30,7 @@ export const SecondSection = () => {
       )
       .to('#homeQuienes', { xPercent: -100, opacity: 0, delay: 1 })
       .to('#machinePage', { yPercent: -10, duration: 2 }, '-=1')
-      .fromTo('#productsIcons', { opacity: 0 }, { opacity: 1 }, '<');
+      .to('#productsIcons', { opacity: 1 }, '<');
   }, []);
 
   return (
