@@ -16,7 +16,6 @@ export const FadeUpImage = () => {
         start: '-=800 top',
         end: '+=500',
         scrub: 3,
-        markers: true,
       },
     });
 
