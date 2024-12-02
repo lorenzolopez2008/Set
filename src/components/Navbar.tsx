@@ -1,12 +1,14 @@
 'use client';
 
 import { DiagonalArrow } from '@/app/components/svg/DiagonalArrow';
+import { useVisibility } from '@/providers/Testing';
 import { Box, Button, useMediaQuery } from '@mui/material';
 import Image from 'next/image';
 
 export const Navbar = () => {
   const isMobile = useMediaQuery('(min-width: 600px)');
-
+  const { isVisible } = useVisibility('Navbar');
+  if (!isVisible) return null;
   return (
     <Box
       position={'sticky'}

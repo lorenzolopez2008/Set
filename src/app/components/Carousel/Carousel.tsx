@@ -1,84 +1,136 @@
 'use client';
-
-import { Box, Button, Typography } from '@mui/material';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
-import { Draggable } from 'gsap/Draggable';
-import { useRef } from 'react';
-import { DiagonalArrow } from '../svg/DiagonalArrow';
 import { useGetScreen } from '@/hooks/useGetScreen';
+import { useGSAP } from '@gsap/react';
+import { Box, Typography } from '@mui/material';
+import gsap from 'gsap';
+import Draggable from 'gsap/dist/Draggable';
+import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+import { useRef } from 'react';
 
-interface Props {
-  images: { src: string; title: string; description: string }[];
-}
+gsap.registerPlugin(Draggable, ScrollTrigger);
 
-gsap.registerPlugin(Draggable);
-
-export const Carousel = ({ images }: Props) => {
-  const container = useRef(null);
-  const slider = useRef(null);
-  const timeline = useRef(gsap.timeline({ paused: false }));
+export const Carousel = ({
+  images,
+}: {
+  images: { src: string; description: string; title: string }[];
+}) => {
+  const ringRef = useRef(null);
+  const imagesRef = useRef<HTMLDivElement[]>([]);
+  const velocity = useRef(0);
+  const lastX = useRef(0);
   const timelineHover = useRef(gsap.timeline({ paused: true }));
-
   const { screen } = useGetScreen('md');
 
-  useGSAP(
-    () => {
-      if (!slider.current) return;
-      const sliderWidth = slider.current['clientWidth'];
-      const imgWidth = slider.current['children'][0]['clientWidth'];
-
-      timeline.current
-        .set(container.current, {
-          yPercent: screen ? 50 : 10,
-        })
-        .set('.img', {
-          xPercent: (i) => {
-            return -((i - 1) * 100);
+  useGSAP(() => {
+    let xPos = 0;
+    let accumulatedRotation = 0;
+    const maxRotationChange = 10;
+    const scrollRotationFactor = 90;
+    const dragRotationFactor = 0.1;
+    const timeline = gsap.timeline();
+    timeline
+      .set(ringRef.current, { rotationY: 0 })
+      .set(imagesRef.current, {
+        rotateY: 0,
+        transformOrigin: '50% 50% 1000px',
+        z: -1000,
+        backfaceVisibility: 'hidden',
+      })
+      .fromTo(
+        [imagesRef.current[1], imagesRef.current[images.length - 1]],
+        {
+          zIndex: (i) => {
+            return 99 - i;
           },
-        })
-        .set('.img-desc', {
-          opacity: 0,
+        },
+        {
+          rotateY: (i) => {
+            return i === 0 ? -40 : +40;
+          },
+        }
+      )
+      .to(
+        imagesRef.current,
+        {
+          rotateY: (i) => {
+            if (i === images.length - 1) return 40;
+            return i * -40;
+          },
+        },
+        '+=0.5'
+      )
+      .from(imagesRef.current, {
+        duration: 1.5,
+        y: 200,
+        opacity: (i) => {
+          if (i <= 1 || i === images.length - 1) return 1;
+          return 0;
+        },
+        stagger: 0.1,
+        ease: 'expo',
+      });
+
+    Draggable.create('#carousel', {
+      type: 'x',
+      bounds: '#carousel-container',
+
+      onDragStart: (e) => {
+        if (e.touches) e.clientX = e.touches[0].clientX;
+        xPos = Math.round(e.clientX);
+        lastX.current = xPos;
+        velocity.current = 0;
+      },
+      onDrag: (e) => {
+        if (e.touches) e.clientX = e.touches[0].clientX;
+        const currentX = Math.round(e.clientX);
+        velocity.current = currentX - lastX.current;
+        lastX.current = currentX;
+
+        let rotationChange = (xPos - currentX) * dragRotationFactor; // Invertir la dirección del drag y aplicar el factor de reducción
+        rotationChange = Math.max(
+          Math.min(rotationChange, maxRotationChange),
+          -maxRotationChange
+        ); // Limitar la rotación
+
+        accumulatedRotation += rotationChange;
+
+        gsap.to(ringRef.current, {
+          rotationY: accumulatedRotation,
         });
+        console.log(xPos, currentX);
+        xPos = currentX;
+      },
+      onDragEnd: () => {
+        ScrollTrigger.refresh();
+      },
+    });
 
-      timeline.current.to('.img', {
-        xPercent: (i) => {
-          return (i - 1) * (imgWidth / 50);
-        },
-      });
-
-      if (screen) {
-        timeline.current
-          .to(
-            '.img-desc',
-            {
-              opacity: 1,
-              stagger: 0.2,
-            },
-            '<=0.5'
-          )
-          .to(
-            '.img-desc',
-            {
-              yPercent: -50,
-              stagger: 0.2,
-            },
-            '<'
-          );
-      }
-
-      Draggable.create(slider.current, {
-        type: 'x',
-        bounds: {
-          maxX: screen ? sliderWidth / 2 : sliderWidth / 3,
-          minX: screen ? -(sliderWidth / 2) : -(sliderWidth / 3),
-        },
-      });
-    },
-    { scope: container }
-  );
+    ScrollTrigger.create({
+      trigger: '#carousel-pijagorda',
+      start: 'top top',
+      markers: true,
+      end: '+=2000px bottom',
+      scrub: 1,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        const newRotation = progress * scrollRotationFactor;
+        const totalRotation = newRotation + accumulatedRotation;
+        console.log(xPos, progress, newRotation, totalRotation);
+        gsap.to(ringRef.current, {
+          rotationY: totalRotation,
+        });
+      },
+      onRefresh: () => {
+        accumulatedRotation = gsap.getProperty(
+          ringRef.current,
+          'rotationY'
+        ) as number;
+      },
+    });
+  }, []);
 
   const handleMouseHover = (index: number) => {
+    console.log('holaa');
     if (screen) return;
     timelineHover.current = gsap
       .timeline()
@@ -111,108 +163,122 @@ export const Carousel = ({ images }: Props) => {
   };
 
   return (
-    <Box
+    <div
       style={{
         width: '100%',
-        minHeight: '100vh',
+        height: '100vh',
         overflow: 'hidden',
-        userSelect: 'none',
       }}
+      id="container-pijagorda"
     >
       <div
-        ref={container}
+        id="carousel-container"
         style={{
+          transform: 'scale(1.3)',
+          rotate: '-10deg',
           width: '100%',
           height: '100%',
-          userSelect: 'none',
-          rotate: '-10deg',
+          background: 'red',
+          overflow: 'hidden',
         }}
       >
         <div
-          ref={slider}
-          id="slider"
+          id="carousel"
           style={{
             width: '100%',
             height: '100%',
-            display: 'flex',
-            justifyContent: 'center',
+            background: '#FFFFFF80',
           }}
         >
-          {images.map(({ src: img, title, description }, index) => (
-            <Box
-              className={`img`}
+          <div
+            style={{
+              perspective: '2000px',
+              width: 'clamp(13.3531rem, 5.1057rem + 41.237vw, 37.0644rem)',
+              height: 'clamp(13.3531rem, 5.1057rem + 41.237vw, 37.0644rem)',
+              position: 'absolute',
+              left: '50%',
+              top: '25%',
+              transform: 'translate(-50%, -50%)',
+            }}
+          >
+            <div
+              id="ring"
+              ref={ringRef}
               style={{
-                maxWidth: 'clamp(13.3531rem, 5.1057rem + 41.237vw, 37.0644rem)',
+                width: '100%',
+                height: '100%',
+                transformStyle: 'preserve-3d',
+                userSelect: 'none',
               }}
-              onMouseOver={() => handleMouseHover(index)}
-              onMouseLeave={() => handleMouseLeave()}
             >
-              <img
-                key={index}
-                src={img}
-                alt={img}
-                style={{
-                  borderRadius: '0 2.125rem 0 2.125rem',
-                  width: `clamp(13.3531rem, 5.1057rem + 41.237vw, 37.0644rem)`,
-                  height: 'auto',
-                  userSelect: 'none',
-                }}
-              />
-              <Box
-                component={'div'}
-                className={`img-desc img-desc-${index}`}
-                sx={{
-                  position: 'absolute',
-                  maxWidth:
-                    'clamp(13.3531rem, 5.1057rem + 41.237vw, 37.0644rem)',
-                  minWidth: '100%',
-                  opacity: 0,
-                  rotate: '10deg',
-                  padding: '3rem',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                  gap: '0.375rem',
-                  pointerEvents: 'none',
-                  translate: { sm: '0% -50%', xs: '-20% 20%' },
-                }}
-              >
-                <Typography
-                  fontWeight={'bold'}
-                  color="#008428"
-                  fontSize={'2.25rem'}
-                  lineHeight={'91%'}
-                  className={`item-${index}`}
+              {images.map(({ src, description, title }, i) => (
+                <div
+                  key={i}
+                  ref={(el) => {
+                    if (el) {
+                      imagesRef.current[i] = el;
+                    }
+                  }}
+                  className="img"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    position: 'absolute',
+                    transformStyle: 'preserve-3d',
+                    userSelect: 'none',
+                    backgroundSize: 'cover',
+                    backgroundImage: `url(${src})`,
+                  }}
+                  onMouseOver={() => handleMouseHover(i)}
+                  onMouseLeave={handleMouseLeave}
                 >
-                  {title}
-                </Typography>
-                <Typography
-                  fontWeight={'semibold'}
-                  color="#848282"
-                  fontSize={'clamp(0.875rem, 0.5707rem + 1.5217vw, 1.75rem)'}
-                  lineHeight={'2.094rem'}
-                  className={`item-${index}`}
-                >
-                  {description}
-                </Typography>
-              </Box>
-            </Box>
-          ))}
+                  <Box
+                    component={'div'}
+                    className={`img-desc img-desc-${i}`}
+                    sx={{
+                      position: 'absolute',
+                      maxWidth:
+                        'clamp(13.3531rem, 5.1057rem + 41.237vw, 37.0644rem)',
+                      minWidth: '100%',
+                      opacity: screen ? 1 : 0,
+                      rotate: '10deg',
+                      padding: '3rem',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'center',
+                      gap: '0.375rem',
+                      pointerEvents: 'none',
+                      top: '100%',
+                      translate: { sm: '0% 0%', xs: '-20% 0%' },
+                    }}
+                  >
+                    <Typography
+                      fontWeight={'bold'}
+                      color="#008428"
+                      fontSize={'2.25rem'}
+                      lineHeight={'91%'}
+                      className={`item-${i}`}
+                    >
+                      {title}
+                    </Typography>
+                    <Typography
+                      fontWeight={'semibold'}
+                      color="#848282"
+                      fontSize={
+                        'clamp(0.875rem, 0.5707rem + 1.5217vw, 1.75rem)'
+                      }
+                      lineHeight={'2.094rem'}
+                      className={`item-${i}`}
+                    >
+                      {description}
+                    </Typography>
+                  </Box>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
-      <Box
-        sx={{
-          position: 'fixed',
-          display: 'flex',
-          justifyContent: 'flex-end',
-          bottom: '5.75rem',
-          right: '5rem',
-        }}
-      >
-        <Button variant="mainGreen" endIcon={<DiagonalArrow />}>
-          Servicios
-        </Button>
-      </Box>
-    </Box>
+    </div>
   );
 };
