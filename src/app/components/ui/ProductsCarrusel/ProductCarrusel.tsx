@@ -128,23 +128,37 @@ export const ProductCarrusel = () => {
         }}
       />
 
-      <Box sx={{ position: 'absolute', left: '75%', top: 0, scale: 0.5 }}>
-        <Circle />
-      </Box>
-      <Typography
-        id="product-title"
-        variant="main"
+      <Box
         sx={{
-          color: 'black',
-          marginLeft: '9.0625rem',
+          position: 'absolute',
+          left: { xs: '50%', sm: '75%' },
+          top: 0,
+          scale: 0.5,
         }}
       >
-        Productos{' '}
-        <Typography component="span" variant="main">
-          más vendidos
+        <Circle />
+      </Box>
+      <Box id="product-title" sx={{ textAlign: { xs: 'center', sm: 'left' } }}>
+        <Typography
+          variant="main"
+          sx={{
+            color: 'black',
+            marginLeft: { xs: 0, sm: '5.0625rem', md: '9.0625rem' },
+            display: 'inline-flex',
+            flexDirection: { xs: 'column', sm: 'row' },
+            alignItems: { xs: 'center', sm: 'flex-start' },
+            gap: 2,
+          }}
+        >
+          Productos <Typography variant="main">más vendidos</Typography>
         </Typography>
-      </Typography>
-      <Box sx={{ width: '100%' }} id="machine-carrousel" ref={containerRef}>
+      </Box>
+
+      <Box
+        sx={{ width: '100%', marginTop: { xs: '9.5rem', lg: 0 } }}
+        id="machine-carrousel"
+        ref={containerRef}
+      >
         <Box className={styles.embla}>
           <Box className={styles.embla__viewport} ref={emblaRef}>
             <Box className={styles.embla__container}>
