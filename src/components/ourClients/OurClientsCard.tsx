@@ -1,12 +1,16 @@
 import { pxToRem } from '@/helpers/pxToRem';
-import { Box, Typography } from '@mui/material';
 import { SocialIcons } from '../contactComponents/SocialIcons';
+import { Box, Typography, useMediaQuery } from '@mui/material';
 
 export default function OurClientsCard() {
+  const isMobile = useMediaQuery('(max-width: 768px)');
+
   return (
     <Box
       sx={{
-        width: `clamp(${pxToRem(400)},40vw,${pxToRem(669)})`,
+        width: isMobile
+          ? '100%'
+          : `clamp(${pxToRem(400)},40vw,${pxToRem(669)})`,
         padding: { xs: '1.2125rem', lg: `2rem` },
         borderRadius: '2rem',
         backgroundImage: { xs: 'none', lg: 'url(dashedRectangle.svg)' },

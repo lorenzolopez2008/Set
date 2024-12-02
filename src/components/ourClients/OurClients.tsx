@@ -54,6 +54,9 @@ export const OurClients = () => {
   const containerRef = useRef(null);
   const ourClientsRef = useRef(null);
   const isMobile = useMediaQuery('(max-width: 768px)');
+
+  const [isAnimation, setIsAnimation] = useState(true);
+
   useGSAP(() => {
     const mm = gsap.matchMedia();
     mm.add(
@@ -120,8 +123,9 @@ export const OurClients = () => {
       >
         <Box
           sx={{
-            width: '50vw',
-            marginRight: '10rem',
+            width: isMobile ? '100%' : '50vw',
+            marginRight: isMobile ? '0' : '10rem',
+            textAlign: isMobile ? 'center' : '',
             height: 'fit-content',
           }}
         >
@@ -135,20 +139,40 @@ export const OurClients = () => {
             width: '100vw',
           }}
         >
-          <Canvas
-            style={{
+          <Box
+            sx={{
               width: isMobile ? '100%' : '50vw',
-              height: `100svh`,
             }}
-            gl={{
-              antialias: true,
+            onMouseEnter={(e) => {
+              if (isMobile) return;
+              e.stopPropagation();
+              setIsAnimation(false);
+            }}
+            onMouseLeave={(e) => {
+              if (isMobile) return;
+              e.stopPropagation();
+              const target = e.relatedTarget as HTMLElement;
+              if (target && target.id === 'bubble') return;
+              setIsAnimation(true);
             }}
           >
-            <Environment preset="city" />
-            <SphereClients
-              handleSetTestimonialSelected={handleSetTestimonialSelected}
-            />
-          </Canvas>
+            <Canvas
+              style={{
+                width: isMobile ? '100%' : '50vw',
+                height: isMobile ? '45svh' : `100svh`,
+                pointerEvents: 'none',
+              }}
+              gl={{
+                antialias: true,
+              }}
+            >
+              <Environment preset="city" />
+              <SphereClients
+                isAnimation={isAnimation}
+                handleSetTestimonialSelected={handleSetTestimonialSelected}
+              />
+            </Canvas>
+          </Box>
           <Box
             sx={{
               width: '50vw',
