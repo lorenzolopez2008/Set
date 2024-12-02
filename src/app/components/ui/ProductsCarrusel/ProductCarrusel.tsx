@@ -159,10 +159,7 @@ export const ProductCarrusel = () => {
   }, []);
 
   return (
-    <Box
-      sx={{ position: 'relative', opacity: 0, paddingTop: '5rem' }}
-      id="productCarrusel"
-    >
+    <Box sx={{ position: 'relative', paddingTop: '5rem' }} id="productCarrusel">
       <Image
         id="bg-carousel"
         src={'/bg-carousel.png'}
