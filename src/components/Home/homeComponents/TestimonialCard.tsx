@@ -10,9 +10,22 @@ import {
   Typography,
 } from '@mui/material';
 
-export const TestimonialCard = () => {
+export interface ITestimonialCard {
+  name: string;
+  rate: number;
+  photoUrl: string;
+  quote: string;
+}
+
+export const TestimonialCard = ({
+  name,
+  rate,
+  photoUrl,
+  quote,
+}: ITestimonialCard) => {
   return (
     <Card
+      className="home--testimonial-card"
       sx={{
         maxWidth: 635,
         border: '4px solid #00598F',
@@ -51,15 +64,13 @@ export const TestimonialCard = () => {
             variant="paragraph"
             sx={{ color: '#1D1D1F', fontSize: pxToRem(20) }}
           >
-            Forem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-            vulputate libero et velit interdum, ac aliquet odio mattis. Class
-            aptent taciti sociosqu ad litora torquent per conubia nostra, per
-            inceptos himenaeos.
+            {quote ??
+              'Forem ipsum dolor sit amet, consectetur adipiscing elit. Nuncvulputate libero et velit interdum, ac aliquet odio mattis. Classaptent taciti sociosqu ad litora torquent per conubia nostra, perinceptos himenaeos.'}
           </Typography>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 4 }}>
             <Avatar
-              src="/juanSanchez.png"
-              alt="Juan Sanchez"
+              src={photoUrl ?? '/testimonials/juanSanchez.png'}
+              alt=""
               sx={{
                 width: 87,
                 height: 87,
@@ -73,7 +84,7 @@ export const TestimonialCard = () => {
                 variant="paragraph"
                 sx={{ fontSize: pxToRem(20), color: '#1D1D1F' }}
               >
-                Juan Sanchez
+                {name ?? 'Juan Sanchez'}
               </Typography>
               <Box
                 sx={{
@@ -98,7 +109,7 @@ export const TestimonialCard = () => {
                   variant="paragraph"
                   sx={{ fontSize: pxToRem(20), color: '#1D1D1F' }}
                 >
-                  4.8
+                  {rate ?? 4.8}
                 </Typography>
               </Box>
             </Box>

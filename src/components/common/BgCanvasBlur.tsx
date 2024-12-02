@@ -1,4 +1,6 @@
 'use client';
+import bgElementFixedAtom from '@/store/bgCircleFollow.atom';
+import { useAtom } from 'jotai';
 import { useEffect, useRef } from 'react';
 
 const BgCanvasBlur = () => {
@@ -42,6 +44,8 @@ const BgCanvasBlur = () => {
   const lastMouseMoveTime = useRef(Date.now());
   const idleTimeRef = useRef(0);
 
+  const [positionFixedToElement] = useAtom(bgElementFixedAtom);
+
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext('2d');
@@ -58,15 +62,34 @@ const BgCanvasBlur = () => {
     });
 
     const handleMouseMove = (event: MouseEvent) => {
-      mouseRef.current = { x: event.clientX, y: event.clientY };
-      lastMouseMoveTime.current = Date.now();
-      idleTimeRef.current = 0;
+      if (positionFixedToElement) {
+        const element = document.querySelector(positionFixedToElement);
+        const rect = element?.getBoundingClientRect();
+        if (!rect) return;
+        //get center of rect
+        const center = {
+          x: rect?.left + rect?.width / 2,
+          y: rect?.top + rect?.height / 2,
+        };
+
+        if (!rect) return;
+        mouseRef.current = {
+          x: center.x,
+          y: center.y,
+        };
+        lastMouseMoveTime.current = Date.now();
+        idleTimeRef.current = 0;
+      } else {
+        mouseRef.current = { x: event.clientX, y: event.clientY };
+        lastMouseMoveTime.current = Date.now();
+        idleTimeRef.current = 0;
+      }
     };
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.filter = 'blur(80px)';
-      ctx.globalAlpha = 0.9;
+      ctx.globalAlpha = 0.6;
 
       const currentTime = Date.now();
       const timeSinceLastMove = currentTime - lastMouseMoveTime.current;
@@ -125,7 +148,7 @@ const BgCanvasBlur = () => {
       window.removeEventListener('mousemove', handleMouseMove);
       cancelAnimationFrame(animationFrame);
     };
-  }, []);
+  }, [positionFixedToElement]);
 
   return (
     <canvas

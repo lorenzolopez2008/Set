@@ -41,6 +41,9 @@ dependencies:
   gsap:
     specifier: ^3.12.5
     version: 3.12.5
+  jotai:
+    specifier: ^2.10.3
+    version: 2.10.3(@types/react@18.3.12)(react@18.3.1)
   lottie:
     specifier: ^0.0.1
     version: 0.0.1
@@ -2512,6 +2515,22 @@ packages:
     optionalDependencies:
       '@pkgjs/parseargs': 0.11.0
     dev: true
+
+  /jotai@2.10.3(@types/react@18.3.12)(react@18.3.1):
+    resolution: {integrity: sha512-Nnf4IwrLhNfuz2JOQLI0V/AgwcpxvVy8Ec8PidIIDeRi4KCFpwTFIpHAAcU+yCgnw/oASYElq9UY0YdUUegsSA==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      '@types/react': '>=17.0.0'
+      react: '>=17.0.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      react:
+        optional: true
+    dependencies:
+      '@types/react': 18.3.12
+      react: 18.3.1
+    dev: false
 
   /js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}

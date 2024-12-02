@@ -3,11 +3,15 @@ import { useGSAP } from '@gsap/react';
 import { Box, Typography } from '@mui/material';
 import { useRef } from 'react';
 import gsap from 'gsap';
+import { useAtom } from 'jotai';
+import bgElementFixedAtom from '@/store/bgCircleFollow.atom';
 
 export const OurServices = () => {
   const containerRef = useRef(null);
   const ourRef = useRef(null);
   const servicesRef = useRef(null);
+  const [, setPositionFixedToElement] = useAtom(bgElementFixedAtom);
+
   useGSAP(() => {
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -17,6 +21,18 @@ export const OurServices = () => {
         end: '+=1000',
         scrub: 3,
         markers: true,
+        onEnter: () => {
+          setPositionFixedToElement('#home--our-services');
+        },
+        onLeave: () => {
+          setPositionFixedToElement(null);
+        },
+        onEnterBack: () => {
+          setPositionFixedToElement('#home--our-services');
+        },
+        onLeaveBack: () => {
+          setPositionFixedToElement(null);
+        },
       },
     });
 
@@ -42,6 +58,7 @@ export const OurServices = () => {
         gap: 0,
       }}
       ref={containerRef}
+      id="home--our-services"
     >
       <Box
         id="scaleBox"

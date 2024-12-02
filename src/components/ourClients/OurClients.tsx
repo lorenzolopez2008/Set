@@ -1,14 +1,55 @@
 'use client';
-import { pxToRem } from '@/helpers/pxToRem';
 import { useGSAP } from '@gsap/react';
 import { Box, Typography, useMediaQuery } from '@mui/material';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import gsap from 'gsap';
-import { TestimonialCard } from '../Home/homeComponents/TestimonialCard';
+import {
+  ITestimonialCard,
+  TestimonialCard,
+} from '../Home/homeComponents/TestimonialCard';
 import OurClientsCard from './OurClientsCard';
 import { Canvas } from '@react-three/fiber';
 import { SphereClients } from './SphereClients';
-import { Environment, PerspectiveCamera, Stage } from '@react-three/drei';
+import { Environment } from '@react-three/drei';
+
+const clients = [
+  {
+    name: 'Mario Veliz',
+    photoUrl: '/testimonials/MarioVeliz.png',
+    quote:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    rate: 4.8,
+  },
+  {
+    name: 'Juan Sanchez',
+    photoUrl: '/testimonials/juanSanchez.png',
+    quote:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    rate: 4.8,
+  },
+  {
+    name: 'Esteban Ibarra',
+    photoUrl: '/testimonials/estebanIbarra.png',
+    quote:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    rate: 4.8,
+  },
+  {
+    name: 'Esteban Ibarra 2',
+    photoUrl: '/testimonials/estebanIbarra.png',
+    quote:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    rate: 4.8,
+  },
+  {
+    name: 'Esteban Ibarra 3',
+    photoUrl: '/testimonials/estebanIbarra.png',
+    quote:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    rate: 4.8,
+  },
+];
+
 export const OurClients = () => {
   const containerRef = useRef(null);
   const ourClientsRef = useRef(null);
@@ -36,6 +77,27 @@ export const OurClients = () => {
       }
     );
   }, []);
+
+  const [testimonialSelected, setTestimonialSelected] =
+    useState<ITestimonialCard>({
+      name: 'Jane Doe',
+      photoUrl: '/images/testimonial1.png',
+      rate: 4.8,
+      quote: 'lorem ipsum',
+    });
+
+  const handleSetTestimonialSelected = (name: string) => {
+    const testimonial = clients.find((client) => client.name === name);
+    if (testimonial) {
+      setTestimonialSelected(testimonial);
+      gsap.from('.home--testimonial-card', {
+        yPercent: 35,
+        duration: 2,
+        opacity: 0,
+        ease: 'power4.out',
+      });
+    }
+  };
 
   return (
     <Box
@@ -78,9 +140,14 @@ export const OurClients = () => {
               width: isMobile ? '100%' : '50vw',
               height: `100svh`,
             }}
+            gl={{
+              antialias: true,
+            }}
           >
             <Environment preset="city" />
-            <SphereClients />
+            <SphereClients
+              handleSetTestimonialSelected={handleSetTestimonialSelected}
+            />
           </Canvas>
           <Box
             sx={{
@@ -94,7 +161,12 @@ export const OurClients = () => {
             }}
           >
             <Typography variant="title"> Testimonios</Typography>
-            <TestimonialCard />
+            <TestimonialCard
+              name={testimonialSelected.name}
+              rate={testimonialSelected.rate}
+              photoUrl={testimonialSelected.photoUrl}
+              quote={testimonialSelected.quote}
+            />
           </Box>
         </Box>
       </Box>

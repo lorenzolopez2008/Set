@@ -3,32 +3,33 @@ import {
   useGLTF,
   useAnimations,
   Html,
-  PerspectiveCamera,
   OrthographicCamera,
 } from '@react-three/drei';
-import * as THREE from 'three';
 import { SpeechBubble } from '@/app/components/ui/SpeechBubble/SpeechBubble';
 import { useMediaQuery } from '@mui/material';
+import * as THREE from 'three';
 
-export const SphereClients = (props) => {
-  const group = useRef();
-  const { nodes, materials, animations } = useGLTF('/models/ssphere-set.glb');
-  const { actions } = useAnimations(animations, group);
+export const SphereClients = ({
+  handleSetTestimonialSelected,
+}: {
+  handleSetTestimonialSelected: (testimonial: string) => void;
+}) => {
+  const groupRef = useRef<THREE.Group>(null as unknown as THREE.Group);
+  const { nodes, animations } = useGLTF('/models/ssphere-set.glb');
+  const { actions } = useAnimations(animations, groupRef);
   const isMobile = useMediaQuery('(max-width: 990px)');
 
   useEffect(() => {
-    console.log(actions);
     Object.keys(actions).forEach((actionName) => {
       const action = actions[actionName];
+      if (!action) return;
       action.timeScale = 0.3; // Reduce la velocidad al 50%
       action.play();
     });
-  }, []);
-
-  const newMaterial = new THREE.MeshBasicMaterial({ color: '#999' });
+  }, [actions]);
 
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group ref={groupRef} dispose={null}>
       <group name="Scene">
         <OrthographicCamera
           name="Camera"
@@ -41,8 +42,8 @@ export const SphereClients = (props) => {
           name="sphere"
           castShadow
           receiveShadow
-          geometry={nodes.sphere.geometry}
-          material={nodes.sphere.material}
+          geometry={(nodes.sphere as THREE.Mesh).geometry}
+          material={(nodes.sphere as THREE.Mesh).material}
           position={[0, 0.727, 0]}
           scale={0.687}
         >
@@ -52,20 +53,14 @@ export const SphereClients = (props) => {
             rotation={[-Math.PI, -0.034, -1.321]}
             scale={[0.092, 0.075, 0.228]}
           >
-            <mesh
-              name="Plane001_1"
-              castShadow
-              receiveShadow
-              geometry={nodes.Plane001_1.geometry}
-              material={materials['Material.001']}
-            />
-            <mesh
-              name="Plane001_2"
-              castShadow
-              receiveShadow
-              geometry={nodes.Plane001_2.geometry}
-              material={materials['Material.002']}
-            />
+            <Html scale={1}>
+              <SpeechBubble
+                name={'Mario Veliz'}
+                rate={4.8}
+                photoUrl={'/testimonials/marioVeliz.png'}
+                handleClick={handleSetTestimonialSelected}
+              />
+            </Html>
           </group>
           <group
             name="Plane003"
@@ -73,20 +68,14 @@ export const SphereClients = (props) => {
             rotation={[1.53, -0.317, 1.44]}
             scale={[0.242, 0.242, 0.11]}
           >
-            <mesh
-              name="Plane003_1"
-              castShadow
-              receiveShadow
-              geometry={nodes.Plane003_1.geometry}
-              material={materials['Material.003']}
-            />
-            <mesh
-              name="Plane003_2"
-              castShadow
-              receiveShadow
-              geometry={nodes.Plane003_2.geometry}
-              material={materials['Material.004']}
-            />
+            <Html scale={1}>
+              <SpeechBubble
+                name={'Juan Sanchez'}
+                rate={4.8}
+                photoUrl={'/testimonials/juanSanchez.png'}
+                handleClick={handleSetTestimonialSelected}
+              />
+            </Html>
           </group>
           <group
             name="Plane004"
@@ -94,20 +83,14 @@ export const SphereClients = (props) => {
             rotation={[1.609, -0.387, 1.671]}
             scale={[0.242, 0.242, 0.11]}
           >
-            <mesh
-              name="Plane004_1"
-              castShadow
-              receiveShadow
-              geometry={nodes.Plane004_1.geometry}
-              material={materials['Material.006']}
-            />
-            <mesh
-              name="Plane004_2"
-              castShadow
-              receiveShadow
-              geometry={nodes.Plane004_2.geometry}
-              material={materials['Material.005']}
-            />
+            <Html scale={1} position={[0, 0, 2]}>
+              <SpeechBubble
+                name={'Esteban Ibarra'}
+                rate={4.8}
+                photoUrl={'/testimonials/estebanIbarra.png'}
+                handleClick={handleSetTestimonialSelected}
+              />
+            </Html>
           </group>
           <group
             name="Plane007"
@@ -115,20 +98,14 @@ export const SphereClients = (props) => {
             rotation={[1.602, -0.24, 1.701]}
             scale={[0.242, 0.242, 0.11]}
           >
-            <mesh
-              name="Plane007_1"
-              castShadow
-              receiveShadow
-              geometry={nodes.Plane007_1.geometry}
-              material={materials['Material.007']}
-            />
-            <mesh
-              name="Plane007_2"
-              castShadow
-              receiveShadow
-              geometry={nodes.Plane007_2.geometry}
-              material={materials['Material.008']}
-            />
+            <Html scale={1}>
+              <SpeechBubble
+                name={'Mario Veliz'}
+                rate={4.8}
+                photoUrl={'/testimonials/marioVeliz.png'}
+                handleClick={handleSetTestimonialSelected}
+              />
+            </Html>
           </group>
           <group
             name="Plane008"
@@ -136,28 +113,22 @@ export const SphereClients = (props) => {
             rotation={[1.559, -0.316, 1.532]}
             scale={[0.242, 0.242, 0.11]}
           >
-            <mesh
-              name="Plane008_1"
-              castShadow
-              receiveShadow
-              geometry={nodes.Plane008_1.geometry}
-              material={materials['Material.010']}
-            />
-            <mesh
-              name="Plane008_2"
-              castShadow
-              receiveShadow
-              geometry={nodes.Plane008_2.geometry}
-              material={materials['Material.009']}
-            />
+            <Html scale={1}>
+              <SpeechBubble
+                name={'Juan Sanchez'}
+                rate={4.8}
+                photoUrl={'/testimonials/juanSanchez.png'}
+                handleClick={handleSetTestimonialSelected}
+              />
+            </Html>
           </group>
         </mesh>
         <mesh
           name="sphere001"
           castShadow
           receiveShadow
-          geometry={nodes.sphere001.geometry}
-          material={nodes.sphere001.material}
+          geometry={(nodes.sphere001 as THREE.Mesh).geometry}
+          material={(nodes.sphere001 as THREE.Mesh).material}
           position={[0, 0.727, 0]}
           scale={0.709}
         />
@@ -165,8 +136,8 @@ export const SphereClients = (props) => {
           name="sphere002"
           castShadow
           receiveShadow
-          geometry={nodes.sphere002.geometry}
-          material={nodes.sphere002.material}
+          geometry={(nodes.sphere002 as THREE.Mesh).geometry}
+          material={(nodes.sphere002 as THREE.Mesh).material}
           position={[0, 0.727, 0]}
           scale={0.687}
         />
@@ -174,8 +145,8 @@ export const SphereClients = (props) => {
           name="sphere003"
           castShadow
           receiveShadow
-          geometry={nodes.sphere003.geometry}
-          material={nodes.sphere003.material}
+          geometry={(nodes.sphere003 as THREE.Mesh).geometry}
+          material={(nodes.sphere003 as THREE.Mesh).material}
           position={[0, 0.727, 0]}
           scale={0.687}
         />
@@ -183,8 +154,8 @@ export const SphereClients = (props) => {
           name="sphere004"
           castShadow
           receiveShadow
-          geometry={nodes.sphere004.geometry}
-          material={nodes.sphere004.material}
+          geometry={(nodes.sphere004 as THREE.Mesh).geometry}
+          material={(nodes.sphere004 as THREE.Mesh).material}
           position={[0, 0.727, 0]}
           scale={0.687}
         />
@@ -192,8 +163,8 @@ export const SphereClients = (props) => {
           name="sphere005"
           castShadow
           receiveShadow
-          geometry={nodes.sphere005.geometry}
-          material={nodes.sphere005.material}
+          geometry={(nodes.sphere005 as THREE.Mesh).geometry}
+          material={(nodes.sphere005 as THREE.Mesh).material}
           position={[0, 0.727, 0]}
           scale={0.687}
         />
@@ -201,8 +172,8 @@ export const SphereClients = (props) => {
           name="sphere006"
           castShadow
           receiveShadow
-          geometry={nodes.sphere006.geometry}
-          material={nodes.sphere006.material}
+          geometry={(nodes.sphere006 as THREE.Mesh).geometry}
+          material={(nodes.sphere006 as THREE.Mesh).material}
           position={[0, 0.727, 0]}
           scale={0.693}
         />
@@ -210,8 +181,8 @@ export const SphereClients = (props) => {
           name="sphere007"
           castShadow
           receiveShadow
-          geometry={nodes.sphere007.geometry}
-          material={nodes.sphere007.material}
+          geometry={(nodes.sphere007 as THREE.Mesh).geometry}
+          material={(nodes.sphere007 as THREE.Mesh).material}
           position={[0, 0.727, 0]}
           scale={0.683}
         />
