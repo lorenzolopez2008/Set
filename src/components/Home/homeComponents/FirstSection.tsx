@@ -5,7 +5,6 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { Machine } from './Machine';
 import { TextWithHighlight } from './TextWithHighlight';
-import { HomeQuienes } from './HomeQuienes';
 
 export const FirstSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -13,6 +12,7 @@ export const FirstSection = () => {
   useGSAP(() => {
     gsap
       .timeline({ defaults: { duration: 1.5 } })
+      .set('#productsIcons', { opacity: 0 })
       .fromTo(
         '#navbarButtons',
         { yPercent: -150, opacity: 0 },
@@ -42,7 +42,7 @@ export const FirstSection = () => {
         trigger: containerRef.current,
         start: '-14% top',
         endTrigger: '#third',
-        end: '2000px top',
+        end: '+=2100 top',
         markers: { endColor: 'purple' },
         pin: '#machinePage',
       },
