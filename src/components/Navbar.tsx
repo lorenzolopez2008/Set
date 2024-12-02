@@ -31,7 +31,6 @@ export const Navbar = () => {
     menuOpened.current = !menuOpened.current;
 
     if (menuOpened.current) {
-      // Abrir menú
       menuTimeline
         .to('#menu-desktop', {
           yPercent: 0,
@@ -72,7 +71,10 @@ export const Navbar = () => {
             duration: 0.5,
           },
           '<0.3'
-        );
+        )
+        .to('.bubble', {
+          opacity: 0.5,
+        });
     } else {
       menuTimeline
         .to(
@@ -93,6 +95,13 @@ export const Navbar = () => {
             stagger: 0.1,
           },
           '<'
+        )
+        .to(
+          '.bubble',
+          {
+            opacity: 0,
+          },
+          0
         )
         .to('#menu-desktop', {
           yPercent: -130,
