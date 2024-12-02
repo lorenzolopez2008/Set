@@ -43,7 +43,6 @@ export const FirstSection = () => {
         start: '-14% top',
         endTrigger: '#third',
         end: '+=2100 top',
-        markers: { endColor: 'purple' },
         pin: '#machinePage',
       },
     });

@@ -8,10 +8,12 @@ export const Machine: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [images, setImages] = useState<HTMLImageElement[]>([]);
   const totalImages = 120;
-
+  const canvasContainerRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     const loadedImagesArray: HTMLImageElement[] = [];
     let imagesLoaded = 0;
+
+    const imgwidth = canvasContainerRef.current?.offsetWidth;
 
     // Cargar las imágenes
     for (let i = 0; i < totalImages; i++) {
@@ -26,19 +28,27 @@ export const Machine: React.FC = () => {
         4,
         '0'
       )}.png`;
+
+      img.width = imgwidth || 0;
+      img.height = (imgwidth || 0) / 2;
       loadedImagesArray.push(img);
     }
   }, []);
 
   useEffect(() => {
-    if (images.length === 0 || !canvasRef.current) return;
+    if (
+      images.length === 0 ||
+      !canvasRef.current ||
+      !canvasContainerRef.current
+    )
+      return;
 
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
+    const canvasContainer = canvasContainerRef.current;
     if (!ctx) return;
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.height = canvasContainer.offsetWidth / 2;
+    canvas.width = canvasContainer.offsetWidth;
     canvas.style.backgroundColor = 'transparent';
 
     const handleScroll = () => {
@@ -57,23 +67,13 @@ export const Machine: React.FC = () => {
       const img = images[frameIndex];
       if (!img) return;
 
-      const canvasRatio = (canvas.width * 2) / canvas.height;
-      const imgRatio = img.width / img.height;
+      let offsetX = 0;
 
-      let drawWidth,
-        drawHeight,
-        offsetX = 0,
-        offsetY = 0;
+      const offsetY = 0;
 
-      if (canvasRatio > imgRatio) {
-        drawWidth = canvas.width;
-        drawHeight = drawWidth / imgRatio;
-        offsetY = (canvas.height - drawHeight) / 2;
-      } else {
-        drawHeight = canvas.height;
-        drawWidth = drawHeight * imgRatio;
-        offsetX = (canvas.width - drawWidth) / 2;
-      }
+      const drawHeight = canvasContainer.offsetWidth / 2;
+      const drawWidth = canvasContainer.offsetWidth;
+      offsetX = (canvasContainer.offsetWidth - drawWidth) / 2;
 
       ctx.save();
       // if (totalImages - frameIndex < 10) {
@@ -103,25 +103,24 @@ export const Machine: React.FC = () => {
         zIndex: 10,
         position: 'relative',
       }}
+      marginTop={{ xs: '9.125rem', lg: 0 }}
       id="machinePage"
     >
       <Box
-        width="clamp(20rem, 60vw, 80rem)"
+        width="clamp(20rem, 100vw, 70rem)"
         height="clamp(8rem, 60vw, 35.375rem)"
-        zIndex={2}
         id="machine"
+        position={'relative'}
+        ref={canvasContainerRef}
       >
         <canvas
           ref={canvasRef}
           style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'contain',
             position: 'relative',
           }}
         />
       </Box>
-      <Box position={'absolute'} top={0} id="circle">
+      <Box position={'absolute'} top={0} id="circle" zIndex={-1}>
         <Circle />
       </Box>
       <ProductsIcons />

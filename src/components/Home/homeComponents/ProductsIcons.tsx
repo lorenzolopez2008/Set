@@ -17,7 +17,8 @@ export const ProductsIcons = () => {
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
+        alignItems: { xs: 'flex-start', sm: 'center' },
+        overflowX: 'auto',
         justifyContent: 'center',
         zIndex: 10,
       }}

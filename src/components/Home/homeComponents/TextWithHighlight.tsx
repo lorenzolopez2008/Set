@@ -8,7 +8,7 @@ export const TextWithHighlight = () => {
         display: 'inline-flex',
         alignItems: 'stretch',
         gap: '1rem',
-        marginLeft: '9.0625rem',
+        marginLeft: { xs: 0, sm: '5.0625rem', md: '9.0625rem' },
       }}
       id="textHigh"
     >

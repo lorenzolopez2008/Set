@@ -10,80 +10,153 @@ export const ThirdSection = () => {
   const containerRef = useRef(null);
 
   useGSAP(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        endTrigger: containerRef.current,
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 3,
-        pin: true,
-        markers: true,
-      },
-    });
+    const mm = gsap.matchMedia();
+    mm.add(
+      { isDesktop: '(min-width:769px)', isMobile: '(max-width:768px)' },
+      (context) => {
+        const conditions = context.conditions;
+        if (!conditions?.isMobile) {
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: containerRef.current,
+              endTrigger: containerRef.current,
+              start: 'top top',
+              end: 'bottom top',
+              scrub: 3,
+              pin: true,
+            },
+          });
 
-    tl.to('#circle', { xPercent: 104, yPercent: -39, scale: 0.5 })
-      .to('#productsIcons', { yPercent: 100 }, '<')
-      .fromTo(
-        '#third',
-        { opacity: 0 },
-        { keyframes: { opacity: [0, 1, 1, 1] } }
-      )
-      .to('#machinePage', { opacity: 0 }, '<')
-      .to(
-        `.${styles.embla__slide}`,
-        {
-          flex: '0 0 58%',
-        },
-        '<'
-      )
-      .fromTo(
-        `.${styles.embla__slide}`,
-        {
-          flex: '0 0 100%',
-        },
-        {
-          flex: '0 0 58%',
-        },
-        '<'
-      )
-      .fromTo(
-        '#machine-carrousel',
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 50,
-        },
-        '<'
-      )
-      .fromTo(
-        '#product-title',
-        {
-          yPercent: 10,
-          xPercent: -100,
-        },
-        {
-          yPercent: 10,
-          xPercent: 0,
-        },
-        '<'
-      )
-      .from(
-        '#product-buttons',
-        {
-          scaleX: 1.1,
-          duration: 1,
-        },
-        '<'
-      )
-      .fromTo(
-        '#bg-carousel',
-        {
-          yPercent: -10,
-        },
-        { yPercent: 0 },
-        '<'
-      );
+          tl.to('#circle', { xPercent: 104, yPercent: -39, scale: 0.5 })
+            .to('#productsIcons', { yPercent: 100 }, '<')
+            .fromTo(
+              '#third',
+              { opacity: 0 },
+              { keyframes: { opacity: [0, 1, 1, 1] } }
+            )
+            .to('#machinePage', { opacity: 0 }, '<')
+            .to(
+              `.${styles.embla__slide}`,
+              {
+                flex: '0 0 58%',
+              },
+              '<'
+            )
+            .fromTo(
+              `.${styles.embla__slide}`,
+              {
+                flex: '0 0 100%',
+              },
+              {
+                flex: '0 0 58%',
+              },
+              '<'
+            )
+            .fromTo(
+              '#machine-carrousel',
+              { opacity: 0, y: 50 },
+              {
+                opacity: 1,
+                y: 50,
+              },
+              '<'
+            )
+            .fromTo(
+              '#product-title',
+              {
+                yPercent: 100,
+                xPercent: -100,
+              },
+              {
+                yPercent: 100,
+                xPercent: 0,
+              },
+              '<'
+            )
+            .from(
+              '#product-buttons',
+              {
+                scaleX: 1.1,
+                duration: 1,
+              },
+              '<'
+            )
+            .fromTo(
+              '#bg-carousel',
+              {
+                yPercent: -10,
+              },
+              { yPercent: 0 },
+              '<'
+            );
+        } else {
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: containerRef.current,
+              endTrigger: containerRef.current,
+              start: 'top top',
+              end: 'bottom top',
+              scrub: 3,
+              pin: true,
+            },
+          });
+
+          tl.to('#circle', { xPercent: 50, yPercent: -145, scale: 0.5 })
+            .to('#productsIcons', { yPercent: 100 }, '<')
+            .fromTo(
+              '#third',
+              { opacity: 0 },
+              { keyframes: { opacity: [0, 1, 1, 1] } }
+            )
+            .to('#machinePage', { opacity: 0 }, '<')
+            .to(
+              `.${styles.embla__slide}`,
+              {
+                scale: 1.3,
+              },
+
+              '<'
+            )
+            .fromTo(
+              '#machine-carrousel',
+              { opacity: 0, y: 50 },
+              {
+                opacity: 1,
+                y: 50,
+              },
+              '<'
+            )
+            .fromTo(
+              '#product-title',
+              {
+                yPercent: 100,
+                xPercent: -100,
+              },
+              {
+                yPercent: 100,
+                xPercent: 0,
+              },
+              '<'
+            )
+            .from(
+              '#product-buttons',
+              {
+                scaleX: 1.1,
+                duration: 1,
+              },
+              '<'
+            )
+            .fromTo(
+              '#bg-carousel',
+              {
+                yPercent: -10,
+              },
+              { yPercent: 0 },
+              '<'
+            );
+        }
+      }
+    );
   }, []);
 
   return (
