@@ -86,11 +86,11 @@ export const Carousel = ({
         velocity.current = currentX - lastX.current;
         lastX.current = currentX;
 
-        let rotationChange = (xPos - currentX) * dragRotationFactor; // Invertir la dirección del drag y aplicar el factor de reducción
+        let rotationChange = (xPos - currentX) * dragRotationFactor;
         rotationChange = Math.max(
           Math.min(rotationChange, maxRotationChange),
           -maxRotationChange
-        ); // Limitar la rotación
+        );
 
         accumulatedRotation += rotationChange;
 
