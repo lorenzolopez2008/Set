@@ -1,14 +1,38 @@
+'use client';
 import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
+import { useState } from 'react';
 
 export const ProductsIcons = () => {
-  const services = ['Impresión', 'Acabado', 'Periféricos', 'Complementos'];
-  const images = [
-    '/dowell.svg',
-    'hanglobal.svg',
-    '/dowell.svg',
-    'hanglobal.svg',
+  const services = [
+    {
+      title: 'Impresión',
+      brands: ['hanglobal.svg', '/dowell.svg', 'hanglobal.svg'],
+    },
+    {
+      title: 'Acabado',
+      brands: ['/dowell.svg', 'hanglobal.svg', '/dowell.svg', 'hanglobal.svg'],
+    },
+    {
+      title: 'Periféricos',
+      brands: ['/dowell.svg', 'hanglobal.svg', '/dowell.svg', 'hanglobal.svg'],
+    },
+    {
+      title: 'Complementos',
+      brands: ['/dowell.svg', 'hanglobal.svg', '/dowell.svg', 'hanglobal.svg'],
+    },
   ];
+
+  const [currentService, setCurrentService] = useState(services[0]);
+  const [opacity, setOpacity] = useState(1);
+
+  const handleServiceChange = (service: (typeof services)[0]) => {
+    setOpacity(0);
+    setTimeout(() => {
+      setCurrentService(service);
+      setOpacity(1);
+    }, 300);
+  };
 
   return (
     <Box
@@ -39,9 +63,20 @@ export const ProductsIcons = () => {
             <Typography
               key={index}
               variant="productDescription"
-              sx={{ flexGrow: 1, textAlign: 'center' }}
+              sx={{
+                flexGrow: 1,
+                textAlign: 'center',
+                fontWeight: currentService.title === service.title ? 800 : 600,
+                color:
+                  currentService.title === service.title ? '#000' : '#86868B',
+                transition: 'all 0.3s ease-in-out',
+                ':hover': {
+                  cursor: 'pointer',
+                },
+              }}
+              onClick={() => handleServiceChange(service)} // Usar la nueva función para cambiar de servicio
             >
-              {service}
+              {service.title}
             </Typography>
           ))}
         </Box>
@@ -51,14 +86,16 @@ export const ProductsIcons = () => {
           display: 'flex',
           itemsAlign: 'center',
           justifyContent: 'center',
+          opacity: opacity,
+          transition: 'opacity 0.3s ease-in-out',
         }}
       >
-        {images.map((image, i) => {
+        {currentService.brands.map((image, i) => {
           return (
             <Image
               key={i}
               src={image}
-              alt=""
+              alt={currentService.brands[i]}
               width={145}
               height={145}
               style={{
