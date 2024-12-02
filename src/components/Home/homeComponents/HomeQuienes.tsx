@@ -7,10 +7,9 @@ export const HomeQuienes = () => {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        position: 'absolute',
         alignItems: 'stretch',
         gap: '1rem',
-        opacity: 0,
+        marginLeft: '9.0625rem',
       }}
       id="homeQuienes"
     >

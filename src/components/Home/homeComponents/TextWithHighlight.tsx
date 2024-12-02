@@ -5,10 +5,10 @@ export const TextWithHighlight = () => {
   return (
     <Box
       sx={{
-        display: 'flex',
-        position: 'absolute',
+        display: 'inline-flex',
         alignItems: 'stretch',
         gap: '1rem',
+        marginLeft: '9.0625rem',
       }}
       id="textHigh"
     >
