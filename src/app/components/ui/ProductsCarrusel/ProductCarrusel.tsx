@@ -1,5 +1,4 @@
 'use client';
-
 import { useCallback, useEffect, useRef } from 'react';
 import {
   EmblaCarouselType,
@@ -9,12 +8,13 @@ import {
 import useEmblaCarousel from 'embla-carousel-react';
 import styles from './ProductCard.module.css';
 import { Box, Typography } from '@mui/material';
-import { pxToRem } from '@/helpers/pxToRem';
+
 import { CarruselButtons } from './CarruselButtons/CarruselButtons';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
+
+import { Circle } from '@/components/Home/homeComponents/Circle';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -32,8 +32,8 @@ export const ProductCarrusel = () => {
 
   const slides = [
     '/machine-animation/0120.png',
-    '/products/photo-2.png',
     '/products/photo-3.png',
+    '/products/photo-2.png',
   ];
 
   const setTweenNodes = useCallback((emblaApi: EmblaCarouselType): void => {
@@ -104,63 +104,16 @@ export const ProductCarrusel = () => {
       .on('slideFocus', tweenScale);
   }, [emblaApi, tweenScale, setTweenFactor, setTweenNodes]);
 
-  useGSAP(() => {
-    if (!containerRef.current) return;
-    gsap.to(`.${styles.embla__slide}`, {
-      flex: '0 0 58%',
-    });
-    gsap.fromTo(
-      `.${styles.embla__slide}`,
-      {
-        flex: '0 0 100%',
-      },
-      {
-        flex: '0 0 58%',
-        duration: 1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '#product-title',
-          start: 'top 80%',
-          end: 'top 30%',
-          scrub: true,
-        },
-      }
-    );
-    gsap.fromTo(
-      containerRef.current,
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        duration: 1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: containerRef.current,
-        },
-      }
-    );
-
-    gsap.fromTo(
-      '#product-title',
-      {
-        left: '-50%',
-      },
-      {
-        left: '5%',
-        duration: 1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '#product-title',
-          start: 'top 80%',
-          end: 'top 30%',
-          scrub: true,
-        },
-      }
-    );
-  }, []);
-
   return (
     <Box
-      sx={{ position: 'relative', opacity: 0, paddingTop: '5rem' }}
+      sx={{
+        position: 'relative',
+        paddingTop: '5rem',
+        minHeight: '100vh',
+        overflow: 'hidden',
+        maskImage:
+          'linear-gradient(180deg, hsla(0, 0%, 0%, 1) 0%,hsla(0, 0%, 0%, 1) 90%,hsla(0, 0%, 100%, 0) 100%)',
+      }}
       id="productCarrusel"
     >
       <Image
@@ -172,18 +125,18 @@ export const ProductCarrusel = () => {
         style={{
           position: 'absolute',
           objectFit: 'cover',
-          transform: 'scaleY(1.3)',
-          opacity: 1,
         }}
       />
+
+      <Box sx={{ position: 'absolute', left: '75%', top: 0, scale: 0.5 }}>
+        <Circle />
+      </Box>
       <Typography
         id="product-title"
         variant="main"
         sx={{
           color: 'black',
-          paddingLeft: '5%',
-          position: 'absolute',
-          marginBottom: '15rem',
+          marginLeft: '9.0625rem',
         }}
       >
         Productos{' '}
@@ -196,12 +149,18 @@ export const ProductCarrusel = () => {
           <Box className={styles.embla__viewport} ref={emblaRef}>
             <Box className={styles.embla__container}>
               {slides.map((img, index) => (
-                <Box className={styles.embla__slide} key={index}>
+                <Box
+                  className={`${styles.embla__slide} ${
+                    index !== 0 && 'emblaNotZero'
+                  }`}
+                  key={index}
+                >
                   <Box className={styles.embla__slide__number}>
                     <Box
                       sx={{
-                        width: `clamp(${pxToRem(850)}, 35vw, ${pxToRem(1061)})`,
-                        height: `clamp(${pxToRem(600)}, 25vw, ${pxToRem(726)})`,
+                        width: 'clamp(20rem, 60vw, 80rem)',
+                        height: 'clamp(8rem, 60vw, 38rem)',
+
                         position: 'relative',
                       }}
                     >
@@ -209,7 +168,6 @@ export const ProductCarrusel = () => {
                         src={img}
                         alt={img}
                         fill
-                        sizes="200%"
                         style={{ objectFit: 'contain' }}
                       />
                     </Box>

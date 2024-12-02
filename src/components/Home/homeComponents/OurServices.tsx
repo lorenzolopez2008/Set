@@ -47,7 +47,7 @@ export const OurServices = () => {
   return (
     <Box
       sx={{
-        overflowX: 'hidden',
+        overflow: 'hidden',
 
         minHeight: '100vh',
         display: 'flex',
@@ -56,6 +56,7 @@ export const OurServices = () => {
         alignItems: 'center',
         width: { xs: '100%' },
         gap: 0,
+        padding: '20rem 0',
       }}
       ref={containerRef}
       id="home--our-services"

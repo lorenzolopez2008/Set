@@ -147,11 +147,8 @@ export const Navbar = () => {
     >
       <Image
         style={{
-          position: 'absolute',
-          left: 0,
-          top: 0,
-          marginLeft: '2rem',
-          marginTop: '2rem',
+          marginLeft: '1rem',
+          marginTop: '1rem',
         }}
         src={'/logo.svg'}
         alt="logo"
@@ -160,14 +157,11 @@ export const Navbar = () => {
         id="logo"
       />
       <Box
-        position={'absolute'}
-        right={0}
-        top={0}
         display={'flex'}
         alignItems={'center'}
         justifyContent={'center'}
         gap={2}
-        sx={{ marginRight: '2rem', marginTop: '2rem' }}
+        sx={{ marginRight: '1rem', marginTop: '1rem' }}
         id="navbarButtons"
       >
         {isMobile && (

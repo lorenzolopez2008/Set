@@ -1,12 +1,8 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
 import { Box } from '@mui/material';
-import {
-  PrevButton,
-  NextButton,
-} from '@/app/components/Carousel/CarouselButtons/CarouselButtons';
 import { ProductsIcons } from './ProductsIcons';
-import ImageNext from 'next/image';
+import { Circle } from './Circle';
 
 export const Machine: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -100,20 +96,18 @@ export const Machine: React.FC = () => {
   return (
     <Box
       sx={{
-        position: 'absolute',
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center',
-        top: '5%',
         zIndex: 10,
+        position: 'relative',
       }}
       id="machinePage"
     >
       <Box
         width="clamp(20rem, 60vw, 80rem)"
-        height="clamp(8rem, 60vw, 43rem)"
+        height="clamp(8rem, 60vw, 35.375rem)"
         zIndex={2}
         id="machine"
       >
@@ -127,30 +121,8 @@ export const Machine: React.FC = () => {
           }}
         />
       </Box>
-      <Box
-        position={'absolute'}
-        width="clamp(30rem, 60vw, 55rem)"
-        height="clamp(15rem, 60vw, 37rem)"
-        id="circle"
-      >
-        <ImageNext
-          src={'/circle.png'}
-          alt="circle"
-          fill
-          style={{ aspectRatio: '1/1' }}
-        />
-      </Box>
-      <Box
-        sx={{
-          position: 'absolute',
-          bottom: '10%',
-          display: 'flex',
-          justifyContent: 'space-between',
-        }}
-        id="machine-buttons"
-      >
-        <PrevButton />
-        <NextButton />
+      <Box position={'absolute'} top={0} id="circle">
+        <Circle />
       </Box>
       <ProductsIcons />
     </Box>
