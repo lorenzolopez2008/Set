@@ -3,30 +3,22 @@ import { Carousel } from '../components/Carousel/Carousel';
 
 const Test = () => {
   const images = [
-    '/1.png',
-    '/2.png',
-    '/3.png',
-    '/1.png',
-    '/2.png',
-    '/3.png',
-    '/1.png',
-    '/2.png',
-    '/3.png',
+    {
+      src: '/3.png',
+      title: 'Image 3',
+      description: 'This is image 3',
+    },
+    {
+      src: '/1.png',
+      title: 'Image 1',
+      description: 'This is image 1',
+    },
+    {
+      src: '/2.png',
+      title: 'Image 2',
+      description: 'This is image 2',
+    },
   ];
-  return (
-    // <Box
-    //   sx={{
-    //     width: '100%',
-    //     minHeight: '100vh',
-    //     // // display: 'flex',
-    //     // // flexDirection: 'column',
-    //     // // justifyContent: 'center',
-    //     // alignItems: 'center',
-    //     overflowX: 'hidden',
-    //   }}
-    // >
-    <Carousel images={images} />
-    // </Box>
-  );
+  return <Carousel images={images} />;
 };
 export default Test;
