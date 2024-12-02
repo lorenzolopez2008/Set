@@ -20,7 +20,6 @@ export const OurServices = () => {
         start: 'top top',
         end: '+=1000',
         scrub: 3,
-        markers: true,
         onEnter: () => {
           setPositionFixedToElement('#home--our-services');
         },
