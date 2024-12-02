@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { SocialIcons } from '../contactComponents/SocialIcons';
 import { Arrow } from '@/app/components/svg/Arrow';
 import { useGetScreen } from '@/hooks/useGetScreen';
+import { BlueDotBackground } from '../BlueDotBackground/BlueDotBackground';
 
 export const Menu = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
   const options = [
@@ -152,6 +153,7 @@ export const Menu = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
           />
         </svg>
       </Box>
+      <BlueDotBackground />
     </Box>
   );
 };
