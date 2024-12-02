@@ -4,10 +4,9 @@ import { useGSAP } from '@gsap/react';
 import { Box, Typography } from '@mui/material';
 import gsap from 'gsap';
 import Draggable from 'gsap/dist/Draggable';
-import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import { useRef } from 'react';
 
-gsap.registerPlugin(Draggable, ScrollTrigger);
+gsap.registerPlugin(Draggable);
 
 export const Carousel = ({
   images,
@@ -23,10 +22,7 @@ export const Carousel = ({
 
   useGSAP(() => {
     let xPos = 0;
-    let accumulatedRotation = 0;
-    const maxRotationChange = 10;
-    const scrollRotationFactor = 90;
-    const dragRotationFactor = 0.1;
+
     const timeline = gsap.timeline();
     timeline
       .set(ringRef.current, { rotationY: 0 })
@@ -86,45 +82,11 @@ export const Carousel = ({
         velocity.current = currentX - lastX.current;
         lastX.current = currentX;
 
-        let rotationChange = (xPos - currentX) * dragRotationFactor;
-        rotationChange = Math.max(
-          Math.min(rotationChange, maxRotationChange),
-          -maxRotationChange
-        );
-
-        accumulatedRotation += rotationChange;
-
         gsap.to(ringRef.current, {
-          rotationY: accumulatedRotation,
+          rotationY: `-=${(currentX - xPos) % 360}`,
         });
-        console.log(xPos, currentX);
+
         xPos = currentX;
-      },
-      onDragEnd: () => {
-        ScrollTrigger.refresh();
-      },
-    });
-
-    ScrollTrigger.create({
-      trigger: '#carousel-pijagorda',
-      start: 'top top',
-      markers: true,
-      end: '+=2000px bottom',
-      scrub: 1,
-      onUpdate: (self) => {
-        const progress = self.progress;
-        const newRotation = progress * scrollRotationFactor;
-        const totalRotation = newRotation + accumulatedRotation;
-        console.log(xPos, progress, newRotation, totalRotation);
-        gsap.to(ringRef.current, {
-          rotationY: totalRotation,
-        });
-      },
-      onRefresh: () => {
-        accumulatedRotation = gsap.getProperty(
-          ringRef.current,
-          'rotationY'
-        ) as number;
       },
     });
   }, []);
@@ -169,7 +131,6 @@ export const Carousel = ({
         height: '100vh',
         overflow: 'hidden',
       }}
-      id="container-pijagorda"
     >
       <div
         id="carousel-container"
