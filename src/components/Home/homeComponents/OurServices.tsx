@@ -56,7 +56,7 @@ export const OurServices = () => {
         alignItems: 'center',
         width: { xs: '100%' },
         gap: 0,
-        padding: '20rem 0',
+        padding: '10rem 0',
       }}
       ref={containerRef}
       id="home--our-services"

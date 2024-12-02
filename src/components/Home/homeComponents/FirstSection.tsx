@@ -37,7 +37,6 @@ export const FirstSection = () => {
         { scale: 1, opacity: 1 },
         '<'
       );
-
     gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
