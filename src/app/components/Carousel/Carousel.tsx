@@ -1,296 +1,244 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
-
-import { Box, Button, Typography } from '@mui/material';
-import useEmblaCarousel from 'embla-carousel-react';
-import {
-  EmblaCarouselType,
-  EmblaEventType,
-  EmblaOptionsType,
-} from 'embla-carousel';
-import { useCallback, useEffect, useRef } from 'react';
-import './Carousel.css';
-import { DiagonalArrow } from '../svg/DiagonalArrow';
-import { NextButton, PrevButton } from './CarouselButtons/CarouselButtons';
 import { useGetScreen } from '@/hooks/useGetScreen';
+import { useGSAP } from '@gsap/react';
+import { Box, Typography, useMediaQuery } from '@mui/material';
+import gsap from 'gsap';
+import Draggable from 'gsap/dist/Draggable';
+import { useRef } from 'react';
 
-interface Props {
-  images: string[];
-}
-const TWEEN_FACTOR_BASE = 0.52;
-const numberWithinRange = (number: number, min: number, max: number): number =>
-  Math.min(Math.max(number, min), max);
+gsap.registerPlugin(Draggable);
 
-export const Carousel = ({ images }: Props) => {
-  const options: EmblaOptionsType = {
-    loop: true,
-    watchDrag: true,
-  };
-  const slides = [...images, ...images];
-  const [emblaRef, emblaApi] = useEmblaCarousel(options);
-  const tweenFactor = useRef(0);
-  const tweenNodes = useRef<HTMLElement[]>([]);
+export const Carousel = ({
+  images,
+}: {
+  images: { src: string; description: string; title: string }[];
+}) => {
+  const ringRef = useRef(null);
+  const imagesRef = useRef<HTMLDivElement[]>([]);
+  const velocity = useRef(0);
+  const lastX = useRef(0);
+  const timelineHover = useRef(gsap.timeline({ paused: true }));
+  const { screen } = useGetScreen('md');
+  const isMobile = useMediaQuery('(max-width:600px)');
 
-  const setTweenNodes = useCallback((emblaApi: EmblaCarouselType): void => {
-    tweenNodes.current = emblaApi.slideNodes().map((slideNode) => {
-      return slideNode.querySelector('.embla__slide__number') as HTMLElement;
+  useGSAP(() => {
+    let xPos = 0;
+
+    const timeline = gsap.timeline();
+    timeline
+      .set(ringRef.current, { rotationY: 0 })
+      .set(imagesRef.current, {
+        rotateY: 0,
+        transformOrigin: isMobile ? '50% 50% 400px' : '50% 50% 1000px',
+        z: isMobile ? -400 : -1000,
+        backfaceVisibility: 'hidden',
+      })
+      .fromTo(
+        [imagesRef.current[1], imagesRef.current[images.length - 1]],
+        {
+          zIndex: (i) => {
+            return 99 - i;
+          },
+        },
+        {
+          rotateY: (i) => {
+            return i === 0 ? -40 : +40;
+          },
+        }
+      )
+      .to(
+        imagesRef.current,
+        {
+          rotateY: (i) => {
+            if (i === images.length - 1) return 40;
+            return i * -40;
+          },
+        },
+        '+=0.5'
+      )
+      .from(imagesRef.current, {
+        duration: 1.5,
+        y: 200,
+        opacity: (i) => {
+          if (i <= 1 || i === images.length - 1) return 1;
+          return 0;
+        },
+        stagger: 0.1,
+        ease: 'expo',
+      });
+
+    Draggable.create('#carousel', {
+      type: 'x',
+      bounds: '#carousel-container',
+
+      onDragStart: (e) => {
+        if (e.touches) e.clientX = e.touches[0].clientX;
+        xPos = Math.round(e.clientX);
+        lastX.current = xPos;
+        velocity.current = 0;
+      },
+      onDrag: (e) => {
+        if (e.touches) e.clientX = e.touches[0].clientX;
+        const currentX = Math.round(e.clientX);
+        velocity.current = currentX - lastX.current;
+        lastX.current = currentX;
+
+        gsap.to(ringRef.current, {
+          rotationY: `-=${(currentX - xPos) % 360}`,
+        });
+
+        xPos = currentX;
+      },
     });
   }, []);
 
-  const setTweenFactor = useCallback((emblaApi: EmblaCarouselType) => {
-    tweenFactor.current = TWEEN_FACTOR_BASE * emblaApi.scrollSnapList().length;
-  }, []);
+  const handleMouseHover = (index: number) => {
+    if (screen) return;
+    timelineHover.current = gsap
+      .timeline()
+      .fromTo(
+        `.img-desc-${index}`,
+        { opacity: 0, yPercent: -10 },
+        {
+          yPercent: -50,
+          opacity: 1,
+          duration: 0.6,
+        }
+      )
+      .fromTo(
+        `.item-${index}`,
+        {
+          yPercent: -10,
+        },
+        {
+          yPercent: -50,
+          stagger: 0.2,
+          duration: 0.6,
+        },
+        '<'
+      )
+      .play();
+  };
 
-  const tweenScale = useCallback(
-    (emblaApi: EmblaCarouselType, eventName?: EmblaEventType) => {
-      const engine = emblaApi.internalEngine();
-      const scrollProgress = emblaApi.scrollProgress();
-      const slidesInView = emblaApi.slidesInView();
-      const isScrollEvent = eventName === 'scroll';
-
-      emblaApi.scrollSnapList().forEach((scrollSnap, snapIndex) => {
-        let diffToTarget = scrollSnap - scrollProgress;
-        const slidesInSnap = engine.slideRegistry[snapIndex];
-
-        slidesInSnap.forEach((slideIndex) => {
-          if (isScrollEvent && !slidesInView.includes(slideIndex)) return;
-
-          if (engine.options.loop) {
-            engine.slideLooper.loopPoints.forEach((loopItem) => {
-              const target = loopItem.target();
-
-              if (slideIndex === loopItem.index && target !== 0) {
-                const sign = Math.sign(target);
-
-                if (sign === -1) {
-                  diffToTarget = scrollSnap - (1 + scrollProgress);
-                }
-                if (sign === 1) {
-                  diffToTarget = scrollSnap + (1 - scrollProgress);
-                }
-              }
-            });
-          }
-
-          const tweenValue = 1 - Math.abs(diffToTarget * tweenFactor.current);
-          const scale = numberWithinRange(tweenValue, 0.9, 1).toString();
-          const tweenNode = tweenNodes.current[slideIndex];
-          tweenNode.style.transform = `scale(${scale})`;
-        });
-      });
-    },
-    []
-  );
-
-  const { screen } = useGetScreen('md');
-
-  useEffect(() => {
-    if (!emblaApi) return;
-
-    setTweenNodes(emblaApi);
-    setTweenFactor(emblaApi);
-    tweenScale(emblaApi);
-
-    emblaApi
-      .on('reInit', setTweenNodes)
-      .on('reInit', tweenScale)
-      .on('scroll', tweenScale)
-      .on('slideFocus', tweenScale);
-  }, [emblaApi, tweenScale, setTweenFactor, setTweenNodes]);
+  const handleMouseLeave = () => {
+    timelineHover.current.reverse();
+  };
 
   return (
-    <Box>
-      <Box sx={{ width: '100%', position: 'relative' }}>
-        <Box className="embla">
-          <Box className="embla__viewport" ref={emblaRef}>
-            <Box className="embla__container">
-              {slides.map((img, index) => (
-                <Box className="embla__slide" key={index}>
-                  <Box className="embla__slide__number">
-                    <img
-                      src={img}
-                      style={{
-                        width: `clamp(13.3531rem, 30vw, 31.875rem)`,
-                        height: 'auto',
-                      }}
-                      alt={img}
-                    />
-                  </Box>
-                </Box>
-              ))}
-            </Box>
-          </Box>
-        </Box>
-      </Box>
-      {!screen ? (
-        <Box
-          width={'100%'}
-          position={'relative'}
-          padding={'4.5rem 5rem 0 5rem'}
+    <div
+      style={{
+        width: '100%',
+        height: '110vh',
+        overflow: 'hidden',
+      }}
+    >
+      <div
+        id="carousel-container"
+        style={{
+          transform: 'scale(1.3)',
+          rotate: '-10deg',
+          width: '100%',
+          height: '100%',
+          overflow: 'hidden',
+        }}
+      >
+        <div
+          id="carousel"
+          style={{
+            width: '100%',
+            height: '100%',
+          }}
         >
-          <Box
-            sx={{
-              margin: 'auto',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              width: 'fit-content',
+          <div
+            style={{
+              perspective: '2000px',
+              width: 'clamp(13.3531rem, 5.1057rem + 41.237vw, 37.0644rem)',
+              height: 'clamp(13.3531rem, 5.1057rem + 41.237vw, 37.0644rem)',
+              position: 'absolute',
+              left: '50%',
+              top: '50%',
+              transform: 'translate(-50%, -50%)',
             }}
           >
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                gap: '0.375rem',
-              }}
-            >
-              <Typography
-                fontWeight={'bold'}
-                color="#008428"
-                fontSize={'2.25rem'}
-                lineHeight={'91%'}
-              >
-                Servicios de <br /> Mantenimiento
-              </Typography>
-              <Typography
-                fontWeight={'semibold'}
-                color="#848282"
-                fontSize={'clamp(0.875rem, 0.5707rem + 1.5217vw, 1.75rem)'}
-                lineHeight={'2.094rem'}
-              >
-                Servico de mantenimiento
-                <br /> correctivo, preventivo y<br /> implementación de
-                tecnología.
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
+            <div
+              id="ring"
+              ref={ringRef}
+              style={{
                 width: '100%',
-                maxWidth: '420rem',
-                justifyContent: 'space-between',
-                padding: '0 .5rem',
+                height: '100%',
+                transformStyle: 'preserve-3d',
+                userSelect: 'none',
               }}
             >
-              <PrevButton
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.625rem',
-                }}
-                onClick={() => {
-                  emblaApi?.scrollPrev();
-                }}
-              />
-              <NextButton
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.625rem',
-                }}
-                onClick={() => {
-                  emblaApi?.scrollNext();
-                }}
-              />
-            </Box>
-          </Box>
-          <Box
-            sx={{
-              position: 'relative',
-              display: 'flex',
-              justifyContent: 'flex-end',
-              bottom: '6rem',
-            }}
-          >
-            <Button variant="mainGreen" endIcon={<DiagonalArrow />}>
-              Servicios
-            </Button>
-          </Box>
-        </Box>
-      ) : (
-        <Box
-          width={'100%'}
-          display={'flex'}
-          alignItems={'center'}
-          justifyContent={'center'}
-          marginTop={'1rem'}
-          padding={'5rem 5rem 0 5rem'}
-        >
-          <Box sx={{ marginRight: 'auto' }}>
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                gap: '0.375rem',
-              }}
-            >
-              <Typography
-                fontWeight={'bold'}
-                color="#008428"
-                fontSize={'2.25rem'}
-                lineHeight={'91%'}
-              >
-                Servicios de <br /> Mantenimiento
-              </Typography>
-              <Typography
-                fontWeight={'semibold'}
-                color="#848282"
-                fontSize={'clamp(0.875rem, 0.5707rem + 1.5217vw, 1.75rem)'}
-              >
-                Servico de mantenimiento
-                <br /> correctivo, preventivo y<br /> implementación de
-                tecnología.
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                width: '100%',
-                maxWidth: '420rem',
-                justifyContent: 'space-between',
-              }}
-            >
-              <Box
-                sx={{
-                  width: '60%',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  paddingRight: '5rem',
-                }}
-              >
-                <PrevButton
-                  onClick={() => {
-                    emblaApi?.scrollPrev();
+              {images.map(({ src, description, title }, i) => (
+                <div
+                  key={i}
+                  ref={(el) => {
+                    if (el) {
+                      imagesRef.current[i] = el;
+                    }
                   }}
-                />
-
-                <NextButton
-                  onClick={() => {
-                    emblaApi?.scrollNext();
+                  className="img"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    position: 'absolute',
+                    transformStyle: 'preserve-3d',
+                    userSelect: 'none',
+                    backgroundSize: 'cover',
+                    backgroundImage: `url(${src})`,
                   }}
-                />
-              </Box>
-              <Box
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  width: '40%',
-                }}
-              >
-                <Button
-                  variant="mainGreen"
-                  sx={{ padding: 1 }}
-                  endIcon={<DiagonalArrow />}
+                  onMouseOver={() => handleMouseHover(i)}
+                  onMouseLeave={handleMouseLeave}
                 >
-                  Servicios
-                </Button>
-              </Box>
-            </Box>
-          </Box>
-        </Box>
-      )}
-    </Box>
+                  <Box
+                    component={'div'}
+                    className={`img-desc img-desc-${i}`}
+                    sx={{
+                      position: 'absolute',
+                      maxWidth:
+                        'clamp(13.3531rem, 5.1057rem + 41.237vw, 37.0644rem)',
+                      minWidth: '100%',
+                      opacity: screen ? 1 : 0,
+                      rotate: '10deg',
+                      padding: '3rem',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'center',
+                      gap: '0.375rem',
+                      pointerEvents: 'none',
+                      top: '100%',
+                      translate: { sm: '0% 0%', xs: '-20% 0%' },
+                    }}
+                  >
+                    <Typography
+                      fontWeight={'bold'}
+                      color="#008428"
+                      fontSize={'2.25rem'}
+                      lineHeight={'91%'}
+                      className={`item-${i}`}
+                    >
+                      {title}
+                    </Typography>
+                    <Typography
+                      fontWeight={'semibold'}
+                      color="#848282"
+                      fontSize={
+                        'clamp(0.875rem, 0.5707rem + 1.5217vw, 1.75rem)'
+                      }
+                      lineHeight={'2.094rem'}
+                      className={`item-${i}`}
+                    >
+                      {description}
+                    </Typography>
+                  </Box>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
