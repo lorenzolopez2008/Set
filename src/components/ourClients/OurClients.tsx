@@ -11,6 +11,8 @@ import OurClientsCard from './OurClientsCard';
 import { Canvas } from '@react-three/fiber';
 import { SphereClients } from './SphereClients';
 import { Environment } from '@react-three/drei';
+import RightArrow from '../../../public/icons/rightArrow.svg';
+import Image from 'next/image';
 
 const clients = [
   {
@@ -127,10 +129,24 @@ export const OurClients = () => {
             marginRight: isMobile ? '0' : '10rem',
             textAlign: isMobile ? 'center' : '',
             height: 'fit-content',
+            display: 'flex',
+            justifyContent: 'space-between',
           }}
         >
           <OurClientsCard />
+          <Box
+            sx={{
+              alignSelf: 'end',
+              justifySelf: 'center',
+              textAlign: 'center',
+              display: isMobile ? 'none' : '',
+            }}
+          >
+            <Image src={RightArrow} alt="right arrow" />
+            <Typography>Scroll</Typography>
+          </Box>
         </Box>
+
         <Box
           sx={{
             display: 'flex',
