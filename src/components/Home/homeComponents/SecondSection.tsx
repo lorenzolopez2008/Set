@@ -18,7 +18,6 @@ export const SecondSection = () => {
         end: 'bottom top',
         scrub: 2,
         pin: true,
-        markers: { startColor: 'blue' },
       },
     });
 
