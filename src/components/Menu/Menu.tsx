@@ -45,6 +45,7 @@ export const Menu = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
           zIndex: 102,
         }}
         onClick={onCloseMenu}
+        id={'menu-desktop-ant'}
       >
         <Arrow rotate />
         <Typography
@@ -133,6 +134,8 @@ export const Menu = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
           height: '100%',
           position: 'fixed',
           zIndex: 101,
+          top: 0,
+          left: 0,
         }}
       >
         <svg

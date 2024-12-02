@@ -25,7 +25,7 @@ export const Navbar = () => {
 
   const handleOpenMenu = () => {
     const menuTimeline = gsap.timeline({
-      ease: 'power4.inout',
+      ease: 'power4.inOut',
     });
 
     menuOpened.current = !menuOpened.current;
@@ -33,10 +33,17 @@ export const Navbar = () => {
     if (menuOpened.current) {
       // Abrir menú
       menuTimeline
-        .to('#menu-desktop', {
-          yPercent: 0,
-          duration: 0.5,
-        })
+        .fromTo(
+          '#menu-desktop',
+          {
+            yPercent: -130,
+            rotate: 0,
+          },
+          {
+            yPercent: 0,
+            duration: 1,
+          }
+        )
         .to(
           'path#start',
           {
@@ -61,7 +68,7 @@ export const Navbar = () => {
           '<0.2'
         )
         .fromTo(
-          '#social-box',
+          ['#social-box', '#menu-desktop-ant'],
           {
             x: '100%',
             opacity: 0,
@@ -76,7 +83,7 @@ export const Navbar = () => {
     } else {
       menuTimeline
         .to(
-          '#social-box',
+          ['#social-box', '#menu-desktop-ant'],
           {
             x: '100%',
             opacity: 0,
@@ -94,10 +101,14 @@ export const Navbar = () => {
           },
           '<'
         )
-        .to('#menu-desktop', {
-          yPercent: -130,
-          duration: 0.5,
+        .set('#menu-desktop', {
+          rotate: 180,
           delay: 0.3,
+        })
+        .to('#menu-desktop', {
+          yPercent: 130,
+          duration: 1,
+          delay: 0.1,
         })
         .to(
           'path#start',
@@ -106,7 +117,7 @@ export const Navbar = () => {
               d: 'M1920 1H0.5V988C79.3333 1019.67 385.2 1083 964 1083C1542.8 1083 1841.33 1019.67 1920 988V1Z',
             },
           },
-          '<0'
+          '<0.3'
         );
     }
 
