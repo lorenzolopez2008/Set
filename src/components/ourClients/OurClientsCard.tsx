@@ -48,6 +48,7 @@ export default function OurClientsCard() {
             variant="paragraph"
             sx={{
               color: '#008428',
+              fontSize: 'clamp(0.875rem, 0.5707rem + 1vw, 1.75rem)',
               fontWeight: 600,
             }}
           >
