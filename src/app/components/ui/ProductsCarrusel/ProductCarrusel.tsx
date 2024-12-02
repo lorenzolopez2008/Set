@@ -31,7 +31,7 @@ export const ProductCarrusel = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const slides = [
-    '/products/photo-1.png',
+    '/machine-animation/0120.png',
     '/products/photo-2.png',
     '/products/photo-3.png',
   ];
@@ -209,8 +209,8 @@ export const ProductCarrusel = () => {
                         src={img}
                         alt={img}
                         fill
-                        sizes="100%"
-                        style={{ objectFit: 'cover' }}
+                        sizes="200%"
+                        style={{ objectFit: 'contain' }}
                       />
                     </Box>
                   </Box>

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 
 import { Box, Button, Typography } from '@mui/material';
@@ -25,7 +26,7 @@ export const Carousel = ({ images }: Props) => {
     loop: true,
     watchDrag: true,
   };
-  const slides = images;
+  const slides = [...images, ...images];
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
   const tweenFactor = useRef(0);
   const tweenNodes = useRef<HTMLElement[]>([]);
@@ -72,7 +73,7 @@ export const Carousel = ({ images }: Props) => {
           }
 
           const tweenValue = 1 - Math.abs(diffToTarget * tweenFactor.current);
-          const scale = numberWithinRange(tweenValue, 0, 1).toString();
+          const scale = numberWithinRange(tweenValue, 0.9, 1).toString();
           const tweenNode = tweenNodes.current[slideIndex];
           tweenNode.style.transform = `scale(${scale})`;
         });
@@ -109,7 +110,7 @@ export const Carousel = ({ images }: Props) => {
                     <img
                       src={img}
                       style={{
-                        width: `clamp(13.3531rem, 10.389rem + 14.8207vw, 21.875rem)`,
+                        width: `clamp(13.3531rem, 30vw, 31.875rem)`,
                         height: 'auto',
                       }}
                       alt={img}

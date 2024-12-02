@@ -112,7 +112,7 @@ export default function HomePage() {
         '<'
       )
       .to('#machine', { opacity: 0 }, '<')
-      .to('#productCarrusel', { opacity: 1 }, '<')
+      .to('#productCarrusel', { opacity: 1, zIndex: 10 }, '<')
 
       .to(
         `.${styles.embla__slide}`,
@@ -172,11 +172,17 @@ export default function HomePage() {
   const { isVisible } = useVisibility('HomePage');
   if (!isVisible) return null;
   return (
-    <>
+    <Box
+      sx={{
+        width: '100%',
+        overflowX: 'hidden',
+      }}
+    >
       <Box
         sx={{
           width: '100%',
           height: '230vh',
+          overflowX: 'hidden',
         }}
         id="container"
       >
@@ -189,6 +195,6 @@ export default function HomePage() {
       <FadeUpImage />
       <Carousel images={images} />
       <OurClients />
-    </>
+    </Box>
   );
 }

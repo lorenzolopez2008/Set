@@ -8,11 +8,13 @@ import {
 } from '@react-three/drei';
 import * as THREE from 'three';
 import { SpeechBubble } from '@/app/components/ui/SpeechBubble/SpeechBubble';
+import { useMediaQuery } from '@mui/material';
 
 export const SphereClients = (props) => {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF('/models/ssphere-set.glb');
   const { actions } = useAnimations(animations, group);
+  const isMobile = useMediaQuery('(max-width: 990px)');
 
   useEffect(() => {
     console.log(actions);
@@ -28,19 +30,10 @@ export const SphereClients = (props) => {
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
-        {/* <PerspectiveCamera */}
-        {/*   name="Camera" */}
-        {/*   makeDefault={true} */}
-        {/*   far={1000} */}
-        {/*   near={0.1} */}
-        {/*   fov={22.895} */}
-        {/*   position={[-6.786, 2.394, 0.018]} */}
-        {/*   rotation={[-1.562, -1.234, -1.561]} */}
-        {/* /> */}
         <OrthographicCamera
           name="Camera"
           makeDefault
-          zoom={200}
+          zoom={isMobile ? 150 : 350}
           position={[-6.987, 1.727, 0.024]}
           rotation={[-1.558, -1.325, -1.558]}
         />

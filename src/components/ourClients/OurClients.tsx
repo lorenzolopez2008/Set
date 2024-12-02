@@ -95,8 +95,8 @@ export const OurClients = () => {
         >
           <Canvas
             style={{
-              width: isMobile ? '100%' : '40vw',
-              height: `70vh`,
+              width: isMobile ? '100%' : '50vw',
+              height: `100svh`,
             }}
           >
             <Environment preset="city" />
@@ -104,7 +104,7 @@ export const OurClients = () => {
           </Canvas>
           <Box
             sx={{
-              width: 'clamp(19.6875rem, 45vw, 39.6875rem)',
+              width: '50vw',
               height: 'clamp(9.375rem,  35.4348vw, 50rem)',
               display: { xs: 'none', lg: 'flex' },
               paddingRight: '2.25rem',
