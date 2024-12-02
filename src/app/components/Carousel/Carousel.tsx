@@ -92,7 +92,6 @@ export const Carousel = ({
   }, []);
 
   const handleMouseHover = (index: number) => {
-    console.log('holaa');
     if (screen) return;
     timelineHover.current = gsap
       .timeline()
@@ -139,7 +138,6 @@ export const Carousel = ({
           rotate: '-10deg',
           width: '100%',
           height: '100%',
-          background: 'red',
           overflow: 'hidden',
         }}
       >
@@ -148,7 +146,6 @@ export const Carousel = ({
           style={{
             width: '100%',
             height: '100%',
-            background: '#FFFFFF80',
           }}
         >
           <div
