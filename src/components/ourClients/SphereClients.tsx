@@ -6,7 +6,6 @@ import {
   OrthographicCamera,
 } from '@react-three/drei';
 import { SpeechBubble } from '@/app/components/ui/SpeechBubble/SpeechBubble';
-import { useMediaQuery } from '@mui/material';
 import * as THREE from 'three';
 
 export const SphereClients = ({
@@ -19,7 +18,6 @@ export const SphereClients = ({
   const groupRef = useRef<THREE.Group>(null as unknown as THREE.Group);
   const { nodes, animations } = useGLTF('/models/ssphere-set.glb');
   const { actions } = useAnimations(animations, groupRef);
-  const isMobile = useMediaQuery('(max-width: 990px)');
 
   useEffect(() => {
     const handleAnimation = (play: boolean) => {
