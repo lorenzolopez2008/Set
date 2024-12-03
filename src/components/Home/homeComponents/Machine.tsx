@@ -123,8 +123,8 @@ export const Machine: React.FC = () => {
       id="machinePage"
     >
       <Box
-        width="clamp(20rem, 100vw, 70rem)"
-        height="clamp(8rem, 60vw, 35.375rem)"
+        width="clamp(26rem, 2.6087rem + 50.9565vw, 70rem)"
+        sx={{ aspectRatio: '16/9' }}
         id="machine"
         position={'relative'}
         ref={canvasContainerRef}

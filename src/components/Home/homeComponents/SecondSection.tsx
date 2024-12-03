@@ -28,7 +28,7 @@ export const SecondSection = () => {
         { keyframes: { yPercent: [100, 0, 0, 0], opacity: [0, 1, 1, 1] } }
       )
       .to('#homeQuienes', { xPercent: -100, opacity: 0, delay: 1 })
-      .to('#machinePage', { yPercent: -12, duration: 2 }, '-=1')
+      .to('#machinePage', { yPercent: -24, duration: 2 }, '-=1')
       .to('#productsIcons', { opacity: 1 }, '<');
   }, []);
 

@@ -20,10 +20,13 @@ export const CarruselButtons = ({ emblaApi, id }: CarruselButtonsProps) => {
     <Box
       id={id}
       sx={{
+        position: 'absolute',
         display: 'flex',
+        width: '100%',
         justifyContent: 'space-between',
-        marginTop: '2rem',
+        bottom: { xs: '-8rem', md: '2rem', xl: '-6rem' },
         paddingX: '2rem',
+        zIndex: 20,
       }}
     >
       <Button
