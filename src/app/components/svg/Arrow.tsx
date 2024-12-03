@@ -24,7 +24,7 @@ export const Arrow = ({ rotate }: { rotate?: boolean }) => {
           height="38.5"
           rx="19.25"
           stroke="#464646"
-          stroke-width="0.5"
+          strokeWidth="0.5"
         />
         <rect
           opacity="0.36"

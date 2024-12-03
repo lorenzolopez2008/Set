@@ -74,6 +74,7 @@ export const Menu = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
           alt="logo"
           width={86}
           height={45}
+          priority
         />
       ) : null}
 
@@ -118,6 +119,7 @@ export const Menu = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
       >
         <Image
           src={'/SET.png'}
+          priority
           alt="logo"
           width={screen ? 205 : 476}
           height={screen ? 108 : 251}

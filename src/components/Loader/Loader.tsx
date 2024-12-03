@@ -132,6 +132,8 @@ const Loader = () => {
         ></Box>
         <Image
           src={'/SET.png'}
+          priority
+          sizes="full"
           alt="Set Image"
           style={{
             objectFit: 'contain',

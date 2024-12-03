@@ -18,9 +18,6 @@ export const Navbar = () => {
     gsap.set('#menu-desktop', {
       yPercent: -130,
     });
-    gsap.set('#close-menu', {
-      yPercent: 0,
-    });
   }, []);
 
   const handleOpenMenu = () => {
@@ -155,6 +152,7 @@ export const Navbar = () => {
         width={107}
         height={56}
         id="logo"
+        priority
       />
       <Box
         display={'flex'}

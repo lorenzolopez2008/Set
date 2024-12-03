@@ -13,6 +13,7 @@ export const Circle = () => {
       <Image
         src={'/circle.png'}
         alt="circle"
+        sizes="full"
         fill
         style={{ aspectRatio: '1/1' }}
       />
