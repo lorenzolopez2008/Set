@@ -122,7 +122,6 @@ export const Carousel: React.FC<CarouselProps> = ({ images }) => {
         start: 'top-=800 top',
         end: 'bottom bottom',
         scrub: true,
-        markers: true,
         onEnter: () => {
           setPositionFixedToElement('#home-carrousel-container');
         },
@@ -183,7 +182,7 @@ export const Carousel: React.FC<CarouselProps> = ({ images }) => {
         <Box
           sx={{
             display: { sx: 'block', sm: 'none' },
-            filter: 'blur(10rem)',
+            filter: 'blur(8rem)',
             position: 'absolute',
             background: '#00598F',
             opacity: 0.6,

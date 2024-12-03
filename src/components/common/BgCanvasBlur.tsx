@@ -1,5 +1,6 @@
 'use client';
 import bgElementFixedAtom from '@/store/bgCircleFollow.atom';
+import { useMediaQuery } from '@mui/material';
 import { useAtom } from 'jotai';
 import { useEffect, useRef } from 'react';
 
@@ -45,6 +46,8 @@ const BgCanvasBlur = () => {
   const idleTimeRef = useRef(0);
 
   const [positionFixedToElement] = useAtom(bgElementFixedAtom);
+
+  const isMobile = useMediaQuery('(max-width: 900px)');
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -149,6 +152,8 @@ const BgCanvasBlur = () => {
       cancelAnimationFrame(animationFrame);
     };
   }, [positionFixedToElement]);
+
+  if (isMobile) return null;
 
   return (
     <canvas
