@@ -17,7 +17,7 @@ import Image from 'next/image';
 const clients = [
   {
     name: 'Mario Veliz',
-    photoUrl: '/testimonials/MarioVeliz.png',
+    photoUrl: '/testimonials/marioVeliz.png',
     quote:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     rate: 4.8,
@@ -90,12 +90,20 @@ export const OurClients = () => {
     const testimonial = clients.find((client) => client.name === name);
     if (testimonial) {
       setTestimonialSelected(testimonial);
-      gsap.from('.home--testimonial-card', {
-        yPercent: 35,
-        duration: 2,
-        opacity: 0,
-        ease: 'power4.out',
-      });
+      gsap.fromTo(
+        '.home--testimonial-card',
+        {
+          yPercent: 35,
+          duration: 2,
+          opacity: 0,
+          ease: 'power4.out',
+        },
+        {
+          yPercent: 0,
+          duration: 2,
+          opacity: 0.9,
+        }
+      );
     }
   };
 
