@@ -2,8 +2,6 @@ import { HeadingSection } from '@/app/components/ui/HeadingSection/HeadingSectio
 import { Box, Typography } from '@mui/material';
 import { pxToRem } from '@/helpers/pxToRem';
 import Image from 'next/image';
-import AroFondo from '../../../public/arofondo.png';
-import Maquina from '../../../public/products/photo-3.png';
 import { Carousel } from '@/app/components/Carousel/Carousel';
 
 export const Services = () => {
@@ -31,7 +29,7 @@ export const Services = () => {
           }}
         >
           <Image
-            src={AroFondo}
+            src={'/arofondo.png'} // hay una imagen mejor en home reemplazar luego
             alt="Aro"
             style={{
               position: 'absolute',
@@ -40,7 +38,7 @@ export const Services = () => {
             }}
           />
           <Image
-            src={Maquina}
+            src={'/products/photo-3.png'}
             alt="Maquina"
             style={{
               width: `clamp(${pxToRem(359)}, 40vw ,${pxToRem(775)})`,

@@ -3,7 +3,6 @@ import { DiagonalArrow } from './svg/DiagonalArrow';
 import { TextWithSideBar } from './ui/TextWithParagraph/TextWithSideBar';
 import { HeadingSection } from './ui/HeadingSection/HeadingSection';
 import { ProductCard } from './ui/ProductCard/ProductCard';
-import { SpeechBubble } from './ui/SpeechBubble/SpeechBubble';
 
 const page = () => {
   return (
@@ -39,8 +38,6 @@ const page = () => {
       </Typography>
 
       <ProductCard />
-
-      <SpeechBubble>Pedrinho</SpeechBubble>
     </div>
   );
 };
