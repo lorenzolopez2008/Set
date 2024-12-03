@@ -150,7 +150,7 @@ export const Navbar = () => {
           marginLeft: '1rem',
           marginTop: '1rem',
         }}
-        src={'/logo.svg'}
+        src={'/set.png'}
         alt="logo"
         width={107}
         height={56}
