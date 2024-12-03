@@ -64,11 +64,11 @@ export const ThirdSection = () => {
             .fromTo(
               '#product-title',
               {
-                yPercent: 100,
+                yPercent: 50,
                 xPercent: -100,
               },
               {
-                yPercent: 100,
+                yPercent: 50,
                 xPercent: 0,
               },
               '<'

@@ -111,6 +111,10 @@ export const ProductCarrusel = () => {
         paddingTop: '5rem',
         minHeight: '100vh',
         overflow: 'hidden',
+        backgroundImage: { xs: 'none', lg: 'url(dashedRectangleUp.svg)' },
+        backgroundSize: '70% 58%',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center 30%',
         maskImage:
           'linear-gradient(180deg, hsla(0, 0%, 0%, 1) 0%,hsla(0, 0%, 0%, 1) 90%,hsla(0, 0%, 100%, 0) 100%)',
       }}
@@ -147,10 +151,17 @@ export const ProductCarrusel = () => {
             display: 'inline-flex',
             flexDirection: { xs: 'column', sm: 'row' },
             alignItems: { xs: 'center', sm: 'flex-start' },
+            fontSize: `clamp(3.125rem, 2.4728rem + 3.2609vw, 5rem)`,
             gap: 2,
           }}
         >
-          Productos <Typography variant="main">más vendidos</Typography>
+          Productos{' '}
+          <Typography
+            variant="main"
+            sx={{ fontSize: `clamp(3.125rem, 2.4728rem + 3.2609vw, 5rem)` }}
+          >
+            más vendidos
+          </Typography>
         </Typography>
       </Box>
 
@@ -159,6 +170,23 @@ export const ProductCarrusel = () => {
         id="machine-carrousel"
         ref={containerRef}
       >
+        <Box
+          sx={{
+            display: { sx: 'block', sm: 'none' },
+            filter: 'blur(10rem)',
+            position: 'absolute',
+            background:
+              'radial-gradient(circle, hsla(203, 100%, 28%, 1) 70%, hsla(37, 89%, 52%, 0) 100%)',
+            opacity: 0.6,
+            width: '100%',
+            height: '100%',
+            left: '75%',
+            top: '-40%',
+            transform: 'translateX(-50%)',
+            zIndex: -1,
+            borderRadius: '2000px',
+          }}
+        ></Box>
         <Box className={styles.embla}>
           <Box className={styles.embla__viewport} ref={emblaRef}>
             <Box className={styles.embla__container}>

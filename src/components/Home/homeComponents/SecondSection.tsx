@@ -25,7 +25,7 @@ export const SecondSection = () => {
       .fromTo(
         '#homeQuienes',
         { yPercent: 100, opacity: 0 },
-        { keyframes: { yPercent: [100, 0, 0, 0], opacity: [0.5, 1, 1, 1] } }
+        { keyframes: { yPercent: [100, 0, 0, 0], opacity: [0, 1, 1, 1] } }
       )
       .to('#homeQuienes', { xPercent: -100, opacity: 0, delay: 1 })
       .to('#machinePage', { yPercent: -12, duration: 2 }, '-=1')

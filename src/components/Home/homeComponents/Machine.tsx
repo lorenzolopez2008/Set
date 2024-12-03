@@ -113,6 +113,22 @@ export const Machine: React.FC = () => {
         position={'relative'}
         ref={canvasContainerRef}
       >
+        <Box
+          sx={{
+            display: { sx: 'block', sm: 'none' },
+            filter: 'blur(10rem)',
+            position: 'absolute',
+            background: '#00598F',
+            opacity: 0.6,
+            width: '100%',
+            height: '100%',
+            left: '75%',
+            top: '-25%',
+            transform: 'translateX(-50%)',
+            zIndex: -1,
+            borderRadius: '2000px',
+          }}
+        ></Box>
         <canvas
           ref={canvasRef}
           style={{
