@@ -44,7 +44,6 @@ export const FirstSection = () => {
         endTrigger: '#third',
         end: '+=2100 top',
         pin: '#machinePage',
-        markers: true,
       },
     });
   }, []);

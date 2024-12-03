@@ -5,7 +5,7 @@ import Loader from '@/components/Loader/Loader';
 import { Navbar } from '@/components/Navbar';
 import { GsapProvider } from '@/providers/GsapProvider';
 import { VisibilityProvider } from '@/providers/Testing';
-import DevTools from '@/hooks/Panel';
+// import DevTools from '@/hooks/Panel';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
@@ -29,7 +29,7 @@ export default function RootLayout({
               {children}
               <Footer />
             </GsapProvider>
-            <DevTools />
+            {/* <DevTools /> */}
           </ThemeRegistryProvider>
         </VisibilityProvider>
       </body>
