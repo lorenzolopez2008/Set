@@ -185,7 +185,11 @@ export const OurClients = () => {
             >
               <Environment preset="city" />
               <SphereClients
-                zoom={Math.max(window.innerWidth / 5 - 14, 150)}
+                zoom={
+                  typeof window !== 'undefined'
+                    ? Math.max(window.innerWidth / 5 - 14, 150)
+                    : 350
+                }
                 handleSetTestimonialSelected={handleSetTestimonialSelected}
               />
             </Canvas>
