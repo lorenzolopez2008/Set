@@ -6,6 +6,7 @@ import { useEffect, useRef } from 'react';
 
 const BgCanvasBlur = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+
   const mouseRef = useRef({ x: 0, y: 0 });
   const circlesRef = useRef([
     {
@@ -65,28 +66,9 @@ const BgCanvasBlur = () => {
     });
 
     const handleMouseMove = (event: MouseEvent) => {
-      if (positionFixedToElement) {
-        const element = document.querySelector(positionFixedToElement);
-        const rect = element?.getBoundingClientRect();
-        if (!rect) return;
-        //get center of rect
-        const center = {
-          x: rect?.left + rect?.width / 2,
-          y: rect?.top + rect?.height / 2,
-        };
-
-        if (!rect) return;
-        mouseRef.current = {
-          x: center.x,
-          y: center.y,
-        };
-        lastMouseMoveTime.current = Date.now();
-        idleTimeRef.current = 0;
-      } else {
-        mouseRef.current = { x: event.clientX, y: event.clientY };
-        lastMouseMoveTime.current = Date.now();
-        idleTimeRef.current = 0;
-      }
+      mouseRef.current = { x: event.clientX, y: event.clientY };
+      lastMouseMoveTime.current = Date.now();
+      idleTimeRef.current = 0;
     };
 
     const animate = () => {
@@ -98,9 +80,8 @@ const BgCanvasBlur = () => {
       const timeSinceLastMove = currentTime - lastMouseMoveTime.current;
       const mouse = mouseRef.current;
 
-      // Incrementar tiempo de inactividad
       if (timeSinceLastMove > 1000) {
-        idleTimeRef.current += 16; // Incremento por frame
+        idleTimeRef.current += 16;
       }
 
       circles.forEach((circle, index) => {
@@ -122,8 +103,6 @@ const BgCanvasBlur = () => {
           circle.vy = (circle.vy / speed) * maxSpeed;
         }
 
-        // Aplicar movimiento
-
         circle.x += circle.vx;
         circle.y += circle.vy;
 
@@ -133,7 +112,6 @@ const BgCanvasBlur = () => {
         circle.x += (circle.vx * 0.7 + circle.idleOffsetX) / 2;
         circle.y += (circle.vy * 0.7 + circle.idleOffsetY) / 2;
 
-        // Dibujar círculo
         ctx.beginPath();
         ctx.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2);
         ctx.fillStyle = circle.color;
@@ -142,7 +120,6 @@ const BgCanvasBlur = () => {
 
       requestAnimationFrame(animate);
     };
-
     window.addEventListener('mousemove', handleMouseMove);
 
     const animationFrame = requestAnimationFrame(animate);
@@ -151,7 +128,7 @@ const BgCanvasBlur = () => {
       window.removeEventListener('mousemove', handleMouseMove);
       cancelAnimationFrame(animationFrame);
     };
-  }, [positionFixedToElement]);
+  }, []);
 
   if (isMobile) return null;
 
@@ -165,6 +142,8 @@ const BgCanvasBlur = () => {
         width: '105%',
         height: '105%',
         filter: 'blur(12px)',
+        transition: 'opacity 1s ease-in-out',
+        opacity: positionFixedToElement ? 0 : 1,
       }}
       ref={canvasRef}
       data-name="bg-canvas-blur"
