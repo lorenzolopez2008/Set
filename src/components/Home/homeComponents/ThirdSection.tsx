@@ -27,14 +27,21 @@ export const ThirdSection = () => {
             },
           });
 
-          tl.to('#circle', { xPercent: 104, yPercent: -39, scale: 0.5 })
+          tl.to('#circle', {
+            xPercent: 110,
+            yPercent: -28,
+            scale: 0.5,
+          })
             .to('#productsIcons', { yPercent: 100 }, '<')
+            .to('#productsIcons', { opacity: 0 }, '<')
             .fromTo(
               '#third',
               { opacity: 0 },
               { keyframes: { opacity: [0, 1, 1, 1] } }
             )
-            .to('#machinePage', { opacity: 0 }, '<')
+
+            .to('#machinePage', { opacity: 0, pointerEvents: 'none' }, '<')
+            .to('#machine', { yPercent: 10, scale: 0.8 }, '<')
             .to(
               `.${styles.embla__slide}`,
               {
@@ -64,11 +71,11 @@ export const ThirdSection = () => {
             .fromTo(
               '#product-title',
               {
-                yPercent: 50,
+                yPercent: 10,
                 xPercent: -100,
               },
               {
-                yPercent: 50,
+                yPercent: 10,
                 xPercent: 0,
               },
               '<'
@@ -101,7 +108,7 @@ export const ThirdSection = () => {
             },
           });
 
-          tl.to('#circle', { xPercent: 50, yPercent: -145, scale: 0.5 })
+          tl.to('#circle', { xPercent: 50, yPercent: -128, scale: 0.5 })
             .to('#productsIcons', { yPercent: 100 }, '<')
             .fromTo(
               '#third',

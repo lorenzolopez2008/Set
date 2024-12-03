@@ -200,8 +200,8 @@ export const ProductCarrusel = () => {
                   <Box className={styles.embla__slide__number}>
                     <Box
                       sx={{
-                        width: 'clamp(20rem, 60vw, 80rem)',
-                        height: 'clamp(8rem, 60vw, 38rem)',
+                        width: 'clamp(20rem, 40vw, 80rem)',
+                        height: 'clamp(8rem, 25vw, 38rem)',
 
                         position: 'relative',
                       }}

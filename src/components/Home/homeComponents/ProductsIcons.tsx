@@ -99,7 +99,7 @@ export const ProductsIcons = () => {
               src={image}
               alt={currentService.brands[i]}
               width={145}
-              height={145}
+              height={50}
               style={{
                 height: 'clamp(2.188, 45vw, 3.25rem)',
                 width: 'clamp(6.063, 40vw, 9.063rem)',

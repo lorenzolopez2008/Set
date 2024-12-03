@@ -141,6 +141,7 @@ export const Navbar = () => {
       top={0}
       padding={'2rem'}
       zIndex={80}
+      id="navbar"
     >
       <Image
         style={{

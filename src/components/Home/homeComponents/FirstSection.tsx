@@ -36,13 +36,15 @@ export const FirstSection = () => {
         { scale: 1, opacity: 1 },
         '<'
       );
+    const navbarHeight = document.querySelector('#navbar')?.clientHeight;
     gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
-        start: '-14% top',
+        start: `-${navbarHeight} top`,
         endTrigger: '#third',
         end: '+=2100 top',
         pin: '#machinePage',
+        markers: true,
       },
     });
   }, []);

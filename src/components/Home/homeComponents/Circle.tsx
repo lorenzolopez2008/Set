@@ -6,8 +6,8 @@ export const Circle = () => {
     <Box
       sx={{
         position: 'relative',
-        width: 'clamp(25rem, 60vw, 55rem)',
-        height: 'clamp(15rem, 60vw, 37rem)',
+        width: 'clamp(25rem, 16.3043rem + 30.4783vw, 50rem)',
+        height: 'clamp(15rem, 7.3478rem + 20.2609vw, 37rem)',
       }}
     >
       <Image

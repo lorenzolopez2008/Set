@@ -54,7 +54,7 @@ const clients = [
 
 export const OurClients = () => {
   const containerRef = useRef(null);
-  const ourClientsRef = useRef(null);
+  const ourClientsRef = useRef<HTMLDivElement>(null);
   const isMobile = useMediaQuery('(max-width: 768px)');
 
   useGSAP(() => {
@@ -74,7 +74,9 @@ export const OurClients = () => {
             },
           });
           tl.addLabel('start')
-            .to(ourClientsRef.current, { xPercent: -35 })
+            .to(ourClientsRef.current, {
+              x: window.innerWidth - ourClientsRef.current!.offsetWidth,
+            })
             .addLabel('end');
         }
       }
@@ -82,7 +84,12 @@ export const OurClients = () => {
   }, []);
 
   const [testimonialSelected, setTestimonialSelected] =
-    useState<ITestimonialCard>(clients[0]);
+    useState<ITestimonialCard>({
+      name: 'Jane Doe',
+      photoUrl: '/images/testimonial1.png',
+      rate: 4.8,
+      quote: 'lorem ipsum',
+    });
 
   const handleSetTestimonialSelected = (name: string) => {
     const testimonial = clients.find((client) => client.name === name);
@@ -126,8 +133,8 @@ export const OurClients = () => {
       >
         <Box
           sx={{
-            width: isMobile ? '100%' : '50vw',
-            marginRight: isMobile ? '0' : '10rem',
+            width: isMobile ? '100%' : '60vw',
+            // marginRight: { xs: 0, md: '5rem', lg: '10rem', xl: '15rem' },
             textAlign: isMobile ? 'center' : '',
             height: 'fit-content',
             display: 'flex',
@@ -158,12 +165,16 @@ export const OurClients = () => {
         >
           <Box
             sx={{
-              width: isMobile ? '100%' : '50vw',
+              flexGrow: 2,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: isMobile ? '100%' : 'clamp(24rem,  62.6087vw, 60rem)',
             }}
           >
             <Canvas
               style={{
-                width: isMobile ? '100%' : '50vw',
+                width: isMobile ? '100%' : 'clamp(24rem,  62.6087vw, 60rem)',
                 height: isMobile ? '45svh' : `100svh`,
                 pointerEvents: 'none',
               }}
@@ -173,16 +184,17 @@ export const OurClients = () => {
             >
               <Environment preset="city" />
               <SphereClients
+                zoom={Math.max(window.innerWidth / 5 - 14, 150)}
                 handleSetTestimonialSelected={handleSetTestimonialSelected}
               />
             </Canvas>
           </Box>
           <Box
             sx={{
-              width: '50vw',
+              flexGrow: 1,
               height: 'clamp(9.375rem,  35.4348vw, 50rem)',
-              display: { xs: 'none', lg: 'flex' },
-              paddingRight: '2.25rem',
+              display: { xs: 'none', lg: 'inline-flex' },
+              width: 'clamp(24rem,  62.6087vw, 50rem)',
               justifyContent: 'center',
               flexDirection: 'column',
               gap: '2.25rem',
