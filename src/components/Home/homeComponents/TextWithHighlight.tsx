@@ -1,7 +1,10 @@
 import { pxToRem } from '@/helpers/pxToRem';
+import { useGetScreen } from '@/hooks/useGetScreen';
 import { Box, Typography } from '@mui/material';
 
 export const TextWithHighlight = () => {
+  const { screen } = useGetScreen('md');
+
   return (
     <Box
       sx={{
@@ -19,17 +22,29 @@ export const TextWithHighlight = () => {
           backgroundColor: '#D5112F',
         }}
       ></Box>
-      <Typography variant={'title'}>
-        Los equipos con el{' '}
-        <Typography variant={'title'} color="#008428">
-          retorno
+      {screen ? (
+        <Typography variant={'title'}>
+          Los equipos con el{' '}
+          <Typography component={'span'} variant={'title'} color="#008428">
+            retorno
+          </Typography>{' '}
+          <Typography component={'span'} variant={'title'} color="#008428">
+            de inversión
+          </Typography>{' '}
+          más rápido
         </Typography>
-        <br />{' '}
-        <Typography variant={'title'} color="#008428">
-          de inversión
-        </Typography>{' '}
-        más rápido
-      </Typography>
+      ) : (
+        <Typography variant={'title'}>
+          Los equipos con el{' '}
+          <Typography component={'span'} variant={'title'} color="#008428">
+            retorno <br />
+          </Typography>{' '}
+          <Typography component={'span'} variant={'title'} color="#008428">
+            de inversión
+          </Typography>{' '}
+          más rápido
+        </Typography>
+      )}
     </Box>
   );
 };
