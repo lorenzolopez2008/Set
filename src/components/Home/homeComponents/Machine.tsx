@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
-import { Box } from '@mui/material';
+import { Box, useMediaQuery } from '@mui/material';
 import { ProductsIcons } from './ProductsIcons';
 import { Circle } from './Circle';
 
@@ -9,6 +9,9 @@ export const Machine: React.FC = () => {
   const [images, setImages] = useState<HTMLImageElement[]>([]);
   const totalImages = 120;
   const canvasContainerRef = useRef<HTMLDivElement | null>(null);
+
+  const isMobile = useMediaQuery('(max-width:780px)');
+
   useEffect(() => {
     const loadedImagesArray: HTMLImageElement[] = [];
     let imagesLoaded = 0;
@@ -120,7 +123,12 @@ export const Machine: React.FC = () => {
           }}
         />
       </Box>
-      <Box position={'absolute'} top={0} id="circle" zIndex={-1}>
+      <Box
+        position={'absolute'}
+        top={isMobile ? '-2rem' : 0}
+        id="circle"
+        zIndex={-1}
+      >
         <Circle />
       </Box>
       <ProductsIcons />
