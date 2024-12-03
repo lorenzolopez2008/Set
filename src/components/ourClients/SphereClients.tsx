@@ -10,9 +10,11 @@ import { useMediaQuery } from '@mui/material';
 import * as THREE from 'three';
 
 export const SphereClients = ({
+  zoom,
   handleSetTestimonialSelected,
   isAnimation,
 }: {
+  zoom: number;
   handleSetTestimonialSelected: (testimonial: string) => void;
   isAnimation: boolean;
 }) => {
@@ -43,14 +45,14 @@ export const SphereClients = ({
       handleAnimation(false);
     }
   }, [isAnimation]);
-
+  console.log(zoom);
   return (
     <group ref={groupRef} dispose={null}>
       <group name="Scene">
         <OrthographicCamera
           name="Camera"
           makeDefault
-          zoom={isMobile ? 150 : 350}
+          zoom={zoom}
           position={[-6.987, 1.727, 0.024]}
           rotation={[-1.558, -1.325, -1.558]}
         />

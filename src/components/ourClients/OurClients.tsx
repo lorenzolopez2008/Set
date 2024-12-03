@@ -127,7 +127,8 @@ export const OurClients = () => {
       >
         <Box
           sx={{
-            width: isMobile ? '100%' : '50vw',
+            width: isMobile ? '100%' : '60vw',
+            // marginRight: { xs: 0, md: '5rem', lg: '10rem', xl: '15rem' },
             textAlign: isMobile ? 'center' : '',
             height: 'fit-content',
             display: 'flex',
@@ -150,35 +151,24 @@ export const OurClients = () => {
 
         <Box
           sx={{
-            display: 'inline-flex',
+            display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
+            width: '100vw',
           }}
         >
           <Box
             sx={{
-              width: isMobile
-                ? '100%'
-                : 'clamp(24rem, 11.4783rem + 62.6087vw, 60rem)',
-            }}
-            onMouseEnter={(e) => {
-              if (isMobile) return;
-              e.stopPropagation();
-              setIsAnimation(false);
-            }}
-            onMouseLeave={(e) => {
-              if (isMobile) return;
-              e.stopPropagation();
-              const target = e.relatedTarget as HTMLElement;
-              if (target && target.id === 'bubble') return;
-              setIsAnimation(true);
+              flexGrow: 2,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: isMobile ? '100%' : 'clamp(24rem,  62.6087vw, 60rem)',
             }}
           >
             <Canvas
               style={{
-                width: isMobile
-                  ? '100%'
-                  : 'clamp(24rem, 11.4783rem + 62.6087vw, 60rem)',
+                width: isMobile ? '100%' : 'clamp(24rem,  62.6087vw, 60rem)',
                 height: isMobile ? '45svh' : `100svh`,
                 pointerEvents: 'none',
               }}
@@ -188,6 +178,7 @@ export const OurClients = () => {
             >
               <Environment preset="city" />
               <SphereClients
+                zoom={Math.max(window.innerWidth / 5 - 14, 150)}
                 isAnimation={isAnimation}
                 handleSetTestimonialSelected={handleSetTestimonialSelected}
               />
@@ -195,10 +186,10 @@ export const OurClients = () => {
           </Box>
           <Box
             sx={{
-              width: '50vw',
+              flexGrow: 1,
               height: 'clamp(9.375rem,  35.4348vw, 50rem)',
               display: { xs: 'none', lg: 'inline-flex' },
-
+              width: 'clamp(24rem,  62.6087vw, 50rem)',
               justifyContent: 'center',
               flexDirection: 'column',
               gap: '2.25rem',
