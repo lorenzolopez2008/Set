@@ -45,7 +45,7 @@ export const SphereClients = ({
       handleAnimation(false);
     }
   }, [isAnimation]);
-  console.log(zoom);
+
   return (
     <group ref={groupRef} dispose={null}>
       <group name="Scene">
