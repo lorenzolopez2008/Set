@@ -161,7 +161,7 @@ export default function Footer() {
                       position: 'relative',
                     }}
                   >
-                    <Image src="/set.png" alt="SET Logo" fill />
+                    <Image src="/SET.png" alt="SET Logo" fill />
                   </Box>
                   <Typography
                     variant="paragraph"

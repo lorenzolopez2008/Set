@@ -148,6 +148,54 @@ export const Carousel: React.FC<CarouselProps> = ({ images }) => {
 
   return (
     <Box width="100%" id={'home-carrousel-container'}>
+      {/* decorations */}
+
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '6rem',
+          right: {
+            xs: '-10%',
+            md: '-10%',
+            lg: 0,
+            xl: 0,
+          },
+          width: {
+            xs: '50%',
+            md: '50%',
+            lg: '22%',
+            xl: '22%',
+          },
+
+          pointerEvents: 'none',
+        }}
+      >
+        <img
+          src="/decorationLines.svg"
+          alt="carousel-bg"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'center',
+          }}
+        />
+        <Box
+          sx={{
+            display: { sx: 'block', sm: 'none' },
+            filter: 'blur(10rem)',
+            position: 'absolute',
+            background: '#00598F',
+            opacity: 0.6,
+            width: '100%',
+            height: '100%',
+            left: 0,
+            top: 0,
+            zIndex: -1,
+            borderRadius: '2000px',
+          }}
+        ></Box>
+      </Box>
       {/* Carousel */}
       <Box sx={{ position: 'relative', width: '100%' }}>
         <Box className="embla">
@@ -172,11 +220,11 @@ export const Carousel: React.FC<CarouselProps> = ({ images }) => {
           width="100%"
           display="flex"
           alignItems="center"
-          justifyContent="center"
+          justifyContent="start"
           marginTop="1rem"
           padding="2rem 2rem 0 2rem"
         >
-          <Box sx={{ marginInline: 'auto' }}>
+          <Box sx={{ marginInline: 'auto' }} width={'100%'}>
             <ServicesContent
               selectedIndex={selectedIndex}
               services={services}

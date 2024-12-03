@@ -110,7 +110,7 @@ const Loader = () => {
             alignItems: 'center',
             width: '100%',
             height: '100%',
-            maskImage: `url('/set.png') `,
+            maskImage: `url('/SET.png') `,
             maskSize: '250px',
             maskRepeat: 'no-repeat',
             maskPosition: 'center',
@@ -119,7 +119,7 @@ const Loader = () => {
           }}
         ></Box>
         <Image
-          src={'/set.png'}
+          src={'/SET.png'}
           alt="Set Image"
           style={{
             objectFit: 'contain',

@@ -18,17 +18,22 @@ const ServicesContent: React.FC<{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        justifyContent: 'start',
         width: 'fit-content',
-        margin: 'auto',
+        marginInline: 'auto',
       }}
     >
       <Box
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'center',
+          justifyContent: 'start',
           gap: '0.375rem',
+          minHeight: '12rem',
+          width: '100%',
         }}
+        key={selectedIndex}
+        className="animation-fade-up"
       >
         <Typography
           fontWeight="bold"
