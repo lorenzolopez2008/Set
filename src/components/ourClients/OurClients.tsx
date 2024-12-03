@@ -84,12 +84,7 @@ export const OurClients = () => {
   }, []);
 
   const [testimonialSelected, setTestimonialSelected] =
-    useState<ITestimonialCard>({
-      name: 'Jane Doe',
-      photoUrl: '/images/testimonial1.png',
-      rate: 4.8,
-      quote: 'lorem ipsum',
-    });
+    useState<ITestimonialCard>(clients[0]);
 
   const handleSetTestimonialSelected = (name: string) => {
     const testimonial = clients.find((client) => client.name === name);
