@@ -12,7 +12,7 @@ export const Machine: React.FC = () => {
 
   const isMobile = useMediaQuery('(max-width:780px)');
 
-  useEffect(() => {
+  const loadImages = async () => {
     const loadedImagesArray: HTMLImageElement[] = [];
     let imagesLoaded = 0;
 
@@ -30,12 +30,16 @@ export const Machine: React.FC = () => {
       img.src = `/machine-animation/${String(Math.max(1, i)).padStart(
         4,
         '0'
-      )}.png`;
+      )} copy.webp`;
 
       img.width = imgwidth || 0;
       img.height = (imgwidth || 0) / 2;
       loadedImagesArray.push(img);
     }
+  };
+
+  useEffect(() => {
+    loadImages();
   }, []);
 
   useEffect(() => {
@@ -65,6 +69,17 @@ export const Machine: React.FC = () => {
       render(frameIndex);
     };
 
+    const handleResize = () => {
+      if (!canvasRef.current || !canvasContainerRef.current) return;
+      const canvas = canvasRef.current;
+      const canvasContainer = canvasContainerRef.current;
+      canvas.height = canvasContainer.offsetWidth / 2;
+      canvas.width = canvasContainer.offsetWidth;
+      canvas.style.width = canvasContainer.offsetWidth + 'px';
+      canvas.style.height = canvasContainer.offsetWidth / 2 + 'px';
+      handleScroll();
+    };
+
     const render = (frameIndex: number) => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const img = images[frameIndex];
@@ -79,20 +94,18 @@ export const Machine: React.FC = () => {
       offsetX = (canvasContainer.offsetWidth - drawWidth) / 2;
 
       ctx.save();
-      // if (totalImages - frameIndex < 10) {
-      //   ctx.globalAlpha = (totalImages - frameIndex) / 10;
-      // }
       ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
       ctx.restore();
     };
 
-    // Agregar el evento de scroll
-    window.addEventListener('scroll', handleScroll);
     render(1);
 
-    // Cleanup para evitar fugas de memoria
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
     };
   }, [images]);
 

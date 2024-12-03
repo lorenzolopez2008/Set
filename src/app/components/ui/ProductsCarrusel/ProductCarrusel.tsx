@@ -31,7 +31,7 @@ export const ProductCarrusel = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const slides = [
-    '/machine-animation/0120.png',
+    '/machine-animation/0120 copy.webp',
     '/products/photo-3.png',
     '/products/photo-2.png',
   ];
