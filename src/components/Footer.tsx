@@ -66,13 +66,15 @@ export default function Footer() {
       text: '+52 33 2301 6197',
     },
   ];
+
   const { isVisible } = useVisibility('Footer');
   if (!isVisible) return null;
+
   return (
     <Box
       component="footer"
       sx={{
-        paddingInline: { lg: '7.313rem' },
+        paddingInline: { lg: '2rem', xl: '7.313rem' },
         marginInline: { xs: '.5rem', lg: 0 },
       }}
     >
@@ -82,7 +84,6 @@ export default function Footer() {
           zIndex: 10,
           borderBottomLeftRadius: { xs: '1rem', lg: '3.125rem' },
           borderTopRightRadius: { xs: '1rem', lg: '3.125rem' },
-
           border: '3px solid transparent',
           backgroundClip: 'padding-box',
           boxSizing: 'border-box',
@@ -119,6 +120,7 @@ export default function Footer() {
             paddingY: '2.2rem',
             margin: 0,
           }}
+          id="footer-container"
         >
           <Box
             sx={{
@@ -136,7 +138,7 @@ export default function Footer() {
                 sx={{
                   display: 'flex',
                   flexDirection: { xs: 'column', lg: 'row' },
-                  gap: { xs: '2rem', lg: 0 },
+                  gap: { xs: '2rem', lg: '5rem' },
                 }}
                 alignItems={{ xs: 'center' }}
                 justifyContent={'space-between'}
@@ -152,8 +154,10 @@ export default function Footer() {
                   <Box
                     sx={{
                       mb: 2,
-                      width: { xs: pxToRem(181), lg: '25.688rem' },
-                      height: { xs: pxToRem(94), lg: '13.438rem' },
+                      // width: { xs: pxToRem(181), lg: '25.688rem' },
+                      // height: { xs: pxToRem(94), lg: '13.438rem' },
+                      width: `clamp(11.3125rem, 6.3125rem + 15vw, 25.6875rem);`,
+                      height: `clamp(5.875rem, 3.2446rem + 7vw, 13.4375rem);`,
                       position: 'relative',
                     }}
                   >
@@ -161,7 +165,7 @@ export default function Footer() {
                   </Box>
                   <Typography
                     variant="paragraph"
-                    color="text.secondary"
+                    color="black"
                     sx={{ fontSize: { xs: pxToRem(14), lg: pxToRem(18) } }}
                   >
                     Copyright © 2024 SET COMPANY
@@ -203,17 +207,12 @@ export default function Footer() {
                         }}
                       >
                         {items.map((item) => (
-                          <Typography
-                            variant="paragraph"
-                            color="text.secondary"
-                            key={item}
-                          >
+                          <Typography variant="paragraph" key={item}>
                             <Link
                               href="#"
-                              color="text.secondary"
                               sx={{
                                 textDecoration: 'none',
-                                '&:hover': { color: 'primary.main' },
+                                color: 'black',
                               }}
                             >
                               {item}
@@ -257,13 +256,11 @@ export default function Footer() {
                             alignItems: 'center',
                             gap: 1,
                             marginTop: rest?.mt ? '1rem' : 0,
+                            stroke: 'black',
                           }}
                         >
                           {icon}
-                          <Typography
-                            variant="paragraph"
-                            color="text.secondary"
-                          >
+                          <Typography variant="paragraph" color="black">
                             {text}
                           </Typography>
                         </Box>
@@ -299,7 +296,7 @@ export default function Footer() {
                   marginInline: { xs: '.5rem', lg: 0 },
                   zIndex: 10,
                 }}
-                color="text.secondary"
+                color="#000"
               >
                 Design by <b>MDX</b>
               </Typography>
@@ -313,7 +310,7 @@ export default function Footer() {
                   marginBottom: { xs: '3.5rem', lg: 0 },
                 }}
               >
-                <Typography variant="paragraph" color="text.secondary">
+                <Typography variant="paragraph" color="black">
                   All Rights Reserved
                 </Typography>
                 <Typography
@@ -323,12 +320,13 @@ export default function Footer() {
                 >
                   |
                 </Typography>
-                <Typography variant="paragraph" color="text.secondary">
+                <Typography variant="paragraph" color="black">
                   <Link
                     href="#"
                     color="text.secondary"
                     sx={{
                       textUnderlineOffset: '.25rem',
+                      color: 'black',
                       '&:hover': { color: 'primary.main' },
                     }}
                   >
@@ -342,10 +340,10 @@ export default function Footer() {
                 >
                   |
                 </Typography>
-                <Typography variant="paragraph" color="text.secondary">
+                <Typography variant="paragraph" color="black">
                   <Link
                     href="#"
-                    color="text.secondary"
+                    color="#000"
                     sx={{
                       textUnderlineOffset: '.25rem',
                       '&:hover': { color: 'primary.main' },
@@ -360,7 +358,8 @@ export default function Footer() {
             <Box
               sx={{
                 position: 'absolute',
-                left: { xs: '13%', lg: '32%' },
+                left: { xs: '13%', lg: '30%', xl: '32%' },
+
                 bottom: 0,
               }}
             >
@@ -389,6 +388,9 @@ export default function Footer() {
                     display: 'inline-flex',
                     flexDirection: 'column',
                     marginBottom: { xs: '-.5rem', lg: '-1rem' },
+                    ':hover': {
+                      backgroundColor: 'transparent',
+                    },
                   }}
                 >
                   <ArrowUp />
