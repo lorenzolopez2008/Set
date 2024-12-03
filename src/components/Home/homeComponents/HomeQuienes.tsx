@@ -1,7 +1,10 @@
 import { pxToRem } from '@/helpers/pxToRem';
+import { useGetScreen } from '@/hooks/useGetScreen';
 import { Box, Typography } from '@mui/material';
 
 export const HomeQuienes = () => {
+  const { screen } = useGetScreen('md');
+
   return (
     <Box
       sx={{
@@ -25,23 +28,47 @@ export const HomeQuienes = () => {
           ¿Quienes somos?
         </Typography>
       </Box>
-      <Typography
-        variant={'productDescription'}
-        fontSize="clamp(0.875rem, 0.6793rem + 0.9783vw, 1.4375rem)"
-        marginLeft={'2rem'}
-      >
-        Somos una empresa con más de 15 años de experiencia, líder
-        <br /> en el mantenimiento y venta de equipos{' '}
+      {screen ? (
         <Typography
-          color="#008428"
+          variant={'productDescription'}
           fontSize="clamp(0.875rem, 0.6793rem + 0.9783vw, 1.4375rem)"
-          variant={'title'}
+          marginLeft={'2rem'}
+          sx={{
+            textWrap: 'balance',
+          }}
         >
-          especializados para
-          <br /> impresión de etiquetas
-        </Typography>{' '}
-        y empaques en México y Sudamérica.
-      </Typography>
+          Somos una empresa con más de 15 años de experiencia, líder en el
+          mantenimiento y venta de equipos{' '}
+          <Typography
+            color="#008428"
+            fontSize="clamp(0.875rem, 0.6793rem + 0.9783vw, 1.4375rem)"
+            variant={'title'}
+          >
+            especializados para impresión de etiquetas
+          </Typography>{' '}
+          y empaques en México y Sudamérica.
+        </Typography>
+      ) : (
+        <Typography
+          variant={'productDescription'}
+          fontSize="clamp(0.875rem, 0.6793rem + 0.9783vw, 1.4375rem)"
+          marginLeft={'2rem'}
+          sx={{
+            textWrap: 'balance',
+          }}
+        >
+          Somos una empresa con más de 15 años de experiencia, líder <br /> en
+          el mantenimiento y venta de equipos{' '}
+          <Typography
+            color="#008428"
+            fontSize="clamp(0.875rem, 0.6793rem + 0.9783vw, 1.4375rem)"
+            variant={'title'}
+          >
+            especializados para <br /> impresión de etiquetas
+          </Typography>{' '}
+          y empaques en México y Sudamérica.
+        </Typography>
+      )}
     </Box>
   );
 };
