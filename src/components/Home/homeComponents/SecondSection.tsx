@@ -1,6 +1,6 @@
 'use client';
 import { useGSAP } from '@gsap/react';
-import { Box, duration } from '@mui/material';
+import { Box } from '@mui/material';
 import { useRef } from 'react';
 import gsap from 'gsap';
 
@@ -8,8 +8,7 @@ import { HomeQuienes } from './HomeQuienes';
 
 export const SecondSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const ourRef = useRef(null);
-  const servicesRef = useRef(null);
+
   useGSAP(() => {
     const tl = gsap.timeline({
       scrollTrigger: {

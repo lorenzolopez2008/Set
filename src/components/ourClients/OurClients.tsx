@@ -54,7 +54,7 @@ const clients = [
 
 export const OurClients = () => {
   const containerRef = useRef(null);
-  const ourClientsRef = useRef(null);
+  const ourClientsRef = useRef<HTMLDivElement>(null);
   const isMobile = useMediaQuery('(max-width: 768px)');
 
   const [isAnimation, setIsAnimation] = useState(true);
@@ -76,7 +76,9 @@ export const OurClients = () => {
             },
           });
           tl.addLabel('start')
-            .to(ourClientsRef.current, { xPercent: -35 })
+            .to(ourClientsRef.current, {
+              x: window.innerWidth - ourClientsRef.current!.offsetWidth,
+            })
             .addLabel('end');
         }
       }
@@ -84,7 +86,12 @@ export const OurClients = () => {
   }, []);
 
   const [testimonialSelected, setTestimonialSelected] =
-    useState<ITestimonialCard>(clients[0]);
+    useState<ITestimonialCard>({
+      name: 'Jane Doe',
+      photoUrl: '/images/testimonial1.png',
+      rate: 4.8,
+      quote: 'lorem ipsum',
+    });
 
   const handleSetTestimonialSelected = (name: string) => {
     const testimonial = clients.find((client) => client.name === name);
@@ -121,7 +128,6 @@ export const OurClients = () => {
         <Box
           sx={{
             width: isMobile ? '100%' : '50vw',
-            marginRight: isMobile ? '0' : '10rem',
             textAlign: isMobile ? 'center' : '',
             height: 'fit-content',
             display: 'flex',
@@ -144,15 +150,16 @@ export const OurClients = () => {
 
         <Box
           sx={{
-            display: 'flex',
+            display: 'inline-flex',
             justifyContent: 'center',
             alignItems: 'center',
-            width: '100vw',
           }}
         >
           <Box
             sx={{
-              width: isMobile ? '100%' : '50vw',
+              width: isMobile
+                ? '100%'
+                : 'clamp(24rem, 11.4783rem + 62.6087vw, 60rem)',
             }}
             onMouseEnter={(e) => {
               if (isMobile) return;
@@ -169,7 +176,9 @@ export const OurClients = () => {
           >
             <Canvas
               style={{
-                width: isMobile ? '100%' : '50vw',
+                width: isMobile
+                  ? '100%'
+                  : 'clamp(24rem, 11.4783rem + 62.6087vw, 60rem)',
                 height: isMobile ? '45svh' : `100svh`,
                 pointerEvents: 'none',
               }}
@@ -188,8 +197,8 @@ export const OurClients = () => {
             sx={{
               width: '50vw',
               height: 'clamp(9.375rem,  35.4348vw, 50rem)',
-              display: { xs: 'none', lg: 'flex' },
-              paddingRight: '2.25rem',
+              display: { xs: 'none', lg: 'inline-flex' },
+
               justifyContent: 'center',
               flexDirection: 'column',
               gap: '2.25rem',

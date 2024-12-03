@@ -1,6 +1,6 @@
 'use client';
 import { useGSAP } from '@gsap/react';
-import { Box, keyframes } from '@mui/material';
+import { Box } from '@mui/material';
 import { useRef } from 'react';
 import gsap from 'gsap';
 import styles from '@/app/components/ui/ProductsCarrusel/ProductCard.module.css';
