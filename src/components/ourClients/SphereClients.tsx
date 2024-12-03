@@ -206,5 +206,3 @@ export const SphereClients = ({
     </group>
   );
 };
-
-useGLTF.preload('/sphere-set-testimonials2.glb');
