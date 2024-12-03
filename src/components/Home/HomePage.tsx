@@ -14,7 +14,7 @@ import { ThirdSection } from './homeComponents/ThirdSection';
 gsap.registerPlugin(Observer);
 
 export default function HomePage() {
-  const images = ['/1.png', '/2.png', '/3.png'];
+  const images = ['/1.png', '/2.png', '/3.png', '/1.png', '/2.png', '/3.png'];
 
   const { isVisible } = useVisibility('HomePage');
   if (!isVisible) return null;
