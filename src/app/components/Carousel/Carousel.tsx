@@ -1,244 +1,198 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
+
+import React, { useEffect, useState } from 'react';
+import { Box } from '@mui/material';
+import useEmblaCarousel from 'embla-carousel-react';
+import './Carousel.css';
 import { useGetScreen } from '@/hooks/useGetScreen';
+import { EmblaOptionsType } from 'embla-carousel';
+import ServicesContent from './ServicesContent';
 import { useGSAP } from '@gsap/react';
-import { Box, Typography, useMediaQuery } from '@mui/material';
-import gsap from 'gsap';
-import Draggable from 'gsap/dist/Draggable';
-import { useRef } from 'react';
+import { gsap } from 'gsap';
+import { useAtom } from 'jotai';
+import bgElementFixedAtom from '@/store/bgCircleFollow.atom';
 
-gsap.registerPlugin(Draggable);
+interface CarouselProps {
+  images: string[];
+}
 
-export const Carousel = ({
-  images,
-}: {
-  images: { src: string; description: string; title: string }[];
-}) => {
-  const ringRef = useRef(null);
-  const imagesRef = useRef<HTMLDivElement[]>([]);
-  const velocity = useRef(0);
-  const lastX = useRef(0);
-  const timelineHover = useRef(gsap.timeline({ paused: true }));
-  const { screen } = useGetScreen('md');
-  const isMobile = useMediaQuery('(max-width:600px)');
+const CarouselSlide: React.FC<{
+  img: string;
+  index: number;
+  selectedIndex: number;
+}> = ({ img, index, selectedIndex }) => {
+  const getRotation = () => {
+    if (selectedIndex === index - 1) {
+      return 'scale(1.1) rotate3D(0, 1, 0, -15deg)!important';
+    }
 
-  useGSAP(() => {
-    let xPos = 0;
+    if (selectedIndex === index + 1) {
+      return 'scale(1.1) rotate3D(0, 1, 0, 15deg)!important';
+    }
 
-    const timeline = gsap.timeline();
-    timeline
-      .set(ringRef.current, { rotationY: 0 })
-      .set(imagesRef.current, {
-        rotateY: 0,
-        transformOrigin: isMobile ? '50% 50% 400px' : '50% 50% 1000px',
-        z: isMobile ? -400 : -1000,
-        backfaceVisibility: 'hidden',
-      })
-      .fromTo(
-        [imagesRef.current[1], imagesRef.current[images.length - 1]],
-        {
-          zIndex: (i) => {
-            return 99 - i;
-          },
-        },
-        {
-          rotateY: (i) => {
-            return i === 0 ? -40 : +40;
-          },
-        }
-      )
-      .to(
-        imagesRef.current,
-        {
-          rotateY: (i) => {
-            if (i === images.length - 1) return 40;
-            return i * -40;
-          },
-        },
-        '+=0.5'
-      )
-      .from(imagesRef.current, {
-        duration: 1.5,
-        y: 200,
-        opacity: (i) => {
-          if (i <= 1 || i === images.length - 1) return 1;
-          return 0;
-        },
-        stagger: 0.1,
-        ease: 'expo',
-      });
+    if (selectedIndex === index) {
+      return 'scale(1) rotate3D(0, 1, 0, 0deg)!important';
+    }
 
-    Draggable.create('#carousel', {
-      type: 'x',
-      bounds: '#carousel-container',
-
-      onDragStart: (e) => {
-        if (e.touches) e.clientX = e.touches[0].clientX;
-        xPos = Math.round(e.clientX);
-        lastX.current = xPos;
-        velocity.current = 0;
-      },
-      onDrag: (e) => {
-        if (e.touches) e.clientX = e.touches[0].clientX;
-        const currentX = Math.round(e.clientX);
-        velocity.current = currentX - lastX.current;
-        lastX.current = currentX;
-
-        gsap.to(ringRef.current, {
-          rotationY: `-=${(currentX - xPos) % 360}`,
-        });
-
-        xPos = currentX;
-      },
-    });
-  }, []);
-
-  const handleMouseHover = (index: number) => {
-    if (screen) return;
-    timelineHover.current = gsap
-      .timeline()
-      .fromTo(
-        `.img-desc-${index}`,
-        { opacity: 0, yPercent: -10 },
-        {
-          yPercent: -50,
-          opacity: 1,
-          duration: 0.6,
-        }
-      )
-      .fromTo(
-        `.item-${index}`,
-        {
-          yPercent: -10,
-        },
-        {
-          yPercent: -50,
-          stagger: 0.2,
-          duration: 0.6,
-        },
-        '<'
-      )
-      .play();
-  };
-
-  const handleMouseLeave = () => {
-    timelineHover.current.reverse();
+    return 'rotate3D(0, 1, 0, 0deg)';
   };
 
   return (
-    <div
-      style={{
-        width: '100%',
-        height: '110vh',
-        overflow: 'hidden',
-      }}
-    >
-      <div
-        id="carousel-container"
-        style={{
-          transform: 'scale(1.3)',
-          rotate: '-10deg',
-          width: '100%',
-          height: '100%',
-          overflow: 'hidden',
+    <Box className="embla__slide" key={index}>
+      <Box
+        className="embla__slide__number"
+        sx={{
+          transform: getRotation(),
         }}
       >
-        <div
-          id="carousel"
-          style={{
-            width: '100%',
-            height: '100%',
-          }}
-        >
-          <div
-            style={{
-              perspective: '2000px',
-              width: 'clamp(13.3531rem, 5.1057rem + 41.237vw, 37.0644rem)',
-              height: 'clamp(13.3531rem, 5.1057rem + 41.237vw, 37.0644rem)',
-              position: 'absolute',
-              left: '50%',
-              top: '50%',
-              transform: 'translate(-50%, -50%)',
-            }}
-          >
-            <div
-              id="ring"
-              ref={ringRef}
-              style={{
-                width: '100%',
-                height: '100%',
-                transformStyle: 'preserve-3d',
-                userSelect: 'none',
-              }}
-            >
-              {images.map(({ src, description, title }, i) => (
-                <div
-                  key={i}
-                  ref={(el) => {
-                    if (el) {
-                      imagesRef.current[i] = el;
-                    }
-                  }}
-                  className="img"
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    position: 'absolute',
-                    transformStyle: 'preserve-3d',
-                    userSelect: 'none',
-                    backgroundSize: 'cover',
-                    backgroundImage: `url(${src})`,
-                  }}
-                  onMouseOver={() => handleMouseHover(i)}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <Box
-                    component={'div'}
-                    className={`img-desc img-desc-${i}`}
-                    sx={{
-                      position: 'absolute',
-                      maxWidth:
-                        'clamp(13.3531rem, 5.1057rem + 41.237vw, 37.0644rem)',
-                      minWidth: '100%',
-                      opacity: screen ? 1 : 0,
-                      rotate: '10deg',
-                      padding: '3rem',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'center',
-                      gap: '0.375rem',
-                      pointerEvents: 'none',
-                      top: '100%',
-                      translate: { sm: '0% 0%', xs: '-20% 0%' },
-                    }}
-                  >
-                    <Typography
-                      fontWeight={'bold'}
-                      color="#008428"
-                      fontSize={'2.25rem'}
-                      lineHeight={'91%'}
-                      className={`item-${i}`}
-                    >
-                      {title}
-                    </Typography>
-                    <Typography
-                      fontWeight={'semibold'}
-                      color="#848282"
-                      fontSize={
-                        'clamp(0.875rem, 0.5707rem + 1.5217vw, 1.75rem)'
-                      }
-                      lineHeight={'2.094rem'}
-                      className={`item-${i}`}
-                    >
-                      {description}
-                    </Typography>
-                  </Box>
-                </div>
+        <img
+          src={img}
+          className="embla__slide-img"
+          alt={`Slide ${index + 1}`}
+        />
+      </Box>
+    </Box>
+  );
+};
+
+// Componente principal del Carousel
+export const Carousel: React.FC<CarouselProps> = ({ images }) => {
+  const emblaOptions: EmblaOptionsType = {
+    loop: true,
+    watchDrag: true,
+  };
+
+  const slides = images;
+
+  const services = [
+    {
+      title: 'Servicios de Mantenimiento',
+      description:
+        'Servicio de mantenimiento correctivo, preventivo y implementación de tecnología.',
+    },
+    {
+      title: 'Venta de equipos',
+      description:
+        'Venta y suministro de equipos tecnológicos de última generación para diversas necesidades.',
+    },
+    {
+      title: 'Piezas de Fabricación',
+      description:
+        'Fabricación y suministro de piezas personalizadas para maquinaria y equipos industriales.',
+    },
+    {
+      title: 'Consultoría en Tecnología',
+      description:
+        'Asesoramiento experto en implementación de soluciones tecnológicas para mejorar la eficiencia operativa.',
+    },
+    {
+      title: 'Instalación de Sistemas',
+      description:
+        'Instalación y puesta en marcha de sistemas informáticos y de control para empresas.',
+    },
+    {
+      title: 'Soporte Técnico',
+      description:
+        'Soporte y mantenimiento continuo para garantizar la operatividad de equipos y sistemas.',
+    },
+  ];
+
+  const [emblaRef, emblaApi] = useEmblaCarousel(emblaOptions);
+
+  const { screen } = useGetScreen('md');
+
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [, setPositionFixedToElement] = useAtom(bgElementFixedAtom);
+
+  useEffect(() => {
+    if (emblaApi) {
+      emblaApi.on('select', () => {
+        const newIndex = emblaApi.selectedScrollSnap();
+        setSelectedIndex(newIndex);
+      });
+    }
+  }, [emblaApi]);
+
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      defaults: { duration: 0.5, ease: 'power2.inOut' },
+      scrollTrigger: {
+        trigger: '#home-carrousel-container',
+        start: 'top-=800 top',
+        end: 'bottom bottom',
+        scrub: true,
+        markers: true,
+        onEnter: () => {
+          setPositionFixedToElement('#home-carrousel-container');
+        },
+        onLeave: () => {
+          setPositionFixedToElement(null);
+        },
+        onEnterBack: () => {
+          setPositionFixedToElement('#home-carrousel-container');
+        },
+        onLeaveBack: () => {
+          setPositionFixedToElement(null);
+        },
+      },
+    });
+
+    // animacion de entrada
+    tl.fromTo(
+      '#home-carrousel-container',
+      { opacity: 0, y: 150 },
+      { opacity: 1, y: 0 }
+    );
+  }, []);
+
+  return (
+    <Box width="100%" id={'home-carrousel-container'}>
+      {/* Carousel */}
+      <Box sx={{ position: 'relative', width: '100%' }}>
+        <Box className="embla">
+          <Box className="embla__viewport" ref={emblaRef}>
+            <Box className="embla__container">
+              {slides.map((img, index) => (
+                <CarouselSlide
+                  selectedIndex={selectedIndex}
+                  img={img}
+                  index={index}
+                  key={index}
+                />
               ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+
+      {/* Contenido adicional basado en el tamaño de la pantalla */}
+      {screen ? (
+        <Box
+          width="100%"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          marginTop="1rem"
+          padding="2rem 2rem 0 2rem"
+        >
+          <Box sx={{ marginInline: 'auto' }}>
+            <ServicesContent
+              selectedIndex={selectedIndex}
+              services={services}
+              emblaApi={emblaApi}
+            />
+          </Box>
+        </Box>
+      ) : (
+        <Box width="100%" position="relative" padding="4.5rem 5rem 0 5rem">
+          <ServicesContent
+            selectedIndex={selectedIndex}
+            services={services}
+            emblaApi={emblaApi}
+          />
+        </Box>
+      )}
+    </Box>
   );
 };

@@ -13,55 +13,9 @@ import { ThirdSection } from './homeComponents/ThirdSection';
 
 gsap.registerPlugin(Observer);
 
-const images = [
-  {
-    src: '/1.png',
-    description: 'Image 1',
-    title: 'tittle',
-  },
-  {
-    src: '/2.png',
-    description: 'Image 2',
-    title: 'tittle',
-  },
-  {
-    src: '/3.png',
-    description: 'Image 3',
-    title: 'tittle',
-  },
-  {
-    src: '/1.png',
-    description: 'Image 1',
-    title: 'tittle',
-  },
-  {
-    src: '/2.png',
-    description: 'Image 2',
-    title: 'tittle',
-  },
-  {
-    src: '/3.png',
-    description: 'Image 3',
-    title: 'tittle',
-  },
-  {
-    src: '/1.png',
-    description: 'Image 1',
-    title: 'tittle',
-  },
-  {
-    src: '/2.png',
-    description: 'Image 2',
-    title: 'tittle',
-  },
-  {
-    src: '/3.png',
-    description: 'Image 3',
-    title: 'tittle',
-  },
-];
-
 export default function HomePage() {
+  const images = ['/1.png', '/2.png', '/3.png', '/1.png', '/2.png', '/3.png'];
+
   const { isVisible } = useVisibility('HomePage');
   if (!isVisible) return null;
   return (

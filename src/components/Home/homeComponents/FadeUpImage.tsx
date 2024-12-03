@@ -1,6 +1,6 @@
 'use client';
 import { useGSAP } from '@gsap/react';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import { useRef } from 'react';
 import gsap from 'gsap';
 import Image from 'next/image';
@@ -31,11 +31,11 @@ export const FadeUpImage = () => {
   return (
     <Box
       sx={{
-        /* minHeight: { xs: '50vh', lg: '100vh' }, */
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
+        paddingBottom: '3rem',
       }}
       ref={containerRef}
     >
