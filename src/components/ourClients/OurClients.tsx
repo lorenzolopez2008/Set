@@ -57,8 +57,6 @@ export const OurClients = () => {
   const ourClientsRef = useRef(null);
   const isMobile = useMediaQuery('(max-width: 768px)');
 
-  const [isAnimation, setIsAnimation] = useState(true);
-
   useGSAP(() => {
     const mm = gsap.matchMedia();
     mm.add(
@@ -162,18 +160,6 @@ export const OurClients = () => {
             sx={{
               width: isMobile ? '100%' : '50vw',
             }}
-            onMouseEnter={(e) => {
-              if (isMobile) return;
-              e.stopPropagation();
-              setIsAnimation(false);
-            }}
-            onMouseLeave={(e) => {
-              if (isMobile) return;
-              e.stopPropagation();
-              const target = e.relatedTarget as HTMLElement;
-              if (target && target.id === 'bubble') return;
-              setIsAnimation(true);
-            }}
           >
             <Canvas
               style={{
@@ -187,7 +173,6 @@ export const OurClients = () => {
             >
               <Environment preset="city" />
               <SphereClients
-                isAnimation={isAnimation}
                 handleSetTestimonialSelected={handleSetTestimonialSelected}
               />
             </Canvas>

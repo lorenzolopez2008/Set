@@ -11,38 +11,32 @@ import * as THREE from 'three';
 
 export const SphereClients = ({
   handleSetTestimonialSelected,
-  isAnimation,
 }: {
   handleSetTestimonialSelected: (testimonial: string) => void;
-  isAnimation: boolean;
 }) => {
   const groupRef = useRef<THREE.Group>(null as unknown as THREE.Group);
   const { nodes, animations } = useGLTF('/models/ssphere-set.glb');
   const { actions } = useAnimations(animations, groupRef);
   const isMobile = useMediaQuery('(max-width: 990px)');
 
-  const handleAnimation = (play: boolean) => {
-    Object.keys(actions).forEach((actionName) => {
-      const action = actions[actionName];
-      if (!action) return;
-      action.timeScale = 0.3; // Reduce la velocidad al 50%
-
-      if (play) {
-        action.play();
-        action.paused = false;
-      } else {
-        action.paused = true;
-      }
-    });
-  };
-
   useEffect(() => {
-    if (isAnimation) {
-      handleAnimation(true);
-    } else {
-      handleAnimation(false);
-    }
-  }, [isAnimation]);
+    const handleAnimation = (play: boolean) => {
+      Object.keys(actions).forEach((actionName) => {
+        const action = actions[actionName];
+        if (!action) return;
+        action.timeScale = 0.3; // Reduce la velocidad al 50%
+
+        if (play) {
+          action.play();
+          action.paused = false;
+        } else {
+          action.paused = true;
+        }
+      });
+    };
+
+    handleAnimation(true);
+  }, [actions]);
 
   return (
     <group ref={groupRef} dispose={null}>
