@@ -70,7 +70,7 @@ export const Menu = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
             margin: '2rem 4rem',
             zIndex: 102,
           }}
-          src={'/logo.svg'}
+          src={'/SET.png'}
           alt="logo"
           width={86}
           height={45}
@@ -117,7 +117,7 @@ export const Menu = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
         }}
       >
         <Image
-          src={'/logo.svg'}
+          src={'/SET.png'}
           alt="logo"
           width={screen ? 205 : 476}
           height={screen ? 108 : 251}
