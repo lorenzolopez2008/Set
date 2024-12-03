@@ -18,11 +18,16 @@ const DevTools: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   if (!context) return null;
-  const { visibility, toggleVisibility } = context;
+
+  const { visibility, toggleVisibility, disabled } = context;
+
+  if (disabled) return null;
+
   const clearDevVisibility = () => {
     localStorage.removeItem('devVisibility');
     window.location.reload();
   };
+
   return (
     <Paper
       sx={{

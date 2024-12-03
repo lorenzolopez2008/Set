@@ -4,6 +4,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 type VisibilityContextType = {
   visibility: Record<string, boolean>;
   toggleVisibility: (id: string) => void;
+  disabled: boolean;
 };
 
 export const VisibilityContext = createContext<
@@ -42,11 +43,13 @@ const cleanOldVisibilityEntries = (visibility: Record<string, boolean>) => {
   }
 };
 
-export const VisibilityProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
-  const [visibility, setVisibility] =
-    useState<Record<string, boolean>>(getInitialVisibility);
+export const VisibilityProvider: React.FC<{
+  children: React.ReactNode;
+  disabled?: boolean;
+}> = ({ children, disabled = false }) => {
+  const [visibility, setVisibility] = useState<Record<string, boolean>>(
+    disabled ? {} : getInitialVisibility
+  );
 
   // Función para alternar la visibilidad de un componente
   const toggleVisibility = (id: string) => {
@@ -59,7 +62,9 @@ export const VisibilityProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   return (
-    <VisibilityContext.Provider value={{ visibility, toggleVisibility }}>
+    <VisibilityContext.Provider
+      value={{ visibility, toggleVisibility, disabled }}
+    >
       {children}
     </VisibilityContext.Provider>
   );
@@ -74,17 +79,18 @@ export const useVisibility = (
     );
   }
 
-  const { visibility, toggleVisibility } = context;
+  const { visibility, toggleVisibility, disabled } = context;
 
   // Aseguramos que el componente tenga un valor inicial en el contexto
   useEffect(() => {
+    if (disabled) return; // No hacer nada si está deshabilitado
     if (!(id in visibility)) {
       toggleVisibility(id); // Inicializa como visible si no existe
     }
-  }, [id, visibility, toggleVisibility]);
+  }, [id, visibility, toggleVisibility, disabled]);
 
   return {
-    isVisible: visibility[id] ?? true,
+    isVisible: disabled ? true : visibility[id] ?? true,
     toggle: () => toggleVisibility(id),
   };
 };
