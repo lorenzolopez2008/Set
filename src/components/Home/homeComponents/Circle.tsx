@@ -6,7 +6,7 @@ export const Circle = () => {
     <Box
       sx={{
         position: 'relative',
-        width: 'clamp(30rem, 60vw, 55rem)',
+        width: 'clamp(25rem, 60vw, 55rem)',
         height: 'clamp(15rem, 60vw, 37rem)',
       }}
     >
