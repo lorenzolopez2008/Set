@@ -13,10 +13,22 @@ const Loader = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const resetScroll = () => {
+      window.scrollTo(0, 0);
+    };
+    window.addEventListener('beforeunload', resetScroll);
+    return () => {
+      window.removeEventListener('beforeunload', resetScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
     const interval = setInterval(() => {
       setProgress((prevProgress) => {
         const newProgress = prevProgress + 1;
         if (newProgress === 100) {
+          document.body.style.overflow = '';
           clearInterval(interval);
           setText('Welcome');
         } else {

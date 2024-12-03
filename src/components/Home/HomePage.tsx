@@ -18,10 +18,10 @@ export default function HomePage() {
   const images = ['/1.png', '/2.png', '/3.png', '/1.png', '/2.png', '/3.png'];
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    /*  const timer = setTimeout(() => {
       window.scrollTo(0, 0);
-    }, 5000);
-    return () => clearTimeout(timer);
+    }, 7000);
+    return () => clearTimeout(timer); */
   }, []);
 
   const { isVisible } = useVisibility('HomePage');
