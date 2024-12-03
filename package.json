@@ -22,6 +22,7 @@
     "embla-carousel-react": "^8.5.1",
     "gsap": "^3.12.5",
     "jotai": "^2.10.3",
+    "lenis": "^1.1.18",
     "lottie": "^0.0.1",
     "next": "14.2.18",
     "react": "^18",
