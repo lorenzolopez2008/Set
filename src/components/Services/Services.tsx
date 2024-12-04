@@ -11,13 +11,17 @@ export const Services = () => {
         page="servicios"
         section="servicios"
         text="Nuestros Servicios"
+        shadow="Servicios"
       />
 
       <Box
         sx={{
           display: 'flex',
+          flexDirection: { xs: 'column-reverse', md: 'row' },
           gap: '5rem',
-          padding: '0 5rem',
+          padding: { xs: '0 1rem', md: '0 5rem' },
+          justifyItems: 'center',
+          alignItems: 'center',
         }}
       >
         <Box
@@ -26,29 +30,39 @@ export const Services = () => {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
+            aspectRatio: '1/1',
           }}
         >
-          <Image
-            src={'/arofondo.png'} // hay una imagen mejor en home reemplazar luego
-            alt="Aro"
-            style={{
+          <Box
+            sx={{
+              display: { sx: 'block', sm: 'none' },
+              filter: 'blur(10rem)',
               position: 'absolute',
-              width: `clamp(${pxToRem(455)}, 50vw ,${pxToRem(907)})`,
-              height: 'auto',
+              background: '#00598F',
+              opacity: 0.6,
+              width: '100%',
+              height: '100%',
+              left: '75%',
+              top: '-25%',
+              transform: 'translateX(-50%)',
+              zIndex: -1,
+              borderRadius: '2000px',
             }}
-          />
-          <Image
-            src={'/products/photo-3.png'}
-            alt="Maquina"
-            style={{
-              width: `clamp(${pxToRem(359)}, 40vw ,${pxToRem(775)})`,
-              height: 'auto',
+          ></Box>
+          <Image src={'circle.png'} alt="aro" fill />
+          <Box
+            sx={{
+              width: 'clamp(22.4375rem, 13.394rem + 45.2174vw, 48.4375rem)',
+              height: 'clamp(19.875rem, 13.8315rem + 30.2174vw, 37.25rem)',
+              position: 'relative',
             }}
-          />
+          >
+            <Image src={'maquinaFSL.png'} alt="Maquina" fill />
+          </Box>
         </Box>
         <Box
           sx={{
-            width: 'max-content',
+            width: { xs: '100%', md: 'max-content' },
             height: '100%',
             display: 'flex',
             flexDirection: 'column',
@@ -82,7 +96,7 @@ export const Services = () => {
                 width: pxToRem(15),
                 height: 'auto',
                 background: 'green',
-                display: 'block',
+                display: { xs: 'none', md: 'block' },
               }}
             ></Box>
             <Typography color="#848282" fontSize={pxToRem(23)}>
@@ -105,6 +119,7 @@ export const Services = () => {
           justifyContent: 'center',
           alignItems: 'center',
           marginTop: '15rem',
+          overflow: 'hidden',
         }}
       >
         <Carousel images={['/1.png', '/2.png', '/3.png']} />

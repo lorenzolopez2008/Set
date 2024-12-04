@@ -5,10 +5,12 @@ export const HeadingSection = ({
   page,
   section,
   text,
+  shadow,
 }: {
   page: string;
   section: string;
   text: string;
+  shadow?: string;
 }) => {
   return (
     <Box
@@ -22,7 +24,7 @@ export const HeadingSection = ({
         width: '100%',
       }}
     >
-      <Typography variant="shadow">{text}</Typography>
+      <Typography variant="shadow">{shadow || text}</Typography>
       <Typography variant="main">{text}</Typography>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
         <Typography variant="paragraph" sx={{ color: '#008428' }}>

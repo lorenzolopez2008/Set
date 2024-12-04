@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en" id="smooth-wrapper">
       <body id="smooth-content">
-        <VisibilityProvider disabled>
+        <VisibilityProvider>
           <Loader />
           <ThemeRegistryProvider>
             <GsapProvider>
