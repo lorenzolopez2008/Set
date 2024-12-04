@@ -21,8 +21,8 @@ export const Menu = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
         display: 'flex',
         alignItems: 'center',
         flexDirection: screen ? 'column' : 'row',
-        justifyContent: screen ? 'center' : 'space-between',
-        gap: 2,
+        justifyContent: 'center',
+        gap: 5,
         height: '100vh',
         width: '100vw',
         position: 'fixed',
@@ -53,7 +53,7 @@ export const Menu = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
           variant="paragraph"
           sx={{
             color: '#464646',
-            fontSize: 14,
+            fontSize: '0.875rem',
             fontWeight: 700,
             zIndex: 102,
           }}
@@ -92,7 +92,7 @@ export const Menu = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
             href={option.path}
             className="menu-option"
             sx={{
-              fontSize: 'clamp(60px, 10vw, 80px)',
+              fontSize: 'clamp(40px, 7vw, 80px)',
               fontWeight: 'bold',
               color: '#000000',
               textDecoration: 'none',
@@ -117,13 +117,12 @@ export const Menu = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
           zIndex: 102,
         }}
       >
-        <Image
-          src={'/SET.png'}
-          priority
-          alt="logo"
-          width={screen ? 205 : 476}
-          height={screen ? 108 : 251}
-        />
+        <Box
+          width="clamp(12.813rem ,50vw, 35.75rem)"
+          height="clamp(6.75rem ,30vw, 15.688rem)"
+        >
+          <Image src={'/SET.png'} priority alt="logo" fill />
+        </Box>
         <SocialIcons
           sx={{
             alignSelf: 'end',

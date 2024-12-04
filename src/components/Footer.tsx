@@ -54,7 +54,7 @@ export default function Footer() {
     },
     {
       icon: <></>,
-      text: 'Administracion de nuestra empresa',
+      text: 'Administración de nuestra empresa',
       mt: true,
     },
     {
@@ -76,6 +76,7 @@ export default function Footer() {
       sx={{
         paddingInline: { lg: '2rem', xl: '7.313rem' },
         marginInline: { xs: '.5rem', lg: 0 },
+        marginBottom: { xs: '1rem', lg: '3.125rem' },
       }}
     >
       <Box
