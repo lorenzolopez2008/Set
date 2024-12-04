@@ -3,6 +3,8 @@ import { Box, Typography } from '@mui/material';
 import { pxToRem } from '@/helpers/pxToRem';
 import Image from 'next/image';
 import { Carousel } from '@/app/components/Carousel/Carousel';
+import Circle from '@/../public/circle.png';
+import Maquina from '@/../public/maquinaFSL.png';
 
 export const Services = () => {
   return (
@@ -30,35 +32,26 @@ export const Services = () => {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            aspectRatio: '1/1',
           }}
         >
-          <Box
-            sx={{
-              display: { sx: 'block', sm: 'none' },
-              filter: 'blur(10rem)',
+          <Image
+            src={Circle}
+            alt="aro"
+            style={{
               position: 'absolute',
-              background: '#00598F',
-              opacity: 0.6,
-              width: '100%',
-              height: '100%',
-              left: '75%',
-              top: '-25%',
-              transform: 'translateX(-50%)',
-              zIndex: -1,
-              borderRadius: '2000px',
+              height: 'clamp(20.375rem,  35.3261vw, 40.6875rem)',
+              width: 'clamp(28.4375rem, 45.2174vw, 60.4375rem)',
             }}
-          ></Box>
-          <Image src={'circle.png'} alt="aro" fill />
-          <Box
-            sx={{
-              width: 'clamp(22.4375rem, 13.394rem + 45.2174vw, 48.4375rem)',
-              height: 'clamp(19.875rem, 13.8315rem + 30.2174vw, 37.25rem)',
-              position: 'relative',
+          />
+
+          <Image
+            src={Maquina}
+            alt="Maquina"
+            style={{
+              width: 'clamp(22.4375rem, 40.2174vw, 48.4375rem)',
+              height: 'clamp(14.375rem,  28.913vw, 31rem)',
             }}
-          >
-            <Image src={'maquinaFSL.png'} alt="Maquina" fill />
-          </Box>
+          />
         </Box>
         <Box
           sx={{
@@ -66,18 +59,30 @@ export const Services = () => {
             height: '100%',
             display: 'flex',
             flexDirection: 'column',
-            gap: '3rem',
+            gap: { xs: '2rem', lg: '3rem' },
           }}
         >
-          <Box component={'header'}>
-            <Typography variant="h2" fontSize={pxToRem(60)}>
+          <Box
+            component={'header'}
+            sx={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
+          >
+            <Typography
+              variant="h2"
+              sx={{
+                fontSize: 'clamp(1.938rem, 1.3071rem + 3.1522vw, 3.75rem)',
+                fontWeight: 'bold',
+              }}
+            >
               Servicios
             </Typography>
             <Typography
               fontWeight={'semibold'}
               color="#848282"
-              fontSize={pxToRem(23)}
-              lineHeight={'2.094rem'}
+              sx={{
+                fontSize: 'clamp(1.2rem, 1.5vw, 1.4375rem)',
+                lineHeight: { xs: '', lg: '2.094rem' },
+                fontWeight: 'semibold',
+              }}
             >
               Tempus nibh eu donec ornare id ac tortor euismod non. Bibendum
               nisl dolor maecenas pellentesque tortor nisi.
@@ -99,7 +104,13 @@ export const Services = () => {
                 display: { xs: 'none', md: 'block' },
               }}
             ></Box>
-            <Typography color="#848282" fontSize={pxToRem(23)}>
+            <Typography
+              color="#848282"
+              sx={{
+                fontSize: 'clamp(1.2rem, 1.5vw, 1.4375rem)',
+                fontWeight: 'semibold',
+              }}
+            >
               Metus at eget turpis pellentesque. Amet dictum velit vitae viverra
               sed mi maecenas. Molestie platea quis quis ac dictum faucibus. Non
               auctor vulputate lacinia penatibus integer. Pharetra dignissim
