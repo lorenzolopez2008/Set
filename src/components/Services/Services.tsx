@@ -22,7 +22,7 @@ export const Services = () => {
           flexDirection: { xs: 'column-reverse', md: 'row' },
           gap: '5rem',
           padding: { xs: '0 1rem', md: '0 5rem' },
-          justifyItems: 'center',
+          justifyContent: 'center',
           alignItems: 'center',
         }}
       >
@@ -55,7 +55,7 @@ export const Services = () => {
         </Box>
         <Box
           sx={{
-            width: { xs: '100%', md: 'max-content' },
+            width: { xs: '100%', md: '40%' },
             height: '100%',
             display: 'flex',
             flexDirection: 'column',
