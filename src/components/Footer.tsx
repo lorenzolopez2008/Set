@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Box, Typography, Link, IconButton } from '@mui/material';
+import { Box, Typography, Link, IconButton, useTheme } from '@mui/material';
 import Image from 'next/image';
 import { pxToRem } from '@/helpers/pxToRem';
 import { MobileCurve } from './MobileCurve';
@@ -9,6 +9,7 @@ import { useGetScreen } from '@/hooks/useGetScreen';
 import { useVisibility } from '@/providers/Testing';
 
 export default function Footer() {
+  const theme = useTheme();
   const { screen: isDesktop } = useGetScreen('lg');
 
   const scrollToTop = () => {
@@ -75,6 +76,11 @@ export default function Footer() {
       component="footer"
       sx={{
         paddingInline: { lg: '2rem', xl: '7.313rem' },
+        [theme.breakpoints.up('xl')]: {
+          '@media (max-height: 748px)': {
+            paddingInline: '2rem',
+          },
+        },
         marginInline: { xs: '.5rem', lg: 0 },
       }}
     >
@@ -138,7 +144,12 @@ export default function Footer() {
                 sx={{
                   display: 'flex',
                   flexDirection: { xs: 'column', lg: 'row' },
-                  gap: { xs: '2rem', lg: '5rem' },
+                  gap: { xs: '2rem', lg: '3rem', xl: '5rem' },
+                  [theme.breakpoints.up('xl')]: {
+                    '@media (max-height: 748px)': {
+                      gap: '3rem',
+                    },
+                  },
                 }}
                 alignItems={{ xs: 'center' }}
                 justifyContent={'space-between'}

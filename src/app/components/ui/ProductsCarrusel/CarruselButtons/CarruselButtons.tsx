@@ -1,5 +1,5 @@
 import { Arrow } from '@/app/components/svg/Arrow';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Typography, useTheme } from '@mui/material';
 import { EmblaCarouselType } from 'embla-carousel';
 
 interface CarruselButtonsProps {
@@ -8,6 +8,7 @@ interface CarruselButtonsProps {
 }
 
 export const CarruselButtons = ({ emblaApi, id }: CarruselButtonsProps) => {
+  const theme = useTheme();
   const handlePrev = () => {
     emblaApi?.scrollPrev();
   };
@@ -25,6 +26,11 @@ export const CarruselButtons = ({ emblaApi, id }: CarruselButtonsProps) => {
         width: '100%',
         justifyContent: 'space-between',
         bottom: { xs: '-8rem', md: '2rem', xl: '-6rem' },
+        [theme.breakpoints.up('xl')]: {
+          '@media (max-height: 748px)': {
+            bottom: '-1rem',
+          },
+        },
         paddingX: '2rem',
         zIndex: 20,
       }}
