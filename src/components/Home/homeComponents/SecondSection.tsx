@@ -15,8 +15,8 @@ export const SecondSection = () => {
       scrollTrigger: {
         trigger: containerRef.current,
         start: `-${heightNavbar}px top`,
-        end: 'bottom top',
-        scrub: 2,
+        end: `bottom top`,
+        scrub: 3,
         pin: true,
       },
     });
@@ -26,7 +26,7 @@ export const SecondSection = () => {
       { yPercent: 100, opacity: 0 },
       { keyframes: { yPercent: [100, 0, 0, 0], opacity: [0, 1, 1, 1] } }
     )
-      .to('#homeQuienes', { xPercent: -100, opacity: 0 })
+      .to('#homeQuienes', { xPercent: -100, opacity: 0, duration: 2 })
       .to('#machinePage', { yPercent: -24, duration: 2 }, '<+=1')
       .to('#productsIcons', { opacity: 1 }, '<');
   }, []);
