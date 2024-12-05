@@ -47,7 +47,6 @@ export const FirstSection = () => {
           );
         },
         pin: '#machinePage',
-        markers: true,
       },
     });
   }, []);

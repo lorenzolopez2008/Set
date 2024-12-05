@@ -27,7 +27,6 @@ export const ThirdSection = () => {
               end: 'bottom top',
               scrub: 3,
               pin: true,
-              markers: true,
             },
           });
 
