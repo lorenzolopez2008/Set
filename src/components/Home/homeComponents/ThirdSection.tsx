@@ -33,11 +33,12 @@ export const ThirdSection = () => {
 
           tl.to('#circle', {
             x:
-              containerRef.current!.clientWidth -
-              containerRef.current!.clientWidth / 2,
+              (containerRef.current?.clientWidth ?? 0) -
+              (containerRef.current?.clientWidth ?? 0) / 2,
             y: () => {
-              return -document.querySelector('#circle')!.getBoundingClientRect()
-                .y;
+              const circle = document.querySelector('#circle') as HTMLElement;
+              if (!circle) return 0;
+              return -circle.getBoundingClientRect().y;
             },
             scale: 0.5,
             transformOrigin: 'center',
@@ -120,8 +121,8 @@ export const ThirdSection = () => {
 
           tl.to('#circle', {
             x:
-              containerRef.current!.clientWidth -
-              containerRef.current!.clientWidth / 2,
+              (containerRef.current?.clientWidth ?? 0) -
+              (containerRef.current?.clientWidth ?? 0) / 2,
             y: () => {
               return -document.querySelector('#circle')!.getBoundingClientRect()
                 .y;

@@ -57,19 +57,27 @@ export const OurClients = () => {
   const containerRef = useRef(null);
   const ourClientsRef = useRef<HTMLDivElement>(null);
   const isMobile = useMediaQuery('(max-width: 768px)');
+  const tlRef = useRef<gsap.core.Timeline>();
 
-  const testimonialAnimation = gsap.fromTo(
-    '.home--testimonial-card',
-    {
-      yPercent: 35,
-      duration: 2,
-      opacity: 0,
-      ease: 'power4.out',
+  const { contextSafe } = useGSAP(
+    () => {
+      tlRef.current = gsap.timeline().fromTo(
+        '.home--testimonial-card',
+        {
+          yPercent: 35,
+          duration: 2,
+          opacity: 0,
+          ease: 'power4.out',
+        },
+        {
+          yPercent: 0,
+          duration: 2,
+          opacity: 0.9,
+        }
+      );
     },
     {
-      yPercent: 0,
-      duration: 2,
-      opacity: 0.9,
+      scope: containerRef,
     }
   );
 
@@ -99,6 +107,10 @@ export const OurClients = () => {
     );
   }, []);
 
+  const playAnimation = contextSafe(() => {
+    tlRef.current?.play(0);
+  });
+
   const [testimonialSelected, setTestimonialSelected] =
     useState<ITestimonialCard>(clients[0]);
 
@@ -106,7 +118,7 @@ export const OurClients = () => {
     const testimonial = clients.find((client) => client.name === name);
     if (testimonial) {
       setTestimonialSelected(testimonial);
-      testimonialAnimation.play();
+      playAnimation();
     }
   };
   const handleNext = () => {
@@ -114,7 +126,7 @@ export const OurClients = () => {
     const testimonial =
       index === clients.length - 1 ? clients[0] : clients[index + 1];
     setTestimonialSelected(testimonial);
-    testimonialAnimation.play();
+    playAnimation();
   };
 
   const handlePrev = () => {
@@ -122,7 +134,7 @@ export const OurClients = () => {
     const testimonial =
       index === 0 ? clients[clients.length - 1] : clients[index - 1];
     setTestimonialSelected(testimonial);
-    testimonialAnimation.play();
+    playAnimation();
   };
 
   return (

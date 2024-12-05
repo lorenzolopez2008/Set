@@ -41,7 +41,9 @@ export const FirstSection = () => {
         endTrigger: '#third',
         end: () => {
           return (
-            '+=' + document.querySelector('#third')!.clientHeight * 2 + ' top'
+            '+=' +
+            (document.querySelector('#third')?.clientHeight ?? 0) * 2 +
+            ' top'
           );
         },
         pin: '#machinePage',
