@@ -30,7 +30,7 @@ export const Menu = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
         left: 0,
         zIndex: 100,
         backgroundColor: '#FFFFFF',
-        paddingX: '4rem',
+        paddingX: '2.25rem', // 36px
       }}
       id="menu-desktop"
     >
@@ -42,7 +42,7 @@ export const Menu = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
           position: 'absolute',
           top: 0,
           right: 0,
-          margin: '2rem 4rem',
+          margin: '2rem 2.25rem',
           zIndex: 102,
         }}
         onClick={onCloseMenu}
@@ -67,7 +67,7 @@ export const Menu = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
             position: 'absolute',
             left: 0,
             top: 0,
-            margin: '2rem 4rem',
+            margin: '2rem 2.25rem',
             zIndex: 102,
           }}
           src={'/SET.png'}
