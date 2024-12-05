@@ -12,7 +12,7 @@ const Loader = () => {
   const [text, setText] = useState('0%');
   const containerRef = useRef<HTMLDivElement>(null);
 
-  /*  useEffect(() => {
+  useEffect(() => {
     const resetScroll = () => {
       window.scrollTo(0, 0);
     };
@@ -20,7 +20,7 @@ const Loader = () => {
     return () => {
       window.removeEventListener('beforeunload', resetScroll);
     };
-  }, []); */
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';

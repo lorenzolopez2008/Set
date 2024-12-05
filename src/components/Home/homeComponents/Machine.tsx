@@ -33,7 +33,7 @@ export const Machine: React.FC = () => {
       )} copy.webp`;
 
       img.width = imgwidth || 0;
-      img.height = (imgwidth || 0) / 2;
+      img.height = imgwidth || 0;
       loadedImagesArray.push(img);
     }
   };
@@ -73,10 +73,10 @@ export const Machine: React.FC = () => {
       if (!canvasRef.current || !canvasContainerRef.current) return;
       const canvas = canvasRef.current;
       const canvasContainer = canvasContainerRef.current;
-      canvas.height = canvasContainer.offsetWidth / 2;
+      canvas.height = canvasContainer.offsetWidth;
       canvas.width = canvasContainer.offsetWidth;
       canvas.style.width = canvasContainer.offsetWidth + 'px';
-      canvas.style.height = canvasContainer.offsetWidth / 2 + 'px';
+      canvas.style.height = canvasContainer.offsetWidth + 'px';
       handleScroll();
     };
 
@@ -87,11 +87,12 @@ export const Machine: React.FC = () => {
 
       let offsetX = 0;
 
-      const offsetY = 0;
+      let offsetY = 0;
 
-      const drawHeight = canvasContainer.offsetWidth / 2;
-      const drawWidth = canvasContainer.offsetWidth;
+      const drawHeight = (canvasContainer.offsetWidth * 0.75) / 2;
+      const drawWidth = canvasContainer.offsetWidth * 0.9;
       offsetX = (canvasContainer.offsetWidth - drawWidth) / 2;
+      offsetY = drawHeight / 12;
 
       ctx.save();
       ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
@@ -123,7 +124,7 @@ export const Machine: React.FC = () => {
       id="machinePage"
     >
       <Box
-        width="clamp(26rem, 2.6087rem + 50.9565vw, 70rem)"
+        width="clamp(26rem, 2.6087rem + 60.9565vw, 80rem)"
         sx={{ aspectRatio: '16/9' }}
         id="machine"
         position={'relative'}

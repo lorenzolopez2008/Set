@@ -30,12 +30,7 @@ export const FirstSection = () => {
         { xPercent: 0, opacity: 1 },
         '<'
       )
-      .fromTo(
-        '#machinePage',
-        { scale: 0.4, opacity: 0 },
-        { scale: 1, opacity: 1 },
-        '<'
-      );
+      .to('#machinePage', { scale: 1, opacity: 1 }, '<');
     const navbarHeight = document.querySelector('#navbar')?.clientHeight;
     gsap.timeline({
       scrollTrigger: {

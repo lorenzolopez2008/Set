@@ -25,13 +25,12 @@ function initialiseLenisScroll() {
 }
 
 export const GsapProvider = ({ children }: { children: ReactNode }) => {
-  if (typeof window !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger, Observer, Lenis);
-    ScrollTrigger.addEventListener('refresh', () => window.scrollTo(0, 0));
-    ScrollTrigger.refresh();
-  }
-
   useEffect(() => {
+    if (typeof window !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger, Observer, Lenis);
+      ScrollTrigger.addEventListener('refresh', () => window.scrollTo(0, 0));
+      ScrollTrigger.refresh();
+    }
     initialiseLenisScroll();
   }, []);
 

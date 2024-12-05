@@ -10,19 +10,11 @@ import { OurClients } from '../ourClients/OurClients';
 import { FirstSection } from './homeComponents/FirstSection';
 import { SecondSection } from './homeComponents/SecondSection';
 import { ThirdSection } from './homeComponents/ThirdSection';
-import { useEffect } from 'react';
 
 gsap.registerPlugin(Observer);
 
 export default function HomePage() {
   const images = ['/1.png', '/2.png', '/3.png', '/1.png', '/2.png', '/3.png'];
-
-  useEffect(() => {
-    /*  const timer = setTimeout(() => {
-      window.scrollTo(0, 0);
-    }, 7000);
-    return () => clearTimeout(timer); */
-  }, []);
 
   const { isVisible } = useVisibility('HomePage');
   if (!isVisible) return null;

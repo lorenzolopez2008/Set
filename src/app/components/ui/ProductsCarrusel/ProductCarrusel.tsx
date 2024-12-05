@@ -202,7 +202,7 @@ export const ProductCarrusel = () => {
                       sx={{
                         width: 'clamp(20rem, 40vw, 80rem)',
                         height: 'clamp(8rem, 25vw, 38rem)',
-
+                        aspectRatio: '16/9',
                         position: 'relative',
                       }}
                     >
@@ -210,7 +210,9 @@ export const ProductCarrusel = () => {
                         src={img}
                         alt={img}
                         fill
-                        style={{ objectFit: 'contain' }}
+                        style={{
+                          objectFit: 'contain',
+                        }}
                       />
                     </Box>
                   </Box>
