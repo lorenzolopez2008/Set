@@ -311,7 +311,7 @@ export default function Footer() {
                   bottom: 0,
                   right: 0,
                   marginY: { xs: '1.6rem', lg: 0 },
-                  marginInline: { xs: '.5rem', lg: 0 },
+                  marginInline: { xs: '1.75rem', lg: 0 },
                   zIndex: 10,
                 }}
                 color="#000"
