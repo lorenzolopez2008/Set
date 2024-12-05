@@ -2,7 +2,7 @@
 import bgElementFixedAtom from '@/store/bgCircleFollow.atom';
 import { useMediaQuery } from '@mui/material';
 import { useAtom } from 'jotai';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const BgCanvasBlur = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -49,6 +49,17 @@ const BgCanvasBlur = () => {
   const [positionFixedToElement] = useAtom(bgElementFixedAtom);
 
   const isMobile = useMediaQuery('(max-width: 900px)');
+
+  const [isSafari, setIsSafari] = useState(false);
+
+  useEffect(() => {
+    if (navigator && navigator.userAgent) {
+      const userAgent = navigator.userAgent.toLowerCase();
+      setIsSafari(
+        userAgent.includes('safari') && !userAgent.includes('chrome')
+      );
+    }
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -141,7 +152,7 @@ const BgCanvasBlur = () => {
         zIndex: -1,
         width: '105%',
         height: '105%',
-        filter: 'blur(12px)',
+        filter: isSafari ? 'blur(100px)' : 'blur(12px)',
         transition: 'opacity 1s ease-in-out',
         opacity: positionFixedToElement ? 0 : 1,
       }}
