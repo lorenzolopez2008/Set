@@ -1,15 +1,17 @@
 'use client';
 import { useGSAP } from '@gsap/react';
 import { Box } from '@mui/material';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import gsap from 'gsap';
 import { Machine } from './Machine';
 import { TextWithHighlight } from './TextWithHighlight';
 
 export const FirstSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-
+  const [navbarHeight, setNavbarHeight] = useState(0);
   useGSAP(() => {
+    const navbarHeightGsap = document.querySelector('#navbar')?.clientHeight;
+    setNavbarHeight(navbarHeightGsap || 0);
     gsap
       .timeline({ defaults: { duration: 1.5 } })
       .set('#productsIcons', { opacity: 0 })
@@ -31,14 +33,19 @@ export const FirstSection = () => {
         '<'
       )
       .to('#machinePage', { scale: 1, opacity: 1 }, '<');
-    const navbarHeight = document.querySelector('#navbar')?.clientHeight;
+
     gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
-        start: `-${navbarHeight} top`,
+        start: `-${navbarHeightGsap} top`,
         endTrigger: '#third',
-        end: '+=2100 top',
+        end: () => {
+          return (
+            '+=' + document.querySelector('#third')!.clientHeight * 2 + ' top'
+          );
+        },
         pin: '#machinePage',
+        markers: true,
       },
     });
   }, []);
@@ -47,17 +54,26 @@ export const FirstSection = () => {
     <Box
       sx={{
         overflow: 'hidden',
-        minHeight: '100vh',
+        height: `calc(100vh - ${navbarHeight + 'px'})`,
         display: 'flex',
         flexDirection: 'column',
         width: { xs: '100%' },
-        gap: 0,
+        justifyContent: 'space-between',
       }}
       id="first"
       ref={containerRef}
     >
       <TextWithHighlight />
-      <Machine />
+      <Box
+        sx={{
+          display: 'flex',
+          flexGrow: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Machine />
+      </Box>
     </Box>
   );
 };

@@ -120,7 +120,6 @@ export const Machine: React.FC = () => {
         zIndex: 10,
         position: 'relative',
       }}
-      marginTop={{ xs: '9.125rem', lg: 0 }}
       id="machinePage"
     >
       <Box

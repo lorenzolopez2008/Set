@@ -111,6 +111,7 @@ export const ProductCarrusel = () => {
         paddingTop: '7rem',
         minHeight: '100vh',
         overflow: 'hidden',
+        width: '100%',
         backgroundImage: { xs: 'none', lg: 'url(dashedRectangleUp.svg)' },
         backgroundSize: '70% 58%',
         backgroundRepeat: 'no-repeat',
@@ -135,9 +136,10 @@ export const ProductCarrusel = () => {
       <Box
         sx={{
           position: 'absolute',
-          left: { xs: '50%', sm: '75%' },
+          transformOrigin: 'center',
+          transform: 'translate(50%) scale(0.5)',
+          right: 0,
           top: 0,
-          scale: 0.5,
         }}
       >
         <Circle />

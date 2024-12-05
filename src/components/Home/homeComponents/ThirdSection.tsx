@@ -7,7 +7,7 @@ import styles from '@/app/components/ui/ProductsCarrusel/ProductCard.module.css'
 import { ProductCarrusel } from '@/app/components/ui/ProductsCarrusel/ProductCarrusel';
 
 export const ThirdSection = () => {
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
     const mm = gsap.matchMedia();
@@ -32,9 +32,15 @@ export const ThirdSection = () => {
           });
 
           tl.to('#circle', {
-            xPercent: 110,
-            yPercent: -22,
+            x:
+              containerRef.current!.clientWidth -
+              containerRef.current!.clientWidth / 2,
+            y: () => {
+              return -document.querySelector('#circle')!.getBoundingClientRect()
+                .y;
+            },
             scale: 0.5,
+            transformOrigin: 'center',
           })
             .to('#productsIcons', { yPercent: 100 }, '<')
             .to('#productsIcons', { opacity: 0 }, '<')
@@ -112,7 +118,17 @@ export const ThirdSection = () => {
             },
           });
 
-          tl.to('#circle', { xPercent: 50, yPercent: -128, scale: 0.5 })
+          tl.to('#circle', {
+            x:
+              containerRef.current!.clientWidth -
+              containerRef.current!.clientWidth / 2,
+            y: () => {
+              return -document.querySelector('#circle')!.getBoundingClientRect()
+                .y;
+            },
+            scale: 0.5,
+            transformOrigin: 'center',
+          })
             .to('#productsIcons', { yPercent: 100 }, '<')
             .fromTo(
               '#third',

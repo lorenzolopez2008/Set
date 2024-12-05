@@ -135,19 +135,19 @@ export const OurClients = () => {
     >
       <Box
         sx={{
-          width: { xs: '100%', lg: 'fit-content' },
+          width: { xs: '100%', sm: 'fit-content' },
           display: 'flex',
-          flexDirection: { xs: 'column', lg: 'row' },
+          flexDirection: { xs: 'column', sm: 'row' },
           justifyContent: 'center',
           alignItems: 'center',
-          paddingLeft: { lg: '5rem' },
+          paddingLeft: { sm: '5rem' },
         }}
         ref={ourClientsRef}
       >
         <Box
           sx={{
             width: isMobile ? '100%' : '60vw',
-            // marginRight: { xs: 0, md: '5rem', lg: '10rem', xl: '15rem' },
+            // marginRight: { xs: 0, md: '5rem', sm: '10rem', xl: '15rem' },
             textAlign: isMobile ? 'center' : '',
             height: 'fit-content',
             display: 'flex',
@@ -209,8 +209,7 @@ export const OurClients = () => {
           <Box
             sx={{
               flexGrow: 1,
-              height: 'clamp(9.375rem,  35.4348vw, 50rem)',
-              display: { xs: 'none', lg: 'inline-flex' },
+              display: { xs: 'none', sm: 'inline-flex' },
               width: 'clamp(24rem,  62.6087vw, 50rem)',
               justifyContent: 'center',
               flexDirection: 'column',
