@@ -8,12 +8,13 @@ import { HomeQuienes } from './HomeQuienes';
 
 export const SecondSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const heightNavbar = document.querySelector('#navbar')?.clientHeight;
 
   useGSAP(() => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
-        start: '-12% top',
+        start: `-${heightNavbar}px top`,
         end: 'bottom top',
         scrub: 2,
         pin: true,
@@ -35,11 +36,7 @@ export const SecondSection = () => {
       sx={{
         overflowX: 'hidden',
         minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
         width: { xs: '100%' },
-
-        gap: 0,
       }}
       ref={containerRef}
       id="second"
