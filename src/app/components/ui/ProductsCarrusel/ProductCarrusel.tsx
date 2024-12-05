@@ -108,7 +108,7 @@ export const ProductCarrusel = () => {
     <Box
       sx={{
         position: 'relative',
-        paddingTop: '5rem',
+        paddingTop: '7rem',
         minHeight: '100vh',
         overflow: 'hidden',
         backgroundImage: { xs: 'none', lg: 'url(dashedRectangleUp.svg)' },
@@ -151,14 +151,14 @@ export const ProductCarrusel = () => {
             display: 'inline-flex',
             flexDirection: { xs: 'column', sm: 'row' },
             alignItems: { xs: 'center', sm: 'flex-start' },
-            fontSize: `clamp(3.125rem, 2.4728rem + 3.2609vw, 5rem)`,
+            fontSize: `clamp(3.125rem, 2.4728rem + 2.2609vw, 5rem)`,
             gap: 2,
           }}
         >
           Productos{' '}
           <Typography
             variant="main"
-            sx={{ fontSize: `clamp(3.125rem, 2.4728rem + 3.2609vw, 5rem)` }}
+            sx={{ fontSize: `clamp(3.125rem, 2.4728rem + 2.2609vw, 5rem)` }}
           >
             más vendidos
           </Typography>

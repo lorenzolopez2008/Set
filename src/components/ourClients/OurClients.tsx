@@ -13,6 +13,7 @@ import { SphereClients } from './SphereClients';
 import { Environment } from '@react-three/drei';
 import RightArrow from '../../../public/icons/rightArrow.svg';
 import Image from 'next/image';
+import { CarruselButtons } from '@/app/components/ui/ProductsCarrusel/CarruselButtons/CarruselButtons';
 
 const clients = [
   {
@@ -57,6 +58,21 @@ export const OurClients = () => {
   const ourClientsRef = useRef<HTMLDivElement>(null);
   const isMobile = useMediaQuery('(max-width: 768px)');
 
+  const testimonialAnimation = gsap.fromTo(
+    '.home--testimonial-card',
+    {
+      yPercent: 35,
+      duration: 2,
+      opacity: 0,
+      ease: 'power4.out',
+    },
+    {
+      yPercent: 0,
+      duration: 2,
+      opacity: 0.9,
+    }
+  );
+
   useGSAP(() => {
     const mm = gsap.matchMedia();
     mm.add(
@@ -84,33 +100,29 @@ export const OurClients = () => {
   }, []);
 
   const [testimonialSelected, setTestimonialSelected] =
-    useState<ITestimonialCard>({
-      name: 'Mario Veliz',
-      photoUrl: '/testimonials/marioVeliz.png',
-      quote:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      rate: 4.8,
-    });
+    useState<ITestimonialCard>(clients[0]);
 
   const handleSetTestimonialSelected = (name: string) => {
     const testimonial = clients.find((client) => client.name === name);
     if (testimonial) {
       setTestimonialSelected(testimonial);
-      gsap.fromTo(
-        '.home--testimonial-card',
-        {
-          yPercent: 35,
-          duration: 2,
-          opacity: 0,
-          ease: 'power4.out',
-        },
-        {
-          yPercent: 0,
-          duration: 2,
-          opacity: 0.9,
-        }
-      );
+      testimonialAnimation.play();
     }
+  };
+  const handleNext = () => {
+    const index = clients.indexOf(testimonialSelected);
+    const testimonial =
+      index === clients.length - 1 ? clients[0] : clients[index + 1];
+    setTestimonialSelected(testimonial);
+    testimonialAnimation.play();
+  };
+
+  const handlePrev = () => {
+    const index = clients.indexOf(testimonialSelected);
+    const testimonial =
+      index === 0 ? clients[clients.length - 1] : clients[index - 1];
+    setTestimonialSelected(testimonial);
+    testimonialAnimation.play();
   };
 
   return (
@@ -212,6 +224,23 @@ export const OurClients = () => {
               photoUrl={testimonialSelected.photoUrl}
               quote={testimonialSelected.quote}
             />
+            <Box
+              display="flex"
+              justifyContent="end"
+              width={'clamp(19.8125rem, 34.5652vw, 39.6875rem)'}
+            >
+              <CarruselButtons
+                style={{
+                  poition: 'relative',
+                  display: 'flex',
+                  width: '50%',
+                  justifyContent: 'end',
+                  zIndex: 20,
+                }}
+                prevFunction={handlePrev}
+                nextFunction={handleNext}
+              />
+            </Box>
           </Box>
         </Box>
       </Box>

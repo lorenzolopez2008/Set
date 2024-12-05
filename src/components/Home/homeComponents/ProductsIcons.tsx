@@ -6,19 +6,19 @@ import { useState } from 'react';
 export const ProductsIcons = () => {
   const services = [
     {
-      title: 'Impresión',
+      title: 'IMPRESIÓN',
       brands: ['hanglobal.svg', '/dowell.svg', 'hanglobal.svg'],
     },
     {
-      title: 'Acabado',
+      title: 'ACABADO',
       brands: ['/dowell.svg', 'hanglobal.svg', '/dowell.svg', 'hanglobal.svg'],
     },
     {
-      title: 'Periféricos',
+      title: 'PERIFÉRICOS',
       brands: ['/dowell.svg', 'hanglobal.svg', '/dowell.svg', 'hanglobal.svg'],
     },
     {
-      title: 'Complementos',
+      title: 'COMPLEMENTOS',
       brands: ['/dowell.svg', 'hanglobal.svg', '/dowell.svg', 'hanglobal.svg'],
     },
   ];

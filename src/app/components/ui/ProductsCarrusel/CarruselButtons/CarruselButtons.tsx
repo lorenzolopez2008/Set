@@ -1,42 +1,45 @@
 import { Arrow } from '@/app/components/svg/Arrow';
-import { Box, Button, Typography, useTheme } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import { EmblaCarouselType } from 'embla-carousel';
 
 interface CarruselButtonsProps {
   emblaApi?: EmblaCarouselType | null;
-  id: string;
+  id?: string;
+  prevFunction?: () => void;
+  nextFunction?: () => void;
+  style?: {
+    [key: string]: string | number;
+  };
 }
 
-export const CarruselButtons = ({ emblaApi, id }: CarruselButtonsProps) => {
-  const theme = useTheme();
-  const handlePrev = () => {
+export const CarruselButtons = ({
+  emblaApi,
+  id,
+  prevFunction = () => {
     emblaApi?.scrollPrev();
-  };
-
-  const handleNext = () => {
+  },
+  nextFunction = () => {
     emblaApi?.scrollNext();
-  };
-
+  },
+  style,
+}: CarruselButtonsProps) => {
   return (
     <Box
       id={id}
-      sx={{
-        position: 'absolute',
-        display: 'flex',
-        width: '100%',
-        justifyContent: 'space-between',
-        bottom: { xs: '-8rem', md: '2rem', xl: '-6rem' },
-        [theme.breakpoints.up('xl')]: {
-          '@media (max-height: 748px)': {
-            bottom: '-1rem',
-          },
-        },
-        paddingX: '2rem',
-        zIndex: 20,
-      }}
+      sx={
+        style || {
+          position: 'absolute',
+          display: 'flex',
+          width: '100%',
+          justifyContent: 'space-between',
+          bottom: { xs: '-8rem', md: '2rem', xl: '-6rem' },
+          paddingX: '2rem',
+          zIndex: 20,
+        }
+      }
     >
       <Button
-        onClick={handlePrev}
+        onClick={prevFunction}
         sx={{
           display: 'flex',
           alignItems: 'center',
@@ -58,7 +61,7 @@ export const CarruselButtons = ({ emblaApi, id }: CarruselButtonsProps) => {
       </Button>
 
       <Button
-        onClick={handleNext}
+        onClick={nextFunction}
         sx={{
           display: 'flex',
           alignItems: 'center',
