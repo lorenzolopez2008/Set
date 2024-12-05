@@ -15,6 +15,7 @@ export const FirstSection = () => {
     gsap
       .timeline({ defaults: { duration: 1.5 } })
       .set('#productsIcons', { opacity: 0 })
+      .set('#machinePage', { scale: 0.4, opacity: 0 })
       .fromTo(
         '#navbarButtons',
         { yPercent: -150, opacity: 0 },

@@ -45,7 +45,6 @@ export const ProductsIcons = () => {
         overflowX: 'auto',
         justifyContent: 'center',
         zIndex: 10,
-        opacity: 0,
       }}
       id="productsIcons"
     >

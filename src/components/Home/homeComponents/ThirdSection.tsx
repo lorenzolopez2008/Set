@@ -17,9 +17,6 @@ export const ThirdSection = () => {
         const conditions = context.conditions;
         if (!conditions?.isMobile) {
           const tl = gsap.timeline({
-            defaults: {
-              overwrite: true,
-            },
             scrollTrigger: {
               trigger: containerRef.current,
               endTrigger: containerRef.current,

@@ -193,8 +193,7 @@ export default function Footer() {
                 <Box
                   display={'flex'}
                   flexDirection={{ xs: 'column', lg: 'row' }}
-                  justifyItems={'center'}
-                  gap={{ xs: '1.8rem', lg: '5.3rem' }}
+                  gap={{ xs: '1.8rem', xl: '5.3rem' }}
                 >
                   {footerItems.map(({ title, items }) => (
                     <Box
