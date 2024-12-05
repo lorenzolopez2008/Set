@@ -24,6 +24,7 @@ declare module '@mui/material/Container' {
     '2xl': true;
   }
 }
+const theme1 = createTheme();
 export const theme = createTheme({
   cssVariables: true,
   components: {
@@ -57,8 +58,11 @@ export const theme = createTheme({
                 fontSize: `clamp(${pxToRem(85)}, 9vw, ${pxToRem(225)})`,
                 fontFamily: inter.style.fontFamily,
                 fontWeight: 900,
-                position: 'absolute',
-                top: '5rem',
+                position: 'absolute',display:'block',
+                top: '3.75rem',
+                [theme1.breakpoints.down('md')]: {
+                 top: '7.5rem'
+                }
               },
             },
             {
