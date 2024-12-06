@@ -13,7 +13,6 @@ export const HomeQuienes = () => {
         alignItems: 'stretch',
         gap: '.5rem',
         marginLeft: { xs: 0, sm: '5.0625rem', md: '9.0625rem' },
-        marginTop: '8rem',
       }}
       id="homeQuienes"
     >

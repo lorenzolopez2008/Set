@@ -9,10 +9,8 @@ import { TextWithHighlight } from './TextWithHighlight';
 export const FirstSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   // TODO esto podria evitar haciendo el seteo de style con la ref dentro del useGsap
-  const [navbarHeight, setNavbarHeight] = useState(0);
   useGSAP(() => {
     const navbarHeightGsap = document.querySelector('#navbar')?.clientHeight;
-    setNavbarHeight(navbarHeightGsap || 0);
     gsap
       .timeline({ defaults: { duration: 1.5 } })
       .set('#productsIcons', { opacity: 0 })
@@ -57,7 +55,7 @@ export const FirstSection = () => {
     <Box
       sx={{
         overflow: 'hidden',
-        height: `calc(100vh - ${navbarHeight + 'px'})`,
+        height: `calc(100vh - 8rem)`,
         display: 'flex',
         flexDirection: 'column',
         width: { xs: '100%' },

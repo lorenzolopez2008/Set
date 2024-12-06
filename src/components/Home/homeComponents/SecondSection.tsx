@@ -10,11 +10,10 @@ export const SecondSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const heightNavbar = document.querySelector('#navbar')?.clientHeight;
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
-        start: `-${heightNavbar}px top`,
+        start: `top top`,
         end: `bottom top`,
         scrub: 3,
         pin: true,
@@ -37,6 +36,7 @@ export const SecondSection = () => {
         overflowX: 'hidden',
         minHeight: '100vh',
         width: { xs: '100%' },
+        paddingTop: '8rem',
       }}
       ref={containerRef}
       id="second"
