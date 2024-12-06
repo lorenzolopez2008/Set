@@ -160,7 +160,7 @@ export const Navbar = () => {
         alignItems={'center'}
         justifyContent={'center'}
         gap={2}
-        sx={{ marginRight: '1rem', marginTop: '1rem' }}
+        sx={{ marginTop: '1rem' }}
         id="navbarButtons"
       >
         {isMobile && (
