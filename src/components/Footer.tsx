@@ -31,23 +31,23 @@ export default function Footer() {
     },
     {
       title: 'Compañía',
-      items: ['Acerca de', 'Contacta', 'Careers', 'Culture', 'Blog'],
+      items: ['Acerca de', 'Contacta', 'Carreras', 'Cultura', 'Blog'],
     },
     {
       title: 'Apoyo',
       items: [
-        'Getting started',
-        'Help center',
-        'Server status',
-        'Report a bug',
-        'Chat support',
+        'Introducción',
+        'Centro de ayuda',
+        'Estado del servidor',
+        'Reportar un error',
+        'Chat de soporte',
       ],
     },
   ];
   const clientSupportItems = [
     {
       icon: <MailIcon />,
-      text: 'Clientes@setindutry.com',
+      text: 'alientes@setindutry.com',
     },
     {
       icon: <PhoneIcon />,
@@ -60,7 +60,7 @@ export default function Footer() {
     },
     {
       icon: <MailIcon />,
-      text: 'Administracion@setindutry.com',
+      text: 'administracion@setindutry.com',
     },
     {
       icon: <PhoneIcon />,
@@ -317,7 +317,7 @@ export default function Footer() {
                 }}
                 color="#000"
               >
-                Design by <b>MDX</b>
+                Diseño por <b>MDX</b>
               </Typography>
 
               <Box
@@ -330,7 +330,7 @@ export default function Footer() {
                 }}
               >
                 <Typography variant="paragraph" color="black">
-                  All Rights Reserved
+                  Todos los derechos reservados
                 </Typography>
                 <Typography
                   variant="paragraph"
@@ -349,7 +349,7 @@ export default function Footer() {
                       '&:hover': { color: 'primary.main' },
                     }}
                   >
-                    Terms and Conditions
+                    Términos y condiciones
                   </Link>
                 </Typography>
                 <Typography
@@ -368,7 +368,7 @@ export default function Footer() {
                       '&:hover': { color: 'primary.main' },
                     }}
                   >
-                    Privacy Policy
+                    Política de privacidad
                   </Link>
                 </Typography>
               </Box>
