@@ -1,6 +1,6 @@
 'use client';
 import { useGSAP } from '@gsap/react';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useRef } from 'react';
 import gsap from 'gsap';
 import styles from '@/app/components/ui/ProductsCarrusel/ProductCard.module.css';
@@ -196,7 +196,33 @@ export const ThirdSection = () => {
       ref={containerRef}
       id="third"
     >
-      <ProductCarrusel />
+      <ProductCarrusel>
+        <Box
+          id="product-title"
+          sx={{ textAlign: { xs: 'center', sm: 'left' } }}
+        >
+          <Typography
+            variant="main"
+            sx={{
+              color: 'black',
+              marginLeft: { xs: 0, sm: '5.0625rem', md: '9.0625rem' },
+              display: 'inline-flex',
+              flexDirection: { xs: 'column', sm: 'row' },
+              alignItems: { xs: 'center', sm: 'flex-start' },
+              fontSize: `clamp(3.125rem, 2.4728rem + 2.2609vw, 5rem)`,
+              gap: 2,
+            }}
+          >
+            Productos{' '}
+            <Typography
+              variant="main"
+              sx={{ fontSize: `clamp(3.125rem, 2.4728rem + 2.2609vw, 5rem)` }}
+            >
+              más vendidos
+            </Typography>
+          </Typography>
+        </Box>
+      </ProductCarrusel>
     </Box>
   );
 };

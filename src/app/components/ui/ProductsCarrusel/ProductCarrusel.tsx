@@ -7,7 +7,7 @@ import {
 } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
 import styles from './ProductCard.module.css';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 
 import { CarruselButtons } from './CarruselButtons/CarruselButtons';
 import Image from 'next/image';
@@ -23,7 +23,11 @@ const TWEEN_FACTOR_BASE = 0.52;
 const numberWithinRange = (number: number, min: number, max: number): number =>
   Math.min(Math.max(number, min), max);
 
-export const ProductCarrusel = () => {
+export const ProductCarrusel = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   const options: EmblaOptionsType = { loop: true, watchDrag: false };
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
   const tweenFactor = useRef(0);
@@ -147,29 +151,7 @@ export const ProductCarrusel = () => {
       >
         <Circle />
       </Box>
-      <Box id="product-title" sx={{ textAlign: { xs: 'center', sm: 'left' } }}>
-        <Typography
-          variant="main"
-          sx={{
-            color: 'black',
-            marginLeft: { xs: 0, sm: '5.0625rem', md: '9.0625rem' },
-            display: 'inline-flex',
-            flexDirection: { xs: 'column', sm: 'row' },
-            alignItems: { xs: 'center', sm: 'flex-start' },
-            fontSize: `clamp(3.125rem, 2.4728rem + 2.2609vw, 5rem)`,
-            gap: 2,
-          }}
-        >
-          Productos{' '}
-          <Typography
-            variant="main"
-            sx={{ fontSize: `clamp(3.125rem, 2.4728rem + 2.2609vw, 5rem)` }}
-          >
-            más vendidos
-          </Typography>
-        </Typography>
-      </Box>
-
+      {children}
       <Box
         sx={{
           width: '100%',
