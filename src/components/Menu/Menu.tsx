@@ -21,7 +21,7 @@ export const Menu = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
         display: 'flex',
         alignItems: 'center',
         flexDirection: screen ? 'column' : 'row',
-        justifyContent: 'center',
+        justifyContent: { xs: 'center', md: 'space-between' },
         gap: 5,
         height: '100vh',
         width: '100vw',
@@ -30,7 +30,7 @@ export const Menu = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
         left: 0,
         zIndex: 100,
         backgroundColor: '#FFFFFF',
-        paddingX: '2.25rem', // 36px
+        paddingX: screen ? 0 : '8rem',
       }}
       id="menu-desktop"
     >
@@ -96,8 +96,8 @@ export const Menu = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
               fontWeight: 'bold',
               color: '#000000',
               textDecoration: 'none',
-              transform: 'translateX(-100%)', // Inicio fuera de pantalla
-              opacity: 0, // Oculto inicialmente
+              transform: 'translateX(-100%)',
+              opacity: 0,
               ':hover': {
                 color: '#00346D',
               },
@@ -120,6 +120,9 @@ export const Menu = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
         <Box
           width="clamp(12.813rem ,50vw, 35.75rem)"
           height="clamp(6.75rem ,30vw, 15.688rem)"
+          sx={{
+            position: 'relative',
+          }}
         >
           <Image src={'/SET.png'} priority alt="logo" fill />
         </Box>
