@@ -32,7 +32,7 @@ export const CarruselButtons = ({
           display: 'flex',
           width: '100%',
           justifyContent: 'space-between',
-          bottom: { xs: '-8rem', md: '2rem', xl: '-6rem' },
+          bottom: '15%',
           paddingX: '2rem',
           zIndex: 20,
         }
