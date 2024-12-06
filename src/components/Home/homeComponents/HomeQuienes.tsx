@@ -13,7 +13,6 @@ export const HomeQuienes = () => {
         alignItems: 'stretch',
         gap: '.5rem',
         marginLeft: { xs: 0, sm: '5.0625rem', md: '9.0625rem' },
-        marginTop: '8rem',
       }}
       id="homeQuienes"
     >
@@ -33,7 +32,7 @@ export const HomeQuienes = () => {
       {screen ? (
         <Typography
           variant={'productDescription'}
-          fontSize="clamp(0.875rem, 0.6793rem + 0.5783vw, 1.4375rem)"
+          fontSize="clamp(1.075rem, 0.6793rem + 0.5783vw, 1.4375rem)"
           marginLeft={'2rem'}
           sx={{
             textWrap: 'balance',
@@ -43,7 +42,7 @@ export const HomeQuienes = () => {
           mantenimiento y venta de equipos{' '}
           <Typography
             color="#008428"
-            fontSize="clamp(0.875rem, 0.6793rem + 0.5783vw, 1.4375rem)"
+            fontSize="clamp(1.075rem, 0.6793rem + 0.5783vw, 1.4375rem)"
             variant={'title'}
           >
             especializados para impresión de etiquetas
@@ -53,10 +52,7 @@ export const HomeQuienes = () => {
       ) : (
         <Typography
           variant={'productDescription'}
-          fontSize={{
-            lg: 'clamp(0.875rem, 0.6793rem + 0.4783vw, 1.4375rem)',
-            xl: 'clamp(0.875rem, 0.6793rem + 0.5783vw, 1.4375rem)',
-          }}
+          fontSize="clamp(0.875rem, 0.6793rem + 0.4783vw, 1.4375rem)"
           marginLeft={'2rem'}
           sx={{
             textWrap: 'balance',
@@ -66,10 +62,7 @@ export const HomeQuienes = () => {
           el mantenimiento y venta de equipos{' '}
           <Typography
             color="#008428"
-            fontSize={{
-              lg: 'clamp(0.875rem, 0.6793rem + 0.4783vw, 1.4375rem)',
-              xl: 'clamp(0.875rem, 0.6793rem + 0.5783vw, 1.4375rem)',
-            }}
+            fontSize="clamp(0.875rem, 0.6793rem + 0.4783vw, 1.4375rem)"
             variant={'title'}
           >
             especializados para <br /> impresión de etiquetas
