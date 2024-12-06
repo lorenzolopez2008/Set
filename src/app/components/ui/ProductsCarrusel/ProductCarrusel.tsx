@@ -108,8 +108,9 @@ export const ProductCarrusel = () => {
     <Box
       sx={{
         position: 'relative',
-        paddingTop: '7rem',
-        minHeight: '100vh',
+        paddingTop: { xs: 0, md: '7rem' },
+        paddingBottom: { xs: '7rem', md: 0 },
+        height: '100vh',
         overflow: 'hidden',
         width: '100%',
         backgroundImage: { xs: 'none', lg: 'url(dashedRectangleUp.svg)' },
@@ -118,6 +119,8 @@ export const ProductCarrusel = () => {
         backgroundPosition: 'center 30%',
         maskImage:
           'linear-gradient(180deg, hsla(0, 0%, 0%, 1) 0%,hsla(0, 0%, 0%, 1) 90%,hsla(0, 0%, 100%, 0) 100%)',
+        display: 'flex',
+        flexDirection: 'column',
       }}
       id="productCarrusel"
     >
@@ -168,28 +171,33 @@ export const ProductCarrusel = () => {
       </Box>
 
       <Box
-        sx={{ width: '100%', marginTop: { xs: '9.5rem', lg: 0 } }}
+        sx={{
+          width: '100%',
+          flexGrow: 1,
+          justifyContent: 'center',
+          display: 'flex',
+        }}
         id="machine-carrousel"
         ref={containerRef}
       >
-        <Box
-          sx={{
-            display: { sx: 'block', sm: 'none' },
-            filter: 'blur(10rem)',
-            position: 'absolute',
-            background:
-              'radial-gradient(circle, hsla(203, 100%, 28%, 1) 70%, hsla(37, 89%, 52%, 0) 100%)',
-            opacity: 0.6,
-            width: '100%',
-            height: '100%',
-            left: '75%',
-            top: '-40%',
-            transform: 'translateX(-50%)',
-            zIndex: -1,
-            borderRadius: '2000px',
-          }}
-        ></Box>
         <Box className={styles.embla}>
+          <Box
+            sx={{
+              display: { sx: 'block', sm: 'none' },
+              filter: 'blur(7rem)',
+              position: 'absolute',
+              background:
+                'radial-gradient(circle, hsla(203, 100%, 28%, 1) 70%, hsla(37, 89%, 52%, 0) 100%)',
+              opacity: 0.9,
+              width: '50%',
+              height: '100%',
+              left: '50%',
+              top: '0',
+              transform: 'translateX(-50%)',
+              zIndex: -1,
+              borderRadius: '2000px',
+            }}
+          ></Box>
           <Box className={styles.embla__viewport} ref={emblaRef}>
             <Box className={styles.embla__container}>
               {slides.map((img, index) => (
@@ -202,8 +210,7 @@ export const ProductCarrusel = () => {
                   <Box className={styles.embla__slide__number}>
                     <Box
                       sx={{
-                        width: 'clamp(20rem, 40vw, 80rem)',
-                        height: 'clamp(8rem, 25vw, 38rem)',
+                        width: 'clamp(25rem, 60vw, 120rem)',
                         aspectRatio: '16/9',
                         position: 'relative',
                       }}
