@@ -1,6 +1,6 @@
 'use client';
 import { useGSAP } from '@gsap/react';
-import { Box, Typography, useMediaQuery } from '@mui/material';
+import { Box, Modal, Typography, useMediaQuery } from '@mui/material';
 import { useRef, useState } from 'react';
 import gsap from 'gsap';
 import {
@@ -113,11 +113,13 @@ export const OurClients = () => {
 
   const [testimonialSelected, setTestimonialSelected] =
     useState<ITestimonialCard>(clients[0]);
+  const [open, setOpen] = useState(false);
 
   const handleSetTestimonialSelected = (name: string) => {
     const testimonial = clients.find((client) => client.name === name);
     if (testimonial) {
       setTestimonialSelected(testimonial);
+      setOpen(true);
       playAnimation();
     }
   };
@@ -218,6 +220,36 @@ export const OurClients = () => {
               />
             </Canvas>
           </Box>
+          <Modal
+            open={open}
+            onClose={() => {
+              setOpen(false);
+            }}
+            sx={{
+              display: { xs: 'inline-flex', sm: 'none' },
+              width: '100%',
+              height: '100%',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 'fit-content',
+                height: 'fit-content',
+              }}
+            >
+              <TestimonialCard
+                name={testimonialSelected.name}
+                rate={testimonialSelected.rate}
+                photoUrl={testimonialSelected.photoUrl}
+                quote={testimonialSelected.quote}
+              />
+            </Box>
+          </Modal>
           <Box
             sx={{
               flexGrow: 1,
