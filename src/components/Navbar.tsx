@@ -10,7 +10,7 @@ import { useGSAP } from '@gsap/react';
 import { Menu } from './Menu/Menu';
 
 export const Navbar = () => {
-  const isMobile = useMediaQuery('(min-width: 600px)');
+  const isDesktop = useMediaQuery('(min-width: 600px)');
   const { isVisible } = useVisibility('Navbar');
   const menuOpened = useRef(false);
 
@@ -147,6 +147,7 @@ export const Navbar = () => {
         style={{
           marginLeft: '1rem',
           marginTop: '1rem',
+          transform: isDesktop ? 'scale(1)' : 'scale(0.8)',
         }}
         src={'/SET.png'}
         alt="logo"
@@ -163,7 +164,7 @@ export const Navbar = () => {
         sx={{ marginTop: '1rem' }}
         id="navbarButtons"
       >
-        {isMobile && (
+        {isDesktop && (
           <Button
             variant="mainGreen"
             sx={{ padding: 1 }}
@@ -182,6 +183,7 @@ export const Navbar = () => {
           style={{
             zIndex: 21,
             cursor: 'pointer',
+            transform: isDesktop ? 'scale(1)' : 'scale(0.8)',
           }}
           id="hamburguer"
         />
