@@ -1,7 +1,7 @@
 'use client';
 import { useGSAP } from '@gsap/react';
 import { Box } from '@mui/material';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import gsap from 'gsap';
 import { Machine } from './Machine';
 import { TextWithHighlight } from './TextWithHighlight';
