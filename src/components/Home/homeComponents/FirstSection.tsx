@@ -8,6 +8,7 @@ import { TextWithHighlight } from './TextWithHighlight';
 
 export const FirstSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  // TODO esto podria evitar haciendo el seteo de style con la ref dentro del useGsap
   const [navbarHeight, setNavbarHeight] = useState(0);
   useGSAP(() => {
     const navbarHeightGsap = document.querySelector('#navbar')?.clientHeight;

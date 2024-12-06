@@ -8,9 +8,9 @@ import { HomeQuienes } from './HomeQuienes';
 
 export const SecondSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const heightNavbar = document.querySelector('#navbar')?.clientHeight;
 
   useGSAP(() => {
+    const heightNavbar = document.querySelector('#navbar')?.clientHeight;
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
