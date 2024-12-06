@@ -69,10 +69,11 @@ export const ProductsIcons = () => {
                 textAlign: 'center',
                 fontWeight: currentService.title === service.title ? 800 : 600,
                 color:
-                  currentService.title === service.title ? '#000' : '#86868B',
-                transition: 'all 0.3s ease-in-out',
+                  currentService.title === service.title ? '#00598F' : '#000',
+                transition: 'color 0.3s ease-in-out',
                 ':hover': {
                   cursor: 'pointer',
+                  color: '#00598F',
                 },
               }}
               onClick={() => handleServiceChange(service)} // Usar la nueva función para cambiar de servicio
