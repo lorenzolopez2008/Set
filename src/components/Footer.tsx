@@ -83,6 +83,8 @@ export default function Footer() {
         },
         marginInline: { xs: '.5rem', lg: 0 },
         marginBottom: { xs: '1rem', lg: '3.125rem' },
+        display: 'flex',
+        justifyContent: 'center',
       }}
     >
       <Box
@@ -375,9 +377,17 @@ export default function Footer() {
             <Box
               sx={{
                 position: 'absolute',
-                left: { xs: '13%', lg: '30%', xl: '32%' },
-
+                left: { xs: '13%', lg: '30%', xl: '31%' },
                 bottom: 0,
+                '@media (min-width: 1900px)': {
+                  left: '31.5%',
+                },
+                '@media (min-width: 1200px) and (max-width: 1330px)': {
+                  left: '29.5%',
+                },
+                '@media (min-width: 1720px) and (max-width: 1899px)': {
+                  left: '31.3%',
+                },
               }}
             >
               <Box
