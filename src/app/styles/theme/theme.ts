@@ -58,11 +58,12 @@ export const theme = createTheme({
                 fontSize: `clamp(${pxToRem(85)}, 9vw, ${pxToRem(225)})`,
                 fontFamily: inter.style.fontFamily,
                 fontWeight: 900,
-                position: 'absolute',display:'block',
+                position: 'absolute',
+                display: 'block',
                 top: '3.75rem',
                 [theme1.breakpoints.down('md')]: {
-                 top: '7.5rem'
-                }
+                  top: '7.5rem',
+                },
               },
             },
             {
@@ -86,7 +87,7 @@ export const theme = createTheme({
             {
               props: { variant: 'productDescription' },
               style: {
-                color: '#86868B',
+                color: '#0e0e0e',
                 fontSize: `clamp(${pxToRem(16)}, 1.3vw, ${pxToRem(23)})`,
                 fontFamily: inter.style.fontFamily,
                 fontWeight: 600,
@@ -129,7 +130,8 @@ export const theme = createTheme({
           ],
         },
       },
-    }, MuiContainer: {
+    },
+    MuiContainer: {
       styleOverrides: {
         root: {
           variants: [
@@ -141,7 +143,7 @@ export const theme = createTheme({
             },
           ],
         },
-      }
-    }
+      },
+    },
   },
 });

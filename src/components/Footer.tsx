@@ -313,6 +313,7 @@ export default function Footer() {
                   right: 0,
                   marginY: { xs: '1.6rem', lg: 0 },
                   marginInline: { xs: '1.75rem', lg: 0 },
+                  fontSize: { xs: pxToRem(14), lg: pxToRem(18) },
                   zIndex: 10,
                 }}
                 color="#000"
@@ -426,10 +427,10 @@ export default function Footer() {
                     sx={{
                       color: '#D5112F',
                       textTransform: 'uppercase',
-                      fontSize: { xs: pxToRem(13), lg: pxToRem(18) },
+                      fontSize: { xs: pxToRem(12), lg: pxToRem(16) },
                     }}
                   >
-                    Back To Top
+                    Volver al Inicio
                   </Typography>
                 </IconButton>
               </Box>

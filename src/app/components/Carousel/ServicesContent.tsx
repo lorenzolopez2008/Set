@@ -46,7 +46,7 @@ const ServicesContent: React.FC<{
         </Typography>
         <Typography
           fontWeight="semibold"
-          color="#848282"
+          color="#0e0e0e"
           fontSize="clamp(0.875rem, 0.5707rem + 1.5217vw, 1.75rem)"
           lineHeight="2.094rem"
           maxWidth={'30ch'}
