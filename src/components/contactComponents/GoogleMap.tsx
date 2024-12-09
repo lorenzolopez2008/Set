@@ -4,8 +4,8 @@ import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import { useMediaQuery } from '@mui/material';
 
 const center = {
-  lat: 19.600754,
-  lng: -99.870746,
+  lat: 20,
+  lng: -101,
 };
 
 function MyComponent() {
@@ -18,15 +18,6 @@ function MyComponent() {
     width: '100%',
     height: isMobile ? '18.75rem' : '31.25rem',
   };
-  const [map, setMap] = React.useState(null);
-
-  const onLoad = React.useCallback(function callback(map: any) {
-    setMap(map);
-  }, []);
-
-  const onUnmount = React.useCallback(function callback(map: any) {
-    setMap(null);
-  }, []);
 
   const markerPosition = {
     lat: 19.382561436311256,
@@ -42,9 +33,7 @@ function MyComponent() {
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
-      zoom={7.5}
-      onLoad={onLoad}
-      onUnmount={onUnmount}
+      zoom={7}
       options={{
         scrollwheel: false,
         gestureHandling: 'none',

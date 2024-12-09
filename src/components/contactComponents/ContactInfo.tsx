@@ -109,7 +109,15 @@ function ContactInfo() {
           </Box>
         </Box>
       ) : (
-        <Box sx={{ height: '33%', width: '90%', paddingTop: '2rem' }}>
+        <Box
+          sx={{
+            height: '33%',
+            width: '100%',
+            paddingTop: '2rem',
+            display: 'flex',
+            justifyContent: 'center',
+          }}
+        >
           <Box
             sx={{
               backgroundColor: '#00598F',
@@ -122,7 +130,7 @@ function ContactInfo() {
               color: 'white',
               padding: '2rem',
               height: '80%',
-              width: '100%',
+              width: '90%',
               gap: '1rem',
             }}
           >
