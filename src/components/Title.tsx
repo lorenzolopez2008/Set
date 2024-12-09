@@ -1,5 +1,6 @@
 'use client';
 import { Box, Typography, useMediaQuery } from '@mui/material';
+import Image from 'next/image';
 import React from 'react';
 
 interface Props {
@@ -10,6 +11,7 @@ interface Props {
 
 function Title({ title, location, titleShadow }: Props) {
   const isMobile = useMediaQuery('(max-width:780px)');
+  const isDesktop = useMediaQuery('(max-width:1500px)');
   return (
     <Box
       sx={{
@@ -19,54 +21,68 @@ function Title({ title, location, titleShadow }: Props) {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        overflow: 'hidden',
+        marginTop: '4rem',
+        marginBottom: { xs: '5rem', md: '7rem', xl: '15rem' },
       }}
     >
       {!isMobile ? (
         <Box
           sx={{
             position: 'absolute',
-            top: '-15%',
-            left: '17%',
+            top: '0',
+            left: '-20%',
             borderRadius: '100%',
-            background: `radial-gradient(circle, rgba(0, 132, 40, 0.05) 60%, rgba(0, 132, 40, 0) 70%)`,
-            width: '35rem',
-            height: '35rem',
+            background: `radial-gradient(circle, rgba(0, 132, 40, .1) 0%, rgba(0, 132, 40, 0) 70%)`,
+            width: '100%',
+            height: '20rem',
+            filter: 'blur(15px)',
           }}
         ></Box>
       ) : null}
-
+      {!isDesktop ? (
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '-10%',
+          }}
+        >
+          <Image
+            src={'/lineas.png'}
+            alt="background lines"
+            width={1000}
+            height={563}
+          />
+        </Box>
+      ) : null}
       <Box
         sx={{
           width: '100%',
-          height: '8.875rem',
           color: '#008428',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'end',
           alignItems: 'center',
+          position: 'relative',
+          height: 'fit-content',
         }}
       >
-        <Box
+        <Typography
+          variant="shadow"
           sx={{
             position: 'absolute',
-            fontSize: 'clamp(3.313rem, 10vw, 14.063rem)',
+            fontSize: 'clamp(5.313rem, 10vw, 14.063rem)',
             whiteSpace: 'nowrap',
             fontWeight: 'bold',
-            opacity: '4%',
-            color: '#1D1D1F',
-            textAlign: 'start',
-            display: 'flex',
-            alignItems: 'flex-end',
-            justifyContent: 'center',
-            fontFamily: 'Arial',
+            lineHeight: 'clamp(2.5rem, 5vw, 5.438rem)',
+            top: 0,
           }}
         >
           {titleShadow}
-        </Box>
+        </Typography>
         <Typography
+          variant="main"
           sx={{
-            fontSize: 'clamp(2.5rem, 5vw, 5.438rem)',
+            fontSize: 'clamp(2.5rem, 5vw, 5rem)',
             fontWeight: 'bold',
           }}
         >

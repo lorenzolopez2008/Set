@@ -1,10 +1,10 @@
-import { HeadingSection } from '@/app/components/ui/HeadingSection/HeadingSection';
 import { Box, Typography } from '@mui/material';
 import { pxToRem } from '@/helpers/pxToRem';
 import Image from 'next/image';
 import { Carousel } from '@/app/components/Carousel/Carousel';
 import Circle from '@/../public/circle.png';
 import Maquina from '@/../public/maquinaFSL.png';
+import Title from '../Title';
 
 const images = [
   '/serviciosImg1.png',
@@ -17,14 +17,12 @@ const images = [
 
 export const Services = () => {
   return (
-    <Box component={'section'} sx={{ overflowX: 'hidden' }}>
-      <HeadingSection
-        page="servicios"
-        section="servicios"
-        text="Nuestros Servicios"
-        shadow="Servicios"
+    <Box component={'section'}>
+      <Title
+        title="Nuestros Servicios"
+        titleShadow="Servicios"
+        location="Servicios"
       />
-
       <Box
         sx={{
           display: 'flex',
