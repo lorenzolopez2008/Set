@@ -12,11 +12,12 @@ function MyComponent() {
   const isMobile = useMediaQuery('(max-width: 760px)');
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: 'AIzaSyAV9zEZDbUjXj7GDG2ss9Hp9xCgqk1Mqz0',
+    googleMapsApiKey: 'AIzaSyBKg3sYE7YcEJSl4_fJMO-jmH8ZG4bBwvM',
   });
   const containerStyle = {
     width: '100%',
     height: isMobile ? '18.75rem' : '31.25rem',
+    borderRadius: '10px',
   };
 
   const markerPosition = {
