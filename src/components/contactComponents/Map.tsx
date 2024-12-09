@@ -2,6 +2,7 @@
 import { Box } from '@mui/material';
 import React from 'react';
 import GoogleMap from './GoogleMap';
+import MapboxMap from './MapBox';
 interface Props {
   isMobile: boolean;
 }
@@ -13,7 +14,8 @@ function Map({ isMobile }: Props) {
         borderRadius: '10px',
       }}
     >
-      <GoogleMap />
+      {/* <GoogleMap /> */}
+      <MapboxMap />
     </Box>
   );
 }
