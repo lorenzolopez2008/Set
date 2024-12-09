@@ -90,7 +90,6 @@ export default function Footer() {
       <Box
         sx={{
           maxWidth: '1920px',
-          width: '100%',
           zIndex: 10,
           borderBottomLeftRadius: { xs: '1rem', lg: '3.125rem' },
           borderTopRightRadius: { xs: '1rem', lg: '3.125rem' },
@@ -118,6 +117,9 @@ export default function Footer() {
               xs: 'linear-gradient(180deg, #00598F 0%, #00000026 30%, #00000000 40%, #00000026 60%, #008428 100%);',
               lg: 'linear-gradient(97deg, #00598F 0%, #00000026 30%, #00000000 40%, #00000026 60%, #008428 100%)',
             },
+          },
+          '@media (max-width: 1200px)': {
+            width: '100%',
           },
         }}
       >
