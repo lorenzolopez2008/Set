@@ -4,6 +4,7 @@ import { HeadingSection } from '../components/ui/HeadingSection/HeadingSection';
 import { DiagonalArrow } from '../components/svg/DiagonalArrow';
 import { ProductSectionCarrusel } from '@/components/ProductSectionCarousel/ProductSectionCarousel';
 import { useGetScreen } from '@/hooks/useGetScreen';
+import Link from 'next/link';
 
 export default function Page() {
   const { screen } = useGetScreen('sm');
@@ -25,7 +26,12 @@ export default function Page() {
           marginBottom: '5rem',
         }}
       >
-        <Button variant="mainGreen" endIcon={<DiagonalArrow />}>
+        <Button
+          LinkComponent={Link}
+          variant="mainGreen"
+          endIcon={<DiagonalArrow />}
+          href="/lista-productos"
+        >
           Ver más
         </Button>
       </Box>
