@@ -2,10 +2,10 @@ import { inter } from '@/fonts';
 
 export const containerStyles = {
   display: 'flex',
-  justifyContent: 'center',
+  paddingInline:{md:'1.5rem',lg:'2rem'},
   flexWrap: 'wrap',
   gap: '4.563rem',
-  width: { lg: '70%', xs: '100%' },
+  width: { lg: '70%', xs: '100%' }
 };
 
 export const cardStyles = {
@@ -60,6 +60,7 @@ export const buttonStyles = {
   alignItems: 'center',
   justifyContent: 'center',
   borderRadius: '0 0.75rem',
+  textWrap:'nowrap',
   gap: '1rem',
   marginRight: 'auto',
   fontSize: { lg: '1.625rem', xs: '1.188rem' },

@@ -10,6 +10,14 @@ export const ListItems = () => {
         display: { lg: 'block', xs: 'flex' },
         overflow: 'auto',
         marginBottom: { lg: '0', xs: '2.5rem' },
+        '&::-webkit-scrollbar': {
+          width: '8px',
+          height: '10px',
+        },
+        '&::-webkit-scrollbar-thumb': {
+          borderRadius: '8px',
+          backgroundColor: '#c2c9d2',
+        },
       }}
     >
       <ListItem sx={labelStyles}>
