@@ -7,7 +7,12 @@ interface Props {
 }
 function Map({ isMobile }: Props) {
   return (
-    <Box sx={{ width: isMobile ? '100%' : '50%' }}>
+    <Box
+      sx={{
+        width: isMobile ? '100%' : '50%',
+        borderRadius: '10px',
+      }}
+    >
       <GoogleMap />
     </Box>
   );

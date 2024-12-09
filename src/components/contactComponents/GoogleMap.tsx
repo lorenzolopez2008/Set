@@ -17,6 +17,7 @@ function MyComponent() {
   const containerStyle = {
     width: '100%',
     height: isMobile ? '18.75rem' : '31.25rem',
+    borderRadius: '10px',
   };
 
   const markerPosition = {
