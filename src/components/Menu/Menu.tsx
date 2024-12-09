@@ -7,10 +7,10 @@ import { BlueDotBackground } from '../BlueDotBackground/BlueDotBackground';
 
 export const Menu = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
   const options = [
-    { title: 'Nosotros', path: '/' },
-    { title: 'Servicios', path: '/' },
-    { title: 'Productos', path: '/' },
-    { title: 'Contacto', path: '/' },
+    { title: 'Nosotros', path: '/nosotros' },
+    { title: 'Servicios', path: '/servicios' },
+    { title: 'Productos', path: '/productos' },
+    { title: 'Contacto', path: '/contacto' },
   ];
 
   const { screen } = useGetScreen('md');
