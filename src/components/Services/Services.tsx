@@ -6,6 +6,15 @@ import { Carousel } from '@/app/components/Carousel/Carousel';
 import Circle from '@/../public/circle.png';
 import Maquina from '@/../public/maquinaFSL.png';
 
+const images = [
+  '/serviciosImg1.png',
+  '/serviciosImg2.png',
+  '/serviciosImg3.png',
+  '/serviciosImg1.png',
+  '/serviciosImg2.png',
+  '/serviciosImg3.png',
+];
+
 export const Services = () => {
   return (
     <Box component={'section'} sx={{ overflowX: 'hidden' }}>
@@ -129,11 +138,12 @@ export const Services = () => {
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
-          marginTop: '15rem',
+          marginBottom: '15rem',
+          marginTop: '5rem',
           overflow: 'hidden',
         }}
       >
-        <Carousel images={['/1.png', '/2.png', '/3.png']} />
+        <Carousel images={images} />
       </Box>
     </Box>
   );
