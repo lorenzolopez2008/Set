@@ -11,7 +11,8 @@ const ServicesContent: React.FC<{
   emblaApi?: EmblaCarouselType;
   services: { title: string; description: string }[];
   selectedIndex: number;
-}> = ({ emblaApi, services, selectedIndex }) => {
+  pathName?: string;
+}> = ({ emblaApi, services, selectedIndex, pathName }) => {
   return (
     <Box
       sx={{
@@ -131,9 +132,11 @@ const ServicesContent: React.FC<{
             },
           }}
         >
-          <Button variant="mainGreen" endIcon={<DiagonalArrow />}>
-            Servicios
-          </Button>
+          {pathName?.includes('servicios') ? null : (
+            <Button variant="mainGreen" endIcon={<DiagonalArrow />}>
+              Servicios
+            </Button>
+          )}
         </Box>
       </Box>
     </Box>
