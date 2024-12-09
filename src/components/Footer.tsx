@@ -90,6 +90,7 @@ export default function Footer() {
       <Box
         sx={{
           maxWidth: '1920px',
+          width: '100%',
           zIndex: 10,
           borderBottomLeftRadius: { xs: '1rem', lg: '3.125rem' },
           borderTopRightRadius: { xs: '1rem', lg: '3.125rem' },
