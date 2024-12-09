@@ -4,6 +4,7 @@ import Title from '@/components/Title';
 import { DecoratedText } from '@/components/contactComponents/DecoratedText';
 import Map from '@/components/contactComponents/Map';
 import ContactInfo from '@/components/contactComponents/ContactInfo';
+import GoogleMap from '@/components/contactComponents/GoogleMap';
 
 export default function Page() {
   const isMobile = useMediaQuery('(max-width:780px)');
@@ -32,6 +33,14 @@ export default function Page() {
         <Map isMobile={isMobile} />
         <ContactInfo />
       </Box>
+      <Box
+        sx={{
+          width: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      ></Box>
     </Box>
   );
 }
