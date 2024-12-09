@@ -36,7 +36,7 @@ export const theme = createTheme({
               props: { variant: 'main' },
               style: {
                 color: '#008428',
-                fontSize: `clamp(${pxToRem(40)}, 3vw ,${pxToRem(102)})`,
+                fontSize: `clamp(${pxToRem(35)}, 3vw ,${pxToRem(102)})`,
                 fontFamily: inter.style.fontFamily,
                 fontWeight: 800,
               },
@@ -55,7 +55,7 @@ export const theme = createTheme({
               style: {
                 color: '#1D1D1F',
                 opacity: 0.06,
-                fontSize: `clamp(${pxToRem(85)}, 9vw, ${pxToRem(225)})`,
+                fontSize: `clamp(${pxToRem(60)}, 9vw, ${pxToRem(225)})`,
                 fontFamily: inter.style.fontFamily,
                 fontWeight: 900,
                 position: 'absolute',
