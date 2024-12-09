@@ -1,14 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
 import { Box } from '@mui/material';
 import React from 'react';
-
-function Map() {
+interface Props {
+  isMobile: boolean;
+}
+function Map({ isMobile }: Props) {
   return (
-    <Box sx={{ width: '50%' }}>
+    <Box sx={{ width: isMobile ? '100%' : '50%' }}>
       <img
         src="/map.png"
         style={{
-          width: 'clamp(20.400rem, 45vw, 55.875rem)',
+          width: '100%',
           height: 'clamp(15.1rem, 45vw, 35.25rem)',
         }}
         alt="map"
@@ -18,3 +20,6 @@ function Map() {
 }
 
 export default Map;
+
+/* width: 'clamp(20.400rem, 45vw, 55.875rem)',
+          height: 'clamp(15.1rem, 45vw, 35.25rem)', */

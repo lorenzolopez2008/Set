@@ -20,13 +20,16 @@ export default function Page() {
       <Box
         sx={{
           paddingLeft: 'clamp(0.2rem, 5vw,3rem)',
+          paddingRight: 'clamp(0.2rem, 5vw,3rem)',
           paddingTop: '3rem',
+          paddingBottom: '3rem',
           display: 'flex',
           flexDirection: isMobile ? 'column' : 'row',
           gap: '3rem',
+          width: '100%',
         }}
       >
-        <Map />
+        <Map isMobile={isMobile} />
         <ContactInfo />
       </Box>
     </Box>

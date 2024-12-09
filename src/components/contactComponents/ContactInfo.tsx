@@ -85,7 +85,7 @@ function ContactInfo() {
               display: 'flex',
               justifyContent: 'space-between',
               fontFamily: 'inter',
-              fontSize: '1.2rem',
+              fontSize: 'clamp(0.1rem, 10vw ,1rem)',
               flexDirection: isMobile ? 'column' : 'row',
               color: 'white',
               padding: '2rem',
@@ -99,7 +99,7 @@ function ContactInfo() {
               <br /> Iztapalapa, CDMX.
             </Box>
             <Box
-              sx={{ width: '2px', height: '100%', backgroundColor: 'white' }}
+              sx={{ width: '4px', height: '100%', backgroundColor: 'white' }}
             ></Box>
             <Box>
               Blvrd del rodeo 245, El
@@ -109,7 +109,7 @@ function ContactInfo() {
           </Box>
         </Box>
       ) : (
-        <Box sx={{ height: '33%', width: '90%' }}>
+        <Box sx={{ height: '33%', width: '90%', paddingTop: '2rem' }}>
           <Box
             sx={{
               backgroundColor: '#00598F',
@@ -127,19 +127,12 @@ function ContactInfo() {
             }}
           >
             <Box>
-              Canal de Tezontle 57A, Col.
-              <br /> P. de Churubusco,
-              <br />
-              Iztapalapa, CDMX.
+              Canal de Tezontle 57A, Col. P. de Churubusco, Iztapalapa, CDMX.
             </Box>
             <Box
               sx={{ width: '2px', height: '100%', backgroundColor: 'white' }}
             ></Box>
-            <Box>
-              Blvrd del rodeo 245, El
-              <br /> vigia, Zapopan, Jalisco
-              <br /> México
-            </Box>
+            <Box>Blvrd del rodeo 245, El vigia, Zapopan, Jalisco México</Box>
           </Box>
         </Box>
       )}
