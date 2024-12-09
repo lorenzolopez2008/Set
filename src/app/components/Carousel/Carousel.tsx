@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Box } from '@mui/material';
 import useEmblaCarousel from 'embla-carousel-react';
 import './Carousel.css';
@@ -12,6 +12,8 @@ import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { useAtom } from 'jotai';
 import bgElementFixedAtom from '@/store/bgCircleFollow.atom';
+import { usePathname } from 'next/navigation';
+import { transform } from 'next/dist/build/swc';
 
 interface CarouselProps {
   images: string[];
@@ -104,6 +106,8 @@ export const Carousel: React.FC<CarouselProps> = ({ images }) => {
 
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [, setPositionFixedToElement] = useAtom(bgElementFixedAtom);
+
+  const pathName = usePathname();
 
   useEffect(() => {
     if (emblaApi) {
@@ -198,7 +202,15 @@ export const Carousel: React.FC<CarouselProps> = ({ images }) => {
       {/* Carousel */}
       <Box sx={{ position: 'relative', width: '100%' }}>
         <Box className="embla">
-          <Box className="embla__viewport" ref={emblaRef}>
+          <Box
+            className="embla__viewport"
+            style={{
+              transform: !pathName.includes('servicios')
+                ? 'rotate(350deg)'
+                : 'rotate(-5deg)',
+            }}
+            ref={emblaRef}
+          >
             <Box className="embla__container">
               {slides.map((img, index) => (
                 <CarouselSlide
@@ -228,6 +240,7 @@ export const Carousel: React.FC<CarouselProps> = ({ images }) => {
               selectedIndex={selectedIndex}
               services={services}
               emblaApi={emblaApi}
+              pathName={pathName}
             />
           </Box>
         </Box>
@@ -237,6 +250,7 @@ export const Carousel: React.FC<CarouselProps> = ({ images }) => {
             selectedIndex={selectedIndex}
             services={services}
             emblaApi={emblaApi}
+            pathName={pathName}
           />
         </Box>
       )}

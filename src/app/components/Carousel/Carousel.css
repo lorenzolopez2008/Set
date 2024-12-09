@@ -5,9 +5,7 @@
   --slide-spacing-lg: 2rem;
   --slide-size-lg: calc(100% / 3);
 }
-.embla__viewport {
-  rotate: 350deg;
-}
+
 .embla__container {
   backface-visibility: hidden;
   display: flex;
@@ -54,7 +52,6 @@
 
 .embla {
   width: 100%;
-  height: 800px;
   position: relative;
   margin: auto;
   --slide-height: 29rem;
@@ -137,9 +134,6 @@
 }
 
 @media (orientation: portrait) {
-  .embla {
-    height: 400px;
-  }
   .embla__viewport {
     padding-top: 3rem;
   }
