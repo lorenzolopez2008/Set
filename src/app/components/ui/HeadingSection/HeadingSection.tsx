@@ -25,10 +25,24 @@ export const HeadingSection = ({
       <Typography variant="shadow">{text}</Typography>
       <Typography variant="main">{text}</Typography>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-        <Typography variant="paragraph" sx={{ color: '#008428' }}>
+        <Typography
+          variant="paragraph"
+          sx={{
+            color: '#008428',
+            fontSize: 'clamp(1.625rem, 1.4865rem + 0.6924vw, 2.0231rem)',
+          }}
+        >
           {page}
         </Typography>
-        <Typography variant="paragraph">&#47;&#47;{section}</Typography>
+        <Typography
+          variant="paragraph"
+          sx={{
+            color: '#00346D',
+            fontSize: 'clamp(1.625rem, 1.4865rem + 0.6924vw, 2.0231rem)',
+          }}
+        >
+          &#47;&#47;{section}
+        </Typography>
       </Box>
     </Box>
   );

@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <VisibilityProvider>
-          <Loader />
+          {/* <Loader /> */}
           <ThemeRegistryProvider>
             <GsapProvider>
               <Navbar />
