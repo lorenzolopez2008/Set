@@ -18,6 +18,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  console.log('ola no mergees');
   return (
     <html lang="en" id="smooth-wrapper">
       <body id="smooth-content">
