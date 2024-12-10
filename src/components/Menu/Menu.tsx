@@ -1,4 +1,4 @@
-import { Box, Button, Link, Typography } from '@mui/material';
+import { Box, Button, Link, Typography, useMediaQuery } from '@mui/material';
 import Image from 'next/image';
 import { SocialIcons } from '../contactComponents/SocialIcons';
 import { Arrow } from '@/app/components/svg/Arrow';
@@ -6,6 +6,8 @@ import { useGetScreen } from '@/hooks/useGetScreen';
 import { BlueDotBackground } from '../BlueDotBackground/BlueDotBackground';
 
 export const Menu = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
+  const isMobile = useMediaQuery('(max-width: 768px)');
+
   const options = [
     { title: 'Nosotros', path: '/nosotros' },
     { title: 'Servicios', path: '/servicios' },
@@ -157,7 +159,7 @@ export const Menu = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
           />
         </svg>
       </Box>
-      <BlueDotBackground />
+      {!isMobile ? <BlueDotBackground /> : null}
     </Box>
   );
 };

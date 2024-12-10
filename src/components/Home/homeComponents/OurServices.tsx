@@ -1,16 +1,20 @@
 'use client';
 import { useGSAP } from '@gsap/react';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, useMediaQuery } from '@mui/material';
 import { useRef } from 'react';
 import gsap from 'gsap';
 import { useAtom } from 'jotai';
 import bgElementFixedAtom from '@/store/bgCircleFollow.atom';
+import CircleBlur from '@/../public/circleBlur.png';
+import Image from 'next/image';
 
 export const OurServices = () => {
   const containerRef = useRef(null);
   const ourRef = useRef(null);
   const servicesRef = useRef(null);
   const [, setPositionFixedToElement] = useAtom(bgElementFixedAtom);
+
+  const isMobile = useMediaQuery('(max-width:780px)');
 
   useGSAP(() => {
     const tl = gsap.timeline({
@@ -70,21 +74,37 @@ export const OurServices = () => {
           position: 'relative',
         }}
       >
-        <Box
-          id="blueStain"
-          sx={{
-            filter: 'blur(10rem)',
-            position: 'absolute',
-            background: '#00598F',
-            opacity: 0.6,
-            width: '50%',
-            height: '100%',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            zIndex: -1,
-            borderRadius: '2000px',
-          }}
-        ></Box>
+        {!isMobile ? (
+          <Box
+            id="blueStain"
+            sx={{
+              filter: 'blur(10rem)',
+              position: 'absolute',
+              background: '#00598F',
+              opacity: 0.6,
+              width: '50%',
+              height: '100%',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              zIndex: -1,
+              borderRadius: '2000px',
+            }}
+          ></Box>
+        ) : (
+          <Image
+            src={CircleBlur}
+            alt="circle blur"
+            style={{
+              width: '200%',
+              height: '250%',
+              top: '-50%',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              zIndex: -1,
+              position: 'absolute',
+            }}
+          />
+        )}
 
         <Typography
           variant="title"
