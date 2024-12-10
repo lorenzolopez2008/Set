@@ -20,7 +20,7 @@ const page = () => {
         text="Los equipos con el retorno de inversión más rapido"
       />
       <Button variant="mainGreen" endIcon={<DiagonalArrow />}>
-        Contactanos
+        Contáctanos
       </Button>
       <TextWithSideBar
         color="green"
