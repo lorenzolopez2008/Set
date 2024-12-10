@@ -6,6 +6,7 @@ import './Carousel.css';
 import { DiagonalArrow } from '../svg/DiagonalArrow';
 import { NextButton, PrevButton } from './CarouselButtons/CarouselButtons';
 import { EmblaCarouselType } from 'embla-carousel';
+import { useGetScreen } from '@/hooks/useGetScreen';
 
 const ServicesContent: React.FC<{
   emblaApi?: EmblaCarouselType;
@@ -13,6 +14,7 @@ const ServicesContent: React.FC<{
   selectedIndex: number;
   pathName?: string;
 }> = ({ emblaApi, services, selectedIndex, pathName }) => {
+  const { screen } = useGetScreen('sm');
   return (
     <Box
       sx={{
@@ -41,7 +43,7 @@ const ServicesContent: React.FC<{
           color="#008428"
           fontSize="2.25rem"
           lineHeight="91%"
-          maxWidth={'30ch'}
+          maxWidth={screen ? '16ch' : '20ch'}
         >
           {services[selectedIndex ?? 0]?.title} {/* Título dinámico */}
         </Typography>
@@ -51,6 +53,7 @@ const ServicesContent: React.FC<{
           fontSize="clamp(0.875rem, 0.5707rem + 1.5217vw, 1.75rem)"
           lineHeight="2.094rem"
           maxWidth={'30ch'}
+          height={'50px'}
         >
           {services[selectedIndex ?? 0]?.description}{' '}
           {/* Descripción dinámica */}
