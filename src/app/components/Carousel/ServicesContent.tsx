@@ -81,8 +81,16 @@ const ServicesContent: React.FC<{
             marginTop: '1rem',
           }}
         >
-          <PrevButton onClick={() => emblaApi?.scrollPrev()} />
-          <NextButton onClick={() => emblaApi?.scrollNext()} />
+          <PrevButton
+            onClick={() => emblaApi?.scrollPrev()}
+            style={{
+              width: 'min-content',
+            }}
+          />
+          <NextButton
+            onClick={() => emblaApi?.scrollNext()}
+            style={{ width: 'min-content' }}
+          />
         </Box>
         <Box
           sx={{
