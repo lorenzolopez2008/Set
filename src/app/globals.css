@@ -1,5 +1,6 @@
 body{
   background-color: #FAFAFA;
+  overflow-y: hidden;
 }
 .footer {
   width: 100%;
