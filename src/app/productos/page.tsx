@@ -1,40 +1,20 @@
 'use client';
-import { Box, Button } from '@mui/material';
-import { HeadingSection } from '../components/ui/HeadingSection/HeadingSection';
-import { DiagonalArrow } from '../components/svg/DiagonalArrow';
+import { Box } from '@mui/material';
+
 import { ProductSectionCarrusel } from '@/components/ProductSectionCarousel/ProductSectionCarousel';
-import { useGetScreen } from '@/hooks/useGetScreen';
-import Link from 'next/link';
+
+import Title from '@/components/Title';
 
 export default function Page() {
-  const { screen } = useGetScreen('sm');
-
   return (
-    <Box>
-      <HeadingSection
-        page="Home"
-        section="Productos"
-        shadow="Nuestros Productos"
-        text="Nuestros Productos"
+    <Box sx={{ overflowX: 'hidden', marginBottom: '6rem' }}>
+      <Title
+        location="Productos"
+        title="Nuestros Productos"
+        titleShadow="Productos SET"
       />
+
       <ProductSectionCarrusel />
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          marginTop: screen ? '0' : '-9rem',
-          marginBottom: '5rem',
-        }}
-      >
-        <Button
-          LinkComponent={Link}
-          variant="mainGreen"
-          endIcon={<DiagonalArrow />}
-          href="/lista-productos"
-        >
-          Ver más
-        </Button>
-      </Box>
     </Box>
   );
 }

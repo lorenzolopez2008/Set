@@ -1,11 +1,14 @@
 'use client';
 import { Arrow } from '@/app/components/svg/Arrow';
+import { DiagonalArrow } from '@/app/components/svg/DiagonalArrow';
 import { Box, Button, Typography } from '@mui/material';
 import { EmblaCarouselType } from 'embla-carousel';
+import Link from 'next/link';
 
 interface CarruselButtonsProps {
   emblaApi?: EmblaCarouselType | null;
   id?: string;
+  showMore?: boolean;
   prevFunction?: () => void;
   nextFunction?: () => void;
   style?: {
@@ -23,6 +26,7 @@ export const ProductSectionCarouselButton = ({
     emblaApi?.scrollNext();
   },
   style,
+  showMore = false,
 }: CarruselButtonsProps) => {
   return (
     <Box
@@ -33,6 +37,7 @@ export const ProductSectionCarouselButton = ({
           display: 'flex',
           width: '100%',
           justifyContent: 'space-between',
+          alignItems: 'start',
           bottom: '15%',
           paddingX: '2rem',
           zIndex: 20,
@@ -60,7 +65,17 @@ export const ProductSectionCarouselButton = ({
           ANT
         </Typography>
       </Button>
-
+      {showMore && (
+        <Button
+          variant="mainGreen"
+          endIcon={<DiagonalArrow />}
+          sx={{ marginTop: { xs: '6rem', md: 0 } }}
+          LinkComponent={Link}
+          href="/lista-productos"
+        >
+          Ver más
+        </Button>
+      )}
       <Button
         onClick={nextFunction}
         sx={{
