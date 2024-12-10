@@ -32,8 +32,8 @@ export const ProductCarrusel = () => {
 
   const slides = [
     '/machine-animation/0120 copy.webp',
-    '/products/photo-3.png',
-    '/products/photo-2.png',
+    '/products/photo-3.webp',
+    '/products/photo-2.webp',
   ];
 
   const setTweenNodes = useCallback((emblaApi: EmblaCarouselType): void => {
@@ -126,7 +126,7 @@ export const ProductCarrusel = () => {
     >
       <Image
         id="bg-carousel"
-        src={'/bg-carousel.png'}
+        src={'/bg-carousel.webp'}
         alt="bg"
         fill
         sizes="100%"

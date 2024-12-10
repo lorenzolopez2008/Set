@@ -11,10 +11,11 @@ export const Circle = () => {
       }}
     >
       <Image
-        src={'/circle.png'}
+        src={'/circle.webp'}
         alt="circle"
         sizes="full"
         fill
+        loading="eager"
         style={{ aspectRatio: '1/1' }}
       />
     </Box>

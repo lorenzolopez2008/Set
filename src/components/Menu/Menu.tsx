@@ -70,7 +70,7 @@ export const Menu = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
             margin: '2rem 2.25rem',
             zIndex: 102,
           }}
-          src={'/SET.png'}
+          src={'/SET.webp'}
           alt="logo"
           width={86}
           height={45}
@@ -124,7 +124,7 @@ export const Menu = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
             position: 'relative',
           }}
         >
-          <Image src={'/SET.png'} priority alt="logo" fill />
+          <Image src={'/SET.webp'} priority alt="logo" fill />
         </Box>
         <SocialIcons
           sx={{

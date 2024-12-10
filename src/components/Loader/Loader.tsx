@@ -120,7 +120,7 @@ const Loader = () => {
               left: 0,
               width: '100%',
               height: '100%',
-              maskImage: `url('/SET.png') `,
+              maskImage: `url('/SET.webp') `,
               maskSize: '249px',
               maskRepeat: 'no-repeat',
               maskPosition: 'center',
@@ -131,7 +131,7 @@ const Loader = () => {
             }}
           ></Box>
           <Image
-            src={'/SET.png'}
+            src={'/SET.webp'}
             priority
             sizes="full"
             alt="Set Image"
