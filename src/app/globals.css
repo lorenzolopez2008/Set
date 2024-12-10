@@ -1,5 +1,11 @@
 body{
   background-color: #FAFAFA;
+  overflow-y: hidden;
+}
+@media (hover: none) and (pointer: coarse) {
+  body {
+    overflow-y: auto;
+  }
 }
 .footer {
   width: 100%;

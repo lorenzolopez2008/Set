@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material';
 import { pxToRem } from '@/helpers/pxToRem';
 import Image from 'next/image';
 import { Carousel } from '@/app/components/Carousel/Carousel';
-import Circle from '@/../public/circle.png';
+import Circle from '@/../public/circle.webp';
 import Maquina from '@/../public/maquinaFSL.png';
 import Title from '../Title';
 

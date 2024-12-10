@@ -179,7 +179,7 @@ export default function Footer() {
                     }}
                   >
                     <Image
-                      src="/SET.png"
+                      src="/SET.webp"
                       alt="SET Logo"
                       fill
                       sizes="full"

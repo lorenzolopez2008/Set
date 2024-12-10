@@ -149,7 +149,7 @@ export const Navbar = () => {
           marginTop: '1rem',
           transform: isDesktop ? 'scale(1)' : 'scale(0.8)',
         }}
-        src={'/SET.png'}
+        src={'/SET.webp'}
         alt="logo"
         width={107}
         height={56}
