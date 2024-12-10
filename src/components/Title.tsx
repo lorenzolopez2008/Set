@@ -21,8 +21,8 @@ function Title({ title, location, titleShadow }: Props) {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: '4rem',
-        marginBottom: { xs: '5rem', md: '7rem', xl: '15rem' },
+        marginTop: { xs: '4rem', md: '1rem' },
+        marginBottom: { xs: '5rem', sm: '5rem', xl: '15rem' },
       }}
     >
       {!isMobile ? (
@@ -70,7 +70,7 @@ function Title({ title, location, titleShadow }: Props) {
           variant="shadow"
           sx={{
             position: 'absolute',
-            fontSize: 'clamp(5.313rem, 10vw, 14.063rem)',
+            fontSize: 'clamp(4rem, 10vw, 14.063rem)',
             whiteSpace: 'nowrap',
             fontWeight: 'bold',
             lineHeight: 'clamp(2.5rem, 5vw, 5.438rem)',

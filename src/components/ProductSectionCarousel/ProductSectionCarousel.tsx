@@ -108,9 +108,9 @@ export const ProductSectionCarrusel = () => {
     <Box
       sx={{
         position: 'relative',
-        paddingTop: { xs: 0, md: '7rem' },
-        paddingBottom: { xs: '7rem', md: 0 },
-        height: '100vh',
+        paddingBottom: { xs: '15rem', sm: '8rem' },
+        paddingTop: { xs: '7rem', sm: '2rem' },
+        height: { xs: 'fit-content', md: '100vh' },
         overflow: 'hidden',
         width: '100%',
         backgroundImage: { xs: 'none', lg: 'url(dashedRectangleUp.svg)' },
@@ -118,12 +118,23 @@ export const ProductSectionCarrusel = () => {
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center 30%',
         maskImage:
-          'linear-gradient(180deg, hsla(0, 0%, 0%, 1) 0%,hsla(0, 0%, 0%, 1) 90%,hsla(0, 0%, 100%, 0) 100%)',
+          'linear-gradient(180deg,hsla(0, 0%, 0%, 0) 0%, hsla(0, 0%, 0%, 1) 8%,hsla(0, 0%, 0%, 1) 90%,hsla(0, 0%, 100%, 0) 100%)',
         display: 'flex',
         flexDirection: 'column',
       }}
       id="productCarrusel"
     >
+      <Image
+        id="bg-carousel"
+        src={'/bg-carousel.png'}
+        alt="bg"
+        fill
+        sizes="100%"
+        style={{
+          position: 'absolute',
+          objectFit: 'cover',
+        }}
+      />
       <Box
         sx={{
           position: 'absolute',
@@ -161,17 +172,16 @@ export const ProductSectionCarrusel = () => {
         id="machine-carrousel"
         ref={containerRef}
       >
-        <Box className={styles.embla}>
+        <Box className={styles.embla} sx={{ marginBottom: '2rem' }}>
           <Box
             sx={{
-              display: { sx: 'block', sm: 'none' },
               filter: 'blur(7rem)',
               position: 'absolute',
               background:
                 'radial-gradient(circle, hsla(203, 100%, 28%, 1) 70%, hsla(37, 89%, 52%, 0) 100%)',
-              opacity: 0.9,
               width: '50%',
               height: '100%',
+              opacity: 0.5,
               left: '50%',
               top: '0',
               transform: 'translateX(-50%)',
@@ -213,6 +223,7 @@ export const ProductSectionCarrusel = () => {
         </Box>
         <ProductSectionCarouselButton
           id={'product-buttons'}
+          showMore={true}
           emblaApi={emblaApi}
         />
       </Box>
