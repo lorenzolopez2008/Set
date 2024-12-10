@@ -21,7 +21,7 @@ export const HomeQuienes = () => {
       }}
       id="homeQuienes"
     >
-      <Box display={'flex'} justifyContent={{ xs: 'center', sm: 'flex-start' }}>
+      <Box display={'flex'} justifyContent={{ xs: 'start', sm: 'flex-start' }}>
         <Box
           display={{ xs: 'none', sm: 'flex' }}
           sx={{
@@ -30,7 +30,13 @@ export const HomeQuienes = () => {
             marginLeft: '1rem',
           }}
         ></Box>
-        <Typography variant={'title'} marginLeft={'1rem'}>
+        <Typography
+          variant={'title'}
+          marginLeft={{
+            xs: '2rem',
+            sm: '1rem',
+          }}
+        >
           ¿Quienes somos?
         </Typography>
       </Box>
