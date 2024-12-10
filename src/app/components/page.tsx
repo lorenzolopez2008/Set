@@ -19,7 +19,21 @@ const page = () => {
         variant="title"
         text="Los equipos con el retorno de inversión más rapido"
       />
-      <Button variant="mainGreen" endIcon={<DiagonalArrow />}>
+      <Button
+        sx={{
+          '&:hover': {
+            '& .MuiBox-root': {
+              transform: 'rotate(90deg)',
+              transition: 'transform 0.3s ease',
+            },
+          },
+          '& .MuiBox-root': {
+            transition: 'transform 0.5s ease',
+          },
+        }}
+        variant="mainGreen"
+        endIcon={<DiagonalArrow />}
+      >
         Contactanos
       </Button>
       <TextWithSideBar

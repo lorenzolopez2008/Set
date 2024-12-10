@@ -24,7 +24,7 @@ export default function Footer() {
       items: [
         'Características',
         'Precios',
-        'Estudios de caso',
+        'Casos de estudio',
         'Reseñas',
         'Actualizaciones',
       ],
@@ -47,7 +47,7 @@ export default function Footer() {
   const clientSupportItems = [
     {
       icon: <MailIcon />,
-      text: 'alientes@setindutry.com',
+      text: 'Clientes@setindustry.com',
     },
     {
       icon: <PhoneIcon />,
@@ -60,7 +60,7 @@ export default function Footer() {
     },
     {
       icon: <MailIcon />,
-      text: 'administracion@setindutry.com',
+      text: 'Administracion@setindustry.com',
     },
     {
       icon: <PhoneIcon />,
