@@ -152,7 +152,12 @@ export const ProductCarrusel = () => {
           variant="main"
           sx={{
             color: 'black',
-            marginLeft: { xs: 0, sm: '5.0625rem', md: '9.0625rem' },
+            marginLeft: {
+              xs: 0,
+              sm: '4.5625rem',
+              lg: '6.0625rem',
+              xl: '9.0625rem',
+            },
             display: 'inline-flex',
             flexDirection: { xs: 'column', sm: 'row' },
             alignItems: { xs: 'center', sm: 'flex-start' },
