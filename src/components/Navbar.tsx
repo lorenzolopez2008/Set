@@ -170,7 +170,7 @@ export const Navbar = () => {
             sx={{ padding: 1 }}
             endIcon={<DiagonalArrow />}
           >
-            Contactanos
+            Contáctanos
           </Button>
         )}
 
