@@ -6,6 +6,7 @@ import './Carousel.css';
 import { DiagonalArrow } from '../svg/DiagonalArrow';
 import { NextButton, PrevButton } from './CarouselButtons/CarouselButtons';
 import { EmblaCarouselType } from 'embla-carousel';
+import { useGetScreen } from '@/hooks/useGetScreen';
 
 const ServicesContent: React.FC<{
   emblaApi?: EmblaCarouselType;
@@ -13,6 +14,7 @@ const ServicesContent: React.FC<{
   selectedIndex: number;
   pathName?: string;
 }> = ({ emblaApi, services, selectedIndex, pathName }) => {
+  const { screen } = useGetScreen('sm');
   return (
     <Box
       sx={{
