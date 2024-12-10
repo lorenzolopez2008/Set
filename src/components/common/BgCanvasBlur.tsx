@@ -1,6 +1,5 @@
 'use client';
 import bgElementFixedAtom from '@/store/bgCircleFollow.atom';
-import { useMediaQuery } from '@mui/material';
 import { useAtom } from 'jotai';
 import { useEffect, useRef, useState } from 'react';
 

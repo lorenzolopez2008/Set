@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { HeadingSection } from '@/app/components/ui/HeadingSection/HeadingSection';
 import { inter } from '@/fonts';
 import { Box, Typography } from '@mui/material';
@@ -26,6 +27,8 @@ export const AboutUs = () => {
       svg: '/values/bubbles.svg',
     },
   ];
+
+  // TODO: cambiar imagenes a next/images - borrar este comentario luego.
 
   return (
     <Box
@@ -119,6 +122,7 @@ export const AboutUs = () => {
               width: ' 100%',
               height: '100%',
             }}
+            alt=""
           />
         </Box>
       </Box>
