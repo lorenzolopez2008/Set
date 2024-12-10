@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { Box } from '@mui/material';
 import React from 'react';
-import GoogleMap from './GoogleMap';
 import MapboxMap from './MapBox';
 interface Props {
   isMobile: boolean;

@@ -167,7 +167,18 @@ export const Navbar = () => {
         {isDesktop && (
           <Button
             variant="mainGreen"
-            sx={{ padding: 1 }}
+            sx={{
+              padding: 1,
+              '&:hover': {
+                '& .MuiBox-root': {
+                  transform: 'rotate(90deg)',
+                  transition: 'transform 0.3s ease',
+                },
+              },
+              '& .MuiBox-root': {
+                transition: 'transform 0.5s ease',
+              },
+            }}
             endIcon={<DiagonalArrow />}
           >
             Contáctanos
