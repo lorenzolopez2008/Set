@@ -3,6 +3,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Box, useMediaQuery } from '@mui/material';
 import { ProductsIcons } from './ProductsIcons';
 import { Circle } from './Circle';
+import CircleBlur from '@/../public/circleBlur.png';
+import NextImage from 'next/image';
 
 export const Machine: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -129,22 +131,38 @@ export const Machine: React.FC = () => {
         position={'relative'}
         ref={canvasContainerRef}
       >
-        <Box
-          sx={{
-            display: { sx: 'block', sm: 'none' },
-            filter: 'blur(10rem)',
-            position: 'absolute',
-            background: '#00598F',
-            opacity: 0.6,
-            width: '100%',
-            height: '100%',
-            left: '75%',
-            top: '-25%',
-            transform: 'translateX(-50%)',
-            zIndex: -1,
-            borderRadius: '2000px',
-          }}
-        ></Box>
+        {!isMobile ? (
+          <Box
+            sx={{
+              display: { sx: 'block', sm: 'none' },
+              filter: 'blur(10rem)',
+              position: 'absolute',
+              background: '#00598F',
+              opacity: 0.6,
+              width: '100%',
+              height: '100%',
+              left: '75%',
+              top: '-25%',
+              transform: 'translateX(-50%)',
+              zIndex: -1,
+              borderRadius: '2000px',
+            }}
+          ></Box>
+        ) : (
+          <NextImage
+            src={CircleBlur}
+            alt="circle blur"
+            style={{
+              position: 'absolute',
+              width: '100%',
+              height: '100%',
+              left: '75%',
+              top: '-25%',
+              transform: 'translateX(-50%)',
+              zIndex: -1,
+            }}
+          />
+        )}
         <canvas
           ref={canvasRef}
           style={{

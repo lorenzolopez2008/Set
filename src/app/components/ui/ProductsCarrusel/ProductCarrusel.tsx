@@ -7,7 +7,7 @@ import {
 } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
 import styles from './ProductCard.module.css';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, useMediaQuery } from '@mui/material';
 
 import { CarruselButtons } from './CarruselButtons/CarruselButtons';
 import Image from 'next/image';
@@ -15,6 +15,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import { Circle } from '@/components/Home/homeComponents/Circle';
+import CircleBlur from '@/../public/circleBlur.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -29,6 +30,8 @@ export const ProductCarrusel = () => {
   const tweenFactor = useRef(0);
   const tweenNodes = useRef<HTMLElement[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const isMobile = useMediaQuery('(max-width: 768px)');
 
   const slides = [
     '/machine-animation/0120 copy.webp',
@@ -186,23 +189,39 @@ export const ProductCarrusel = () => {
         ref={containerRef}
       >
         <Box className={styles.embla}>
-          <Box
-            sx={{
-              display: { sx: 'block', sm: 'none' },
-              filter: 'blur(7rem)',
-              position: 'absolute',
-              background:
-                'radial-gradient(circle, hsla(203, 100%, 28%, 1) 70%, hsla(37, 89%, 52%, 0) 100%)',
-              opacity: 0.9,
-              width: '50%',
-              height: '100%',
-              left: '50%',
-              top: '0',
-              transform: 'translateX(-50%)',
-              zIndex: -1,
-              borderRadius: '2000px',
-            }}
-          ></Box>
+          {!isMobile ? (
+            <Box
+              sx={{
+                display: { sx: 'block', sm: 'none' },
+                filter: 'blur(7rem)',
+                position: 'absolute',
+                background:
+                  'radial-gradient(circle, hsla(203, 100%, 28%, 1) 70%, hsla(37, 89%, 52%, 0) 100%)',
+                opacity: 0.9,
+                width: '50%',
+                height: '100%',
+                left: '50%',
+                top: '0',
+                transform: 'translateX(-50%)',
+                zIndex: -1,
+                borderRadius: '2000px',
+              }}
+            ></Box>
+          ) : (
+            <Image
+              src={CircleBlur}
+              alt="circle blur"
+              style={{
+                position: 'absolute',
+                width: '150%',
+                height: '150%',
+                left: '50%',
+                top: '0',
+                transform: 'translateX(-50%)',
+                zIndex: -1,
+              }}
+            />
+          )}
           <Box className={styles.embla__viewport} ref={emblaRef}>
             <Box className={styles.embla__container}>
               {slides.map((img, index) => (

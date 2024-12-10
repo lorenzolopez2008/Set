@@ -48,8 +48,6 @@ const BgCanvasBlur = () => {
 
   const [positionFixedToElement] = useAtom(bgElementFixedAtom);
 
-  const isMobile = useMediaQuery('(max-width: 900px)');
-
   const [isSafari, setIsSafari] = useState(false);
 
   useEffect(() => {
@@ -140,8 +138,6 @@ const BgCanvasBlur = () => {
       cancelAnimationFrame(animationFrame);
     };
   }, []);
-
-  if (isMobile) return null;
 
   return (
     <canvas
