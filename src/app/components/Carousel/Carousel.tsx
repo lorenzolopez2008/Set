@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 import useEmblaCarousel from 'embla-carousel-react';
 import './Carousel.css';
@@ -13,7 +13,6 @@ import { gsap } from 'gsap';
 import { useAtom } from 'jotai';
 import bgElementFixedAtom from '@/store/bgCircleFollow.atom';
 import { usePathname } from 'next/navigation';
-import { transform } from 'next/dist/build/swc';
 
 interface CarouselProps {
   images: string[];
@@ -245,7 +244,12 @@ export const Carousel: React.FC<CarouselProps> = ({ images }) => {
           </Box>
         </Box>
       ) : (
-        <Box width="100%" position="relative" padding="4.5rem 5rem 0 5rem">
+        <Box
+          width="100%"
+          marginInline="auto"
+          position="relative"
+          padding="4.5rem 5rem 0 5rem"
+        >
           <ServicesContent
             selectedIndex={selectedIndex}
             services={services}
