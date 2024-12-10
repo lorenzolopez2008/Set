@@ -47,7 +47,7 @@ export default function Footer() {
   const clientSupportItems = [
     {
       icon: <MailIcon />,
-      text: 'alientes@setindutry.com',
+      text: 'clientes@setindustry.com',
     },
     {
       icon: <PhoneIcon />,
@@ -60,7 +60,7 @@ export default function Footer() {
     },
     {
       icon: <MailIcon />,
-      text: 'administracion@setindutry.com',
+      text: 'administracion@setindustry.com',
     },
     {
       icon: <PhoneIcon />,
