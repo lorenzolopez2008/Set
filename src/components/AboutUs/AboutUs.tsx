@@ -135,6 +135,7 @@ export const AboutUs = () => {
           justifyContent: 'center',
           alignItems: 'center',
           gap: '6.25rem',
+          paddingBottom: '5rem',
         }}
       >
         <Box
