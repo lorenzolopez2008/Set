@@ -77,7 +77,7 @@ function ContactInfo() {
         </Box>
       </Box>
       {!isMobile ? (
-        <Box sx={{ height: '33%', width: '90%' }}>
+        <Box sx={{ width: '90%' }}>
           <Box
             sx={{
               backgroundColor: '#00598F',
@@ -88,23 +88,32 @@ function ContactInfo() {
               fontSize: 'clamp(0.1rem, 10vw ,1rem)',
               flexDirection: isMobile ? 'column' : 'row',
               color: 'white',
-              padding: '2rem',
-              height: '80%',
+              padding: '1rem',
+              paddingTop: '2rem',
+              paddingBottom: '2rem',
+              height: '100%',
               width: '100%',
             }}
           >
-            <Box>
-              Canal de Tezontle 57A,
-              <br /> Col. P. de Churubusco,
-              <br /> Iztapalapa, CDMX.
+            <Box
+              sx={{
+                width: '100%',
+                textAlign: 'center',
+              }}
+            >
+              Canal de Tezontle 57A, Col. P. de Churubusco, Iztapalapa, CDMX.
             </Box>
             <Box
               sx={{ width: '4px', height: '100%', backgroundColor: 'white' }}
             ></Box>
-            <Box>
-              Blvrd del rodeo 245, El
-              <br /> vigia, Zapopan, Jalisco
-              <br /> México
+            <Box
+              sx={{
+                width: '100%',
+                textAlign: 'center',
+                paddingLeft: '1rem',
+              }}
+            >
+              Blvrd del rodeo 245, El vigia, Zapopan, Jalisco México
             </Box>
           </Box>
         </Box>
