@@ -4,10 +4,8 @@ export const CardGradient = ({ children }: { children: React.ReactNode }) => {
   return (
     <Box
       sx={{
-        width: 'fit-content',
-        height: '37.5rem',
-        maxWidth: { lg: '35rem', xs: '24.688rem' },
-        maxHeight: '37.5rem',
+        height: '39rem',
+        width: 'clamp(22.6875rem, 22.0446rem + 8.2143vw, 36.1875rem)',
         borderRadius: '0 3.125rem',
         overflow: 'visible',
         padding: '0.188rem',

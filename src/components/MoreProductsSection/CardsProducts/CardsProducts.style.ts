@@ -1,17 +1,21 @@
 import { inter } from '@/fonts';
 
 export const containerStyles = {
-  display: 'flex',
-  paddingInline:{md:'1.5rem',lg:'2rem'},
-  flexWrap: 'wrap',
-  gap: '4.563rem',
-  width: { lg: '70%', xs: '100%' }
+  display: 'grid',
+  flexGrow: 1,
+  gridTemplateColumns: {
+    xs: 'repeat(1)',
+    md: 'repeat(2, clamp(24.6875rem, 23.0446rem + 8.2143vw, 36.1875rem))',
+  },
+  gap: '3.563rem',
+  justifyContent: 'center', // Centra los elementos horizontalmente
+  alignItems: 'center', // Centra los elementos verticalmente
 };
 
 export const cardStyles = {
-  display: 'flex',
+  display: 'inline-flex',
   flexDirection: 'column',
-  alignItems: 'center',
+  alignItems: 'start',
   justifyContent: 'space-between',
   gap: '2.063rem',
   width: '100%',
@@ -19,22 +23,10 @@ export const cardStyles = {
 };
 
 export const containerImageStyles = {
-  minWidth: {
-    lg: '27.125rem',
-    sm: '20.875rem',
-    xs: '15.875rem',
-  },
-  maxWidth: {
-    lg: '27.125rem',
-    sm: '20.875rem',
-    xs: '15.875rem',
-  },
-  minHeight: '14.625rem',
-  maxHeight: '14.625rem',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
+  width: '100%',
+  maxHeight: '16.625rem',
+  height: '16.625rem',
+  filter: { xs: '', lg: 'drop-shadow(4px 5px 10px #00000070)' },
 };
 
 export const containerTitleStyles = {
@@ -52,17 +44,15 @@ export const titleStyles = {
 };
 
 export const buttonStyles = {
-  width: { xs: '12.938rem', lg: '18.063rem' },
-  height: { lg: '3.813rem', xs: '3.563rem' },
   background: '#00598F',
   color: 'white',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   borderRadius: '0 0.75rem',
-  textWrap:'nowrap',
+  textWrap: 'nowrap',
   gap: '1rem',
-  marginRight: 'auto',
+  padding: '1rem 2.5rem',
   fontSize: { lg: '1.625rem', xs: '1.188rem' },
   fontWeight: '500',
   fontFamily: inter.style.fontFamily,

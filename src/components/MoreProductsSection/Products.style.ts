@@ -1,7 +1,7 @@
 export const containerStyles = {
   display: 'flex',
-  flexDirection: { lg: 'row', xs: 'column' },
-  justifyContent: { lg: 'space-between', xs: 'center' },
-  alignContent: { lg: 'start', xs: 'center' },
-  padding: {xs:'1rem',lg:'3.313rem'},
+  flexDirection: { xl: 'row', xs: 'column' },
+  justifyContent: { xl: 'space-between', xs: 'center' },
+  alignContent: { xl: 'start', xs: 'center' },
+  padding: { xs: '1rem', xl: '2.313rem' },
 };

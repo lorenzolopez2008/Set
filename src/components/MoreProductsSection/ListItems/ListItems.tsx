@@ -6,10 +6,11 @@ export const ListItems = () => {
   return (
     <List
       sx={{
-        width: { lg: '30%', xs: '100%' },
-        display: { lg: 'block', xs: 'flex' },
+        width: 'fit-content',
+        maxWidth: '100%',
+        display: { xl: 'block', xs: 'flex' },
         overflow: 'auto',
-        marginBottom: { lg: '0', xs: '2.5rem' },
+        marginBottom: { xl: '0', xs: '2.5rem' },
         '&::-webkit-scrollbar': {
           width: '8px',
           height: '10px',
