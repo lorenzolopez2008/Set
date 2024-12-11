@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
-import { Box } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Box, useMediaQuery } from '@mui/material';
 import useEmblaCarousel from 'embla-carousel-react';
 import './Carousel.css';
 import { useGetScreen } from '@/hooks/useGetScreen';
@@ -13,7 +13,8 @@ import { gsap } from 'gsap';
 import { useAtom } from 'jotai';
 import bgElementFixedAtom from '@/store/bgCircleFollow.atom';
 import { usePathname } from 'next/navigation';
-import { transform } from 'next/dist/build/swc';
+import CircleBlur from '@/../public/circleBlur.png';
+import Image from 'next/image';
 
 interface CarouselProps {
   images: string[];
@@ -60,6 +61,8 @@ const CarouselSlide: React.FC<{
 
 // Componente principal del Carousel
 export const Carousel: React.FC<CarouselProps> = ({ images }) => {
+  const isMobile = useMediaQuery('(max-width: 768px)');
+
   const emblaOptions: EmblaOptionsType = {
     loop: true,
     watchDrag: true,
@@ -183,21 +186,36 @@ export const Carousel: React.FC<CarouselProps> = ({ images }) => {
             objectPosition: 'center',
           }}
         />
-        <Box
-          sx={{
-            display: { sx: 'block', sm: 'none' },
-            filter: 'blur(8rem)',
-            position: 'absolute',
-            background: '#00598F',
-            opacity: 0.6,
-            width: '100%',
-            height: '100%',
-            left: 0,
-            top: 0,
-            zIndex: -1,
-            borderRadius: '2000px',
-          }}
-        ></Box>
+        {!isMobile ? (
+          <Box
+            sx={{
+              display: { sx: 'block', sm: 'none' },
+              filter: 'blur(8rem)',
+              position: 'absolute',
+              background: '#00598F',
+              opacity: 0.6,
+              width: '100%',
+              height: '100%',
+              left: 0,
+              top: 0,
+              zIndex: -1,
+              borderRadius: '2000px',
+            }}
+          ></Box>
+        ) : (
+          <Image
+            src={CircleBlur}
+            alt={'circle blur'}
+            style={{
+              width: '100%',
+              height: '100%',
+              left: 0,
+              top: 0,
+              zIndex: -1,
+              position: 'absolute',
+            }}
+          />
+        )}
       </Box>
       {/* Carousel */}
       <Box sx={{ position: 'relative', width: '100%' }}>
@@ -245,7 +263,12 @@ export const Carousel: React.FC<CarouselProps> = ({ images }) => {
           </Box>
         </Box>
       ) : (
-        <Box width="100%" position="relative" padding="4.5rem 5rem 0 5rem">
+        <Box
+          width="100%"
+          marginInline="auto"
+          position="relative"
+          padding="4.5rem 5rem 0 5rem"
+        >
           <ServicesContent
             selectedIndex={selectedIndex}
             services={services}

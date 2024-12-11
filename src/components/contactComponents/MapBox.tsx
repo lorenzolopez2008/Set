@@ -16,6 +16,7 @@ const MapboxMap = () => {
       style={{ width: '100%', height: '400px', borderRadius: '10px' }}
       mapStyle="mapbox://styles/mapbox/streets-v11"
       mapboxAccessToken={accessToken}
+      attributionControl={false}
     >
       <Marker
         longitude={-99.08679785148918}

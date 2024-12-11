@@ -36,7 +36,7 @@ const Loader = () => {
         }
         return newProgress;
       });
-    }, 50);
+    }, 30);
 
     return () => clearInterval(interval);
   }, []);
@@ -47,14 +47,14 @@ const Loader = () => {
       gsap
         .timeline()
         .to('.progress-fill', {
-          width: `${100 - progress}%`,
-          duration: 1,
+          width: `0%`,
+          duration: 3,
           ease: 'ease.inOut',
         })
         .to('.container-loader', {
           opacity: 0,
           duration: 1,
-          delay: 6,
+          delay: 1,
           ease: 'ease.inOut',
           onComplete: () => {
             // Ocultar el componente Loader
@@ -62,7 +62,7 @@ const Loader = () => {
           },
         });
     }
-  }, [progress]);
+  }, []);
 
   const { isVisible } = useVisibility('Loader');
   if (!isVisible) return null;
@@ -96,56 +96,56 @@ const Loader = () => {
           height: '100%',
         }}
       >
-        <Box
-          sx={{
-            backgroundColor: '#f0f0f0',
-            zIndex: 93,
-            width: '100%',
-            height: '100%',
-            position: 'absolute',
-            top: 0,
-            right: 0,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-          className="progress-fill"
-        ></Box>
-        <Box
-          sx={{
-            position: 'absolute',
-            backgroundColor: '#00598F',
-            top: 0,
-            left: 0,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: '100%',
-            height: '100%',
-            maskImage: `url('/SET.png') `,
-            maskSize: '250px',
-            maskRepeat: 'no-repeat',
-            maskPosition: 'center',
-            zIndex: 11,
-            pointerEvents: 'none',
-          }}
-        ></Box>
-        <Image
-          src={'/SET.png'}
-          priority
-          sizes="full"
-          alt="Set Image"
-          style={{
-            objectFit: 'contain',
-            zIndex: 94,
-            opacity: progress === 100 ? 1 : 0,
-            transition: 'opacity 1s ease-in-out',
-          }}
-          width={250}
-          height={150}
-        />
+        <Box sx={{ width: 'fit-content', position: 'relative' }}>
+          <Box
+            sx={{
+              backgroundColor: '#f0f0f0',
+              zIndex: 93,
+              width: '100%',
+              height: '100%',
+              position: 'absolute',
+              top: 0,
+              right: 0,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+            className="progress-fill"
+          ></Box>
+          <Box
+            sx={{
+              position: 'absolute',
+              backgroundColor: '#00598F',
+              top: '-2px',
+              left: 0,
+              width: '100%',
+              height: '100%',
+              maskImage: `url('/SET.webp') `,
+              maskSize: '249px',
+              maskRepeat: 'no-repeat',
+              maskPosition: 'center',
+              zIndex: 11,
+              pointerEvents: 'none',
+              opacity: progress <= 70 ? 1 : 0,
+              transition: 'opacity 1s ease-in-out',
+            }}
+          ></Box>
+          <Image
+            src={'/SET.webp'}
+            priority
+            sizes="full"
+            alt="Set Image"
+            style={{
+              objectFit: 'contain',
+              zIndex: 94,
+              opacity: progress >= 70 ? 1 : 0,
+              transition: 'opacity 1s ease-in-out',
+            }}
+            width={250}
+            height={150}
+          />
+        </Box>
       </Box>
-
       <Typography
         variant="h3"
         sx={{
@@ -154,6 +154,7 @@ const Loader = () => {
           bottom: 64,
           left: 64,
           zIndex: 94,
+          width: '3rem',
         }}
       >
         {text}

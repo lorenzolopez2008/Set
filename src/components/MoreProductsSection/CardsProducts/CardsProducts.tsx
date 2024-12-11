@@ -52,7 +52,7 @@ export const CardsProducts = () => {
           <Box sx={cardStyles}>
             <Box
               sx={{
-                display: 'flex',
+                display: 'inline-block',
                 flexDirection: 'column',
                 gap: '2.063rem',
                 alignItems: 'center',
@@ -62,14 +62,12 @@ export const CardsProducts = () => {
                 <Image
                   src={product.img}
                   alt="product image"
-                  layout="responsive"
                   width={100}
                   height={100}
                   style={{
                     width: '100%',
                     height: '100%',
-                    aspectRatio: 'auto',
-                    filter: 'drop-shadow(4px 5x 10px #00000070)',
+                    objectFit: 'contain',
                   }}
                 />
               </Box>

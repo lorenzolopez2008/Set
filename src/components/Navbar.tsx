@@ -149,7 +149,7 @@ export const Navbar = () => {
           marginTop: '1rem',
           transform: isDesktop ? 'scale(1)' : 'scale(0.8)',
         }}
-        src={'/SET.png'}
+        src={'/SET.webp'}
         alt="logo"
         width={107}
         height={56}
@@ -167,10 +167,21 @@ export const Navbar = () => {
         {isDesktop && (
           <Button
             variant="mainGreen"
-            sx={{ padding: 1 }}
+            sx={{
+              padding: 1,
+              '&:hover': {
+                '& .MuiBox-root': {
+                  transform: 'rotate(90deg)',
+                  transition: 'transform 0.3s ease',
+                },
+              },
+              '& .MuiBox-root': {
+                transition: 'transform 0.5s ease',
+              },
+            }}
             endIcon={<DiagonalArrow />}
           >
-            Contactanos
+            Contáctanos
           </Button>
         )}
 

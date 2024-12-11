@@ -12,11 +12,16 @@ export const HomeQuienes = () => {
         flexDirection: 'column',
         alignItems: 'stretch',
         gap: '.5rem',
-        marginLeft: { xs: 0, sm: '5.0625rem', md: '9.0625rem' },
+        marginLeft: {
+          xs: 0,
+          sm: '4.5625rem',
+          lg: '6.0625rem',
+          xl: '9.0625rem',
+        },
       }}
       id="homeQuienes"
     >
-      <Box display={'flex'} justifyContent={{ xs: 'center', sm: 'flex-start' }}>
+      <Box display={'flex'} justifyContent={{ xs: 'start', sm: 'flex-start' }}>
         <Box
           display={{ xs: 'none', sm: 'flex' }}
           sx={{
@@ -25,7 +30,13 @@ export const HomeQuienes = () => {
             marginLeft: '1rem',
           }}
         ></Box>
-        <Typography variant={'title'} marginLeft={'1rem'}>
+        <Typography
+          variant={'title'}
+          marginLeft={{
+            xs: '2rem',
+            sm: '1rem',
+          }}
+        >
           ¿Quienes somos?
         </Typography>
       </Box>

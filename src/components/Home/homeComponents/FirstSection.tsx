@@ -18,7 +18,7 @@ export const FirstSection = () => {
       .fromTo(
         '#navbarButtons',
         { yPercent: -150, opacity: 0 },
-        { yPercent: 0, opacity: 1, delay: 7 }
+        { yPercent: 0, opacity: 1, delay: 4 }
       )
       .fromTo(
         '#logo',

@@ -27,6 +27,8 @@ export const AboutUs = () => {
     },
   ];
 
+  // TODO: cambiar imagenes a next/images - borrar este comentario luego.
+
   return (
     <Box
       sx={{
@@ -132,6 +134,7 @@ export const AboutUs = () => {
             style={{
               zIndex: 2,
             }}
+            alt=""
           />
         </Box>
       </Box>
