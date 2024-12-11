@@ -134,7 +134,6 @@ export const AboutUs = () => {
             style={{
               zIndex: 2,
             }}
-            alt=""
           />
         </Box>
       </Box>
@@ -220,6 +219,7 @@ export const AboutUs = () => {
           </Box>
           {[1, 2, 3].map((i) => (
             <Box
+              key={i}
               sx={{
                 maxWidth: 'clamp(6.25rem, 2.5543rem + 18.4783vw, 16.875rem)',
                 maxHeight:
@@ -227,7 +227,6 @@ export const AboutUs = () => {
               }}
             >
               <Image
-                key={i}
                 src={`/values/${i}.png`}
                 alt={`${i} image not found`}
                 width={329}
