@@ -2,6 +2,7 @@ import { HeadingSection } from '@/app/components/ui/HeadingSection/HeadingSectio
 import { inter } from '@/fonts';
 import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
+import Title from '../Title';
 
 export const AboutUs = () => {
   const ourValues = [
@@ -31,14 +32,15 @@ export const AboutUs = () => {
     <Box
       sx={{
         width: '100%',
+        marginBottom: { xs: '6.938rem', md: '13.875rem', lg: '27.75rem' },
       }}
     >
       {/* //? HEADER */}
-      <HeadingSection
-        page="Home"
-        section="Quienes Somos"
-        text="¿Quienes Somos?"
-      />
+      {/* <Title
+        location="Home"
+        titleShadow="Quienes Somos"
+        title="¿Quienes Somos?"
+      /> */}
       {/* //? ABOUT US */}
       <Box
         sx={{
@@ -46,7 +48,8 @@ export const AboutUs = () => {
           display: 'flex',
           flexDirection: { xs: 'column', md: 'row' },
           justifyContent: 'space-evenly',
-          padding: { xs: '0 2.313rem', md: '4.563rem' },
+          padding: { xs: '0 2.313rem', lg: '4.563rem' },
+          gap: '1rem',
         }}
       >
         <Box sx={{ flex: 0.5 }}>
@@ -111,13 +114,26 @@ export const AboutUs = () => {
             flex: 0.5,
             maxWidth: 'clamp(32.6875rem, 22.144rem + 52.7174vw, 63rem)',
             maxHeight: 'auto',
+            position: 'relative',
+            display: 'flex',
           }}
         >
-          <img
-            src={'/products/dms.png'}
+          <Image
+            src={'/circle.png'}
+            alt="circle background image"
+            fill
+            sizes="20%"
+            objectFit="contain"
+          />
+          <Image
+            src={'/machine.svg'}
+            alt="machine image"
+            width={500}
+            height={500}
+            layout="responsive"
+            objectFit="contain"
             style={{
-              width: ' 100%',
-              height: '100%',
+              zIndex: 2,
             }}
           />
         </Box>
@@ -125,31 +141,93 @@ export const AboutUs = () => {
       {/* //? OUR VALUES */}
       <Box
         sx={{
+          marginTop: { xs: '12rem', md: '17.125rem' },
           width: '100%',
           display: 'flex',
-          flexDirection: { xs: 'column', md: 'row' },
+          flexDirection: { xs: 'column', lg: 'row' },
           justifyContent: 'center',
           alignItems: 'center',
-          gap: '6.25rem',
+          gap: { xs: '8.5rem', lg: '0' },
+          height: '32.188rem',
         }}
       >
         <Box
           sx={{
+            width: { xs: '100%', lg: '70%' },
+            height: '100%',
             display: 'flex',
-            justifyContent: 'center',
+            justifyContent: 'space-evenly',
             alignItems: 'center',
-            gap: '0.5rem',
+            position: 'relative',
           }}
         >
+          <Box
+            sx={{
+              position: 'absolute',
+              minWidth: '100%',
+              minHeight: '100%',
+              left: '-40%',
+              top: '30%',
+              display: { xs: 'none', lg: 'block' },
+            }}
+          >
+            <Image
+              src={'/decorationLines.svg'}
+              alt="cuadricula rayada"
+              fill
+              sizes="100%"
+            />
+          </Box>
+          <Box
+            sx={{
+              position: 'absolute',
+              width: { xs: '100%', lg: '90%' },
+              height: '150%',
+              color: '#008428',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
+            <Typography
+              variant="shadow"
+              sx={{
+                fontSize: 'clamp(5rem, 1.087rem + 19.5652vw, 16.25rem)',
+                textWrap: 'nowrap',
+                fontWeight: 'bold',
+                lineHeight: '91.5%',
+                position: 'absolute',
+                top: { xs: '-2.5rem', lg: '-1.5rem' },
+                left: { xs: 0, lg: '-30%', xl: '-10%' },
+                overflowX: 'hidden',
+              }}
+            >
+              Cultura
+            </Typography>
+            <Typography
+              variant="shadow"
+              sx={{
+                fontSize: 'clamp(5rem, 1.087rem + 19.5652vw, 16.25rem)',
+                textWrap: 'nowrap',
+                fontWeight: 'bold',
+                lineHeight: '91.5%',
+                position: 'absolute',
+                bottom: { xs: '-2.5rem', lg: '-1.5rem' },
+                right: 0,
+                overflowX: 'hidden',
+              }}
+            >
+              SET
+            </Typography>
+          </Box>
           {[1, 2, 3].map((i) => (
             // <Box
             // sx={{}}>
             <img
               key={i}
               src={`/values/${i}.png`}
-              alt="image values"
+              alt={`${i} image not found`}
               style={{
-                maxWidth: 'clamp(6.25rem, 1.2717rem + 24.8913vw, 20.5625rem)',
+                maxWidth: 'clamp(6.25rem, 2.5543rem + 18.4783vw, 16.875rem)',
                 maxHeight:
                   'clamp(13.4375rem, 7.8288rem + 28.0435vw, 29.5625rem)',
                 borderRadius: '0.938rem',
@@ -159,7 +237,16 @@ export const AboutUs = () => {
           ))}
         </Box>
 
-        <Box>
+        <Box
+          sx={{
+            width: { xs: 'fit-content', lg: '30%' },
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'start',
+            gap: '2rem',
+          }}
+        >
           <Typography
             component={'h3'}
             sx={{
@@ -167,7 +254,6 @@ export const AboutUs = () => {
               fontSize: 'clamp(1.9375rem, 1.8088rem + 0.6435vw, 2.3075rem)',
               fontFamily: inter.style.fontFamily,
               fontWeight: 700,
-              marginBottom: '2rem',
             }}
           >
             Nuestros Valores
