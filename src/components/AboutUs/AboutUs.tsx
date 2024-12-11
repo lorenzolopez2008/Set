@@ -27,8 +27,6 @@ export const AboutUs = () => {
     },
   ];
 
-  // TODO: cambiar imagenes a next/images - borrar este comentario luego.
-
   return (
     <Box
       sx={{
