@@ -182,7 +182,6 @@ export const AboutUs = () => {
               position: 'absolute',
               width: { xs: '100%', lg: '90%' },
               height: '150%',
-              color: '#008428',
               display: 'flex',
               flexDirection: 'column',
             }}
@@ -197,7 +196,8 @@ export const AboutUs = () => {
                 position: 'absolute',
                 top: { xs: '-1.5rem', lg: '-0.5rem' },
                 left: { xs: 0, lg: '-30%', xl: '-10%' },
-                overflowX: 'hidden',
+                overflow: 'hidden',
+                padding: 0,
               }}
             >
               Cultura
@@ -212,7 +212,8 @@ export const AboutUs = () => {
                 position: 'absolute',
                 bottom: { xs: '-1.5rem', lg: '-0.5rem' },
                 right: 0,
-                overflowX: 'hidden',
+                overflow: 'hidden',
+                padding: 0,
               }}
             >
               SET
@@ -250,8 +251,28 @@ export const AboutUs = () => {
             justifyContent: 'center',
             alignItems: { xs: 'flex-start', sm: 'center', lg: 'flex-start' },
             gap: '2rem',
+            position: 'relative',
           }}
         >
+          <Box
+            sx={{
+              position: 'absolute',
+              minWidth: '100%',
+              minHeight: '100%',
+              right: '-20%',
+              top: '-30%',
+              display: { xs: 'none', lg: 'block' },
+              rotate: '270deg',
+              scale: 1.5,
+            }}
+          >
+            <Image
+              src={'/decorationLines.svg'}
+              alt="cuadricula rayada"
+              fill
+              sizes="100%"
+            />
+          </Box>
           <Typography
             component={'h3'}
             sx={{
