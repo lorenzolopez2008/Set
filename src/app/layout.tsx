@@ -19,8 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" id="smooth-wrapper">
-      <body id="smooth-content">
+    <html lang="es">
+      <body>
         <VisibilityProvider disabled>
           <Loader />
           <ThemeRegistryProvider>
@@ -29,6 +29,7 @@ export default function RootLayout({
               {children}
               <Footer />
             </GsapProvider>
+
             <DevTools />
           </ThemeRegistryProvider>
         </VisibilityProvider>

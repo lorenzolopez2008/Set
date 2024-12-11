@@ -7,7 +7,6 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
 import { Observer } from 'gsap/Observer';
 import Lenis from 'lenis';
-import { useMediaQuery } from '@mui/material';
 
 function initialiseLenisScroll() {
   const lenis = new Lenis({
@@ -24,10 +23,7 @@ function initialiseLenisScroll() {
 
   gsap.ticker.lagSmoothing(0);
 }
-
 export const GsapProvider = ({ children }: { children: ReactNode }) => {
-  const isMobile = useMediaQuery('(max-width: 768px)');
-
   useEffect(() => {
     if (typeof window !== 'undefined') {
       gsap.registerPlugin(ScrollTrigger, Observer, Lenis);
@@ -35,10 +31,9 @@ export const GsapProvider = ({ children }: { children: ReactNode }) => {
       ScrollTrigger.refresh();
     }
     // if is mobile no initialize lenis
-    if (!isMobile) {
-      initialiseLenisScroll();
-    }
-  }, [isMobile]);
+
+    initialiseLenisScroll();
+  }, []);
 
   return <>{children}</>;
 };

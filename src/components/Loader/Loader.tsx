@@ -28,7 +28,6 @@ const Loader = () => {
       setProgress((prevProgress) => {
         const newProgress = prevProgress + 1;
         if (newProgress === 100) {
-          document.body.style.overflow = '';
           clearInterval(interval);
           setText('Bienvenido');
         } else {
@@ -38,7 +37,9 @@ const Loader = () => {
       });
     }, 30);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   useEffect(() => {
@@ -59,6 +60,7 @@ const Loader = () => {
           onComplete: () => {
             // Ocultar el componente Loader
             containerRef.current!.style.display = 'none';
+            document.body.style.overflow = '';
           },
         });
     }
