@@ -202,7 +202,7 @@ export const OurClients = () => {
             <Canvas
               style={{
                 width: isMobile ? '100%' : 'clamp(24rem,  62.6087vw, 60rem)',
-                height: isMobile ? '45svh' : `100svh`,
+                height: isMobile ? '55svh' : `100svh`,
                 pointerEvents: 'none',
               }}
               gl={{
