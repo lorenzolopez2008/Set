@@ -63,27 +63,40 @@ function Title({ title, location, titleShadow }: Props) {
           justifyContent: 'end',
           alignItems: 'center',
           position: 'relative',
-          height: 'fit-content',
+          height: '100%',
         }}
       >
-        <Typography
-          variant="shadow"
+        <Box
           sx={{
             position: 'absolute',
-            fontSize: 'clamp(4rem, 10vw, 14.063rem)',
-            whiteSpace: 'nowrap',
-            fontWeight: 'bold',
-            lineHeight: 'clamp(2.5rem, 5vw, 5.438rem)',
-            top: 0,
+            width: '100%',
+            height: '100%',
+            color: '#008428',
           }}
         >
-          {titleShadow}
-        </Typography>
+          <Typography
+            variant="shadow"
+            sx={{
+              position: 'absolute',
+              fontSize: 'clamp(4rem, 10vw, 14.063rem)',
+              textWrap: 'nowrap',
+              fontWeight: 'bold',
+              lineHeight: 'clamp(2.5rem, 5vw, 5.438rem)',
+              top: 0,
+              left: '50%',
+              transform: 'translateX(-50%)',
+              height: '100%',
+            }}
+          >
+            {titleShadow}
+          </Typography>
+        </Box>
         <Typography
           variant="main"
           sx={{
             fontSize: 'clamp(2.5rem, 5vw, 5rem)',
             fontWeight: 'bold',
+            textAlign: 'center',
           }}
         >
           {title}

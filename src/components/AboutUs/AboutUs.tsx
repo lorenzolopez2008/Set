@@ -1,4 +1,3 @@
-import { HeadingSection } from '@/app/components/ui/HeadingSection/HeadingSection';
 import { inter } from '@/fonts';
 import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
@@ -35,13 +34,11 @@ export const AboutUs = () => {
         marginBottom: { xs: '6.938rem', md: '13.875rem', lg: '27.75rem' },
       }}
     >
-      {/* //? HEADER */}
-      {/* <Title
+      <Title
         location="Home"
         titleShadow="Quienes Somos"
         title="¿Quienes Somos?"
-      /> */}
-      {/* //? ABOUT US */}
+      />
       <Box
         sx={{
           width: '100%',
@@ -138,7 +135,6 @@ export const AboutUs = () => {
           />
         </Box>
       </Box>
-      {/* //? OUR VALUES */}
       <Box
         sx={{
           marginTop: { xs: '12rem', md: '17.125rem' },
@@ -220,17 +216,25 @@ export const AboutUs = () => {
             </Typography>
           </Box>
           {[1, 2, 3].map((i) => (
-            <Image
-              key={i}
-              src={`/values/${i}.png`}
-              alt={`${i} image not found`}
-              style={{
+            <Box
+              sx={{
                 maxWidth: 'clamp(6.25rem, 2.5543rem + 18.4783vw, 16.875rem)',
                 maxHeight:
                   'clamp(13.4375rem, 7.8288rem + 28.0435vw, 29.5625rem)',
-                borderRadius: '0.938rem',
               }}
-            />
+            >
+              <Image
+                key={i}
+                src={`/values/${i}.png`}
+                alt={`${i} image not found`}
+                width={329}
+                height={473}
+                layout="responsive"
+                style={{
+                  borderRadius: '0.938rem',
+                }}
+              />
+            </Box>
           ))}
         </Box>
 
