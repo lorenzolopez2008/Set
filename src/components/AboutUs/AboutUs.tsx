@@ -33,7 +33,8 @@ export const AboutUs = () => {
     <Box
       sx={{
         width: '100%',
-        marginBottom: { xs: '6.938rem', md: '13.875rem', lg: '27.75rem' },
+        marginBottom: { xs: '6.938rem', md: '13.875rem', lg: '15.75rem' },
+        padding: { xs: '0 2.313rem', lg: '4.563rem' },
       }}
     >
       <Title
@@ -47,7 +48,6 @@ export const AboutUs = () => {
           display: 'flex',
           flexDirection: { xs: 'column', md: 'row' },
           justifyContent: 'space-evenly',
-          padding: { xs: '0 2.313rem', lg: '4.563rem' },
           gap: '1rem',
         }}
       >
@@ -118,7 +118,7 @@ export const AboutUs = () => {
           }}
         >
           <Image
-            src={'/circle.png'}
+            src={'/circle.webp'}
             alt="circle background image"
             fill
             sizes="20%"
@@ -145,7 +145,7 @@ export const AboutUs = () => {
           flexDirection: { xs: 'column', lg: 'row' },
           justifyContent: 'center',
           alignItems: 'center',
-          gap: { xs: '8.5rem', lg: '0' },
+          gap: { xs: '8.5rem', lg: '0.5rem' },
           height: '32.188rem',
         }}
       >
@@ -157,6 +157,7 @@ export const AboutUs = () => {
             justifyContent: 'space-evenly',
             alignItems: 'center',
             position: 'relative',
+            gap: '0.5rem',
           }}
         >
           <Box
@@ -164,7 +165,7 @@ export const AboutUs = () => {
               position: 'absolute',
               minWidth: '100%',
               minHeight: '100%',
-              left: '-40%',
+              left: '-50%',
               top: '30%',
               display: { xs: 'none', lg: 'block' },
             }}
@@ -194,7 +195,7 @@ export const AboutUs = () => {
                 fontWeight: 'bold',
                 lineHeight: '91.5%',
                 position: 'absolute',
-                top: { xs: '-2.5rem', lg: '-1.5rem' },
+                top: { xs: '-1.5rem', lg: '-0.5rem' },
                 left: { xs: 0, lg: '-30%', xl: '-10%' },
                 overflowX: 'hidden',
               }}
@@ -209,7 +210,7 @@ export const AboutUs = () => {
                 fontWeight: 'bold',
                 lineHeight: '91.5%',
                 position: 'absolute',
-                bottom: { xs: '-2.5rem', lg: '-1.5rem' },
+                bottom: { xs: '-1.5rem', lg: '-0.5rem' },
                 right: 0,
                 overflowX: 'hidden',
               }}
@@ -224,6 +225,7 @@ export const AboutUs = () => {
                 maxWidth: 'clamp(6.25rem, 2.5543rem + 18.4783vw, 16.875rem)',
                 maxHeight:
                   'clamp(13.4375rem, 7.8288rem + 28.0435vw, 29.5625rem)',
+                zIndex: 3,
               }}
             >
               <Image
@@ -242,11 +244,11 @@ export const AboutUs = () => {
 
         <Box
           sx={{
-            width: { xs: 'fit-content', lg: '30%' },
+            width: { xs: '100%', lg: '30%' },
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
-            alignItems: 'start',
+            alignItems: { xs: 'flex-start', sm: 'center', lg: 'flex-start' },
             gap: '2rem',
           }}
         >
@@ -273,7 +275,6 @@ export const AboutUs = () => {
                 key={i}
                 sx={{
                   display: 'flex',
-                  alignItems: 'center',
                   gap: '0.813rem',
                 }}
               >
