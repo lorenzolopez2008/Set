@@ -220,9 +220,7 @@ export const AboutUs = () => {
             </Typography>
           </Box>
           {[1, 2, 3].map((i) => (
-            // <Box
-            // sx={{}}>
-            <img
+            <Image
               key={i}
               src={`/values/${i}.png`}
               alt={`${i} image not found`}
@@ -233,7 +231,6 @@ export const AboutUs = () => {
                 borderRadius: '0.938rem',
               }}
             />
-            // </Box>
           ))}
         </Box>
 
