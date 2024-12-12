@@ -1,7 +1,7 @@
 'use client';
 import { useGSAP } from '@gsap/react';
 import { Box, Modal, Typography, useMediaQuery } from '@mui/material';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import {
   ITestimonialCard,
@@ -58,6 +58,31 @@ export const OurClients = () => {
   const ourClientsRef = useRef<HTMLDivElement>(null);
   const isMobile = useMediaQuery('(max-width: 768px)');
   const tlRef = useRef<gsap.core.Timeline>();
+  const [webGlUnavailable, setWebGlUnavailable] = useState(false);
+
+  useEffect(() => {
+    function webglAvailable() {
+      try {
+        const canvas = document.createElement('canvas');
+        return (
+          !!window.WebGLRenderingContext &&
+          (canvas.getContext('webgl') ||
+            canvas.getContext('experimental-webgl'))
+        );
+      } catch (e) {
+        console.log(e);
+        return false;
+      }
+    }
+
+    if (!webglAvailable()) {
+      setWebGlUnavailable(true);
+    }
+
+    return () => {
+      setWebGlUnavailable(false);
+    };
+  }, []);
 
   const { contextSafe } = useGSAP(
     () => {
@@ -138,6 +163,8 @@ export const OurClients = () => {
     setTestimonialSelected(testimonial);
     playAnimation();
   };
+
+  if (webGlUnavailable) return null;
 
   return (
     <Box

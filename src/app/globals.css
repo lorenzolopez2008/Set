@@ -1,7 +1,6 @@
-body{
-  background-color: #FAFAFA;
+body {
+  background-color: #fafafa;
 }
-
 
 .footer {
   width: 100%;
@@ -10,7 +9,7 @@ body{
   border: 2px solid red;
   display: flex;
   justify-content: baseline;
-  align-items: end;
+  align-items: flex-end;
 }
 
 .animation-fade-up {

@@ -82,6 +82,7 @@ const ServicesContent: React.FC<{
             justifyContent: 'space-between',
             padding: '0 0.5rem',
             marginTop: '1rem',
+            gap: '0.5rem',
           }}
         >
           <PrevButton
@@ -154,6 +155,10 @@ const ServicesContent: React.FC<{
                 },
                 '& .MuiBox-root': {
                   transition: 'transform 0.5s ease',
+                },
+                width: {
+                  xs: '100%',
+                  sm: 'auto',
                 },
               }}
               variant="mainGreen"

@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Box, useMediaQuery } from '@mui/material';
 import { ProductsIcons } from './ProductsIcons';
 import { Circle } from './Circle';
-import CircleBlur from '@/../public/circleBlur.png';
+import CircleBlur from '@/../public/circleBlur.webp';
 import NextImage from 'next/image';
 
 export const Machine: React.FC = () => {
