@@ -267,6 +267,7 @@ export const OurClients = () => {
                 alignItems: 'center',
                 width: 'fit-content',
                 height: 'fit-content',
+                outline: 'none',
               }}
             >
               <TestimonialCard
