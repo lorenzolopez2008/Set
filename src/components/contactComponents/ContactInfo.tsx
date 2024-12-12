@@ -27,6 +27,7 @@ function ContactInfo() {
           justifyItems: 'start',
           flexDirection: 'column',
           gap: '1rem',
+          marginBottom: '2rem',
         }}
       >
         <Typography variant="productTitle">Atención al cliente</Typography>
@@ -35,7 +36,9 @@ function ContactInfo() {
             <Image width={24} height={24} src="/icons/envelope.svg" alt="map" />
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography variant="paragraph">Clientes@setindutry.com</Typography>
+            <Typography variant="paragraph" color="#848282">
+              Clientes@setindutry.com
+            </Typography>
             <Typography
               sx={{ fontSize: `clamp(${pxToRem(14)}, 1.3vw, ${pxToRem(23)})` }}
               variant="main"
@@ -64,7 +67,7 @@ function ContactInfo() {
             <Image width={24} height={24} src="/icons/envelope.svg" alt="map" />
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography variant="paragraph">
+            <Typography variant="paragraph" color="#848282">
               Administracion@setindutry.com
             </Typography>
             <Typography
