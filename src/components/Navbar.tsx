@@ -16,7 +16,9 @@ export const Navbar = () => {
 
   useGSAP(() => {
     gsap.set('#menu-desktop', {
-      yPercent: -130,
+      yPercent: -160,
+      opacity: 0,
+      pointerEvents: 'none',
     });
   }, []);
 
@@ -29,10 +31,14 @@ export const Navbar = () => {
 
     if (menuOpened.current) {
       menuTimeline
+        .set('#menu-desktop', {
+          opacity: 1,
+          pointerEvents: 'auto',
+        })
         .fromTo(
           '#menu-desktop',
           {
-            yPercent: -130,
+            yPercent: -160,
             rotate: 0,
           },
           {
@@ -112,7 +118,7 @@ export const Navbar = () => {
           delay: 0.3,
         })
         .to('#menu-desktop', {
-          yPercent: 130,
+          yPercent: 160,
           duration: 1,
           delay: 0.1,
         })
@@ -124,7 +130,11 @@ export const Navbar = () => {
             },
           },
           '<0.3'
-        );
+        )
+        .set('#menu-desktop', {
+          opacity: 0,
+          pointerEvents: 'none',
+        });
     }
 
     menuTimeline.play();
