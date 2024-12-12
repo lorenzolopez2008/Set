@@ -143,25 +143,25 @@ const ServicesContent: React.FC<{
             },
           }}
         >
-          {pathName?.includes('servicios') ? null : (
-            <Button
-              sx={{
-                '&:hover': {
-                  '& .MuiBox-root': {
-                    transform: 'rotate(90deg)',
-                    transition: 'transform 0.3s ease',
-                  },
-                },
+          <Button
+            sx={{
+              '&:hover': {
                 '& .MuiBox-root': {
-                  transition: 'transform 0.5s ease',
+                  transform: 'rotate(90deg)',
+                  transition: 'transform 0.3s ease',
                 },
-              }}
-              variant="mainGreen"
-              endIcon={<DiagonalArrow />}
-            >
-              Servicios
-            </Button>
-          )}
+              },
+              '& .MuiBox-root': {
+                transition: 'transform 0.5s ease',
+              },
+              opacity: pathName?.includes('servicios') ? 0 : 1,
+            }}
+            disabled={pathName?.includes('servicios')}
+            variant="mainGreen"
+            endIcon={<DiagonalArrow />}
+          >
+            Servicios
+          </Button>
         </Box>
       </Box>
     </Box>
