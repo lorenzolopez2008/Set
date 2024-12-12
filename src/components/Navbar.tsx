@@ -2,7 +2,7 @@
 
 import { DiagonalArrow } from '@/app/components/svg/DiagonalArrow';
 import { useVisibility } from '@/providers/Testing';
-import { Box, Button, useMediaQuery } from '@mui/material';
+import { Box, Button, Link, useMediaQuery } from '@mui/material';
 import Image from 'next/image';
 import { useRef } from 'react';
 import { gsap } from 'gsap';
@@ -153,19 +153,21 @@ export const Navbar = () => {
       zIndex={80}
       id="navbar"
     >
-      <Image
-        style={{
-          marginLeft: '1rem',
-          marginTop: '1rem',
-          transform: isDesktop ? 'scale(1)' : 'scale(0.8)',
-        }}
-        src={'/SET.webp'}
-        alt="logo"
-        width={107}
-        height={56}
-        id="logo"
-        priority
-      />
+      <Link href={'/'}>
+        <Image
+          style={{
+            marginLeft: '1rem',
+            marginTop: '1rem',
+            transform: isDesktop ? 'scale(1)' : 'scale(0.8)',
+          }}
+          src={'/SET.webp'}
+          alt="logo"
+          width={107}
+          height={56}
+          id="logo"
+          priority
+        />{' '}
+      </Link>
       <Box
         display={'flex'}
         alignItems={'center'}

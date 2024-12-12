@@ -64,20 +64,22 @@ export const Menu = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
         </Typography>
       </Button>
       {screen ? (
-        <Image
-          style={{
-            position: 'absolute',
-            left: 0,
-            top: 0,
-            margin: '2rem 2.25rem',
-            zIndex: 102,
-          }}
-          src={'/SET.webp'}
-          alt="logo"
-          width={86}
-          height={45}
-          priority
-        />
+        <Link href={'/'}>
+          <Image
+            style={{
+              position: 'absolute',
+              left: 0,
+              top: 0,
+              margin: '2rem 2.25rem',
+              zIndex: 102,
+            }}
+            src={'/SET.webp'}
+            alt="logo"
+            width={86}
+            height={45}
+            priority
+          />
+        </Link>
       ) : null}
 
       <Box
