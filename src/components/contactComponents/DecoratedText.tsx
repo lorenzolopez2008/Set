@@ -8,6 +8,7 @@ export const DecoratedText = () => {
         display: 'flex',
         alignItems: 'stretch',
         gap: '1rem',
+        paddingRight: '0.5rem',
       }}
       id="textHigh"
     >
@@ -21,7 +22,13 @@ export const DecoratedText = () => {
       <Typography variant={'title'}>
         ¿Necesitas ayuda?
         <br />
-        <Typography variant={'title'} color="#008428">
+        <Typography
+          variant={'title'}
+          color="#008428"
+          sx={{
+            wordBreak: 'break-word',
+          }}
+        >
           Estamos aqui para servirte
         </Typography>
       </Typography>
