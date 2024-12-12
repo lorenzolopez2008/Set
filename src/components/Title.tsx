@@ -80,6 +80,7 @@ function Title({ title, location, titleShadow }: Props) {
               position: 'absolute',
               fontSize: 'clamp(4rem, 10vw, 14.063rem)',
               textWrap: 'nowrap',
+              whiteSpace: 'nowrap',
               fontWeight: 'bold',
               lineHeight: 'clamp(2.5rem, 5vw, 5.438rem)',
               top: 0,
