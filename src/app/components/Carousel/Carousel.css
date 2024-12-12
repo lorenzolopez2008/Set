@@ -62,7 +62,7 @@
   overflow: hidden;
   width: 107%;
   padding: 0 clamp(1rem, 10vw, 10rem);
-  filter: drop-shadow(15px 16px 61px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(15px 16px 30px rgba(0, 0, 0, 0.25));
   padding-top: 10rem;
   transform: scale(1.1);
 }
