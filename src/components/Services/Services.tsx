@@ -46,6 +46,7 @@ export const Services = () => {
             alt="aro"
             style={{
               position: 'absolute',
+              zIndex: -1,
               height: 'clamp(20.375rem,  35.3261vw, 40.6875rem)',
               width: 'clamp(28.4375rem, 45.2174vw, 60.4375rem)',
             }}

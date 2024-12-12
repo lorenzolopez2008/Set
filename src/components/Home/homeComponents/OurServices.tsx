@@ -5,7 +5,7 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { useAtom } from 'jotai';
 import bgElementFixedAtom from '@/store/bgCircleFollow.atom';
-import CircleBlur from '@/../public/circleBlur.png';
+import CircleBlur from '@/../public/circleBlur.webp';
 import Image from 'next/image';
 
 export const OurServices = () => {

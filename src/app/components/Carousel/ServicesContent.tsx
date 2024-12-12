@@ -82,6 +82,7 @@ const ServicesContent: React.FC<{
             justifyContent: 'space-between',
             padding: '0 0.5rem',
             marginTop: '1rem',
+            gap: '0.5rem',
           }}
         >
           <PrevButton

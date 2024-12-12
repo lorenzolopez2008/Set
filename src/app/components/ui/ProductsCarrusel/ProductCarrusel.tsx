@@ -15,7 +15,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import { Circle } from '@/components/Home/homeComponents/Circle';
-import CircleBlur from '@/../public/circleBlur.png';
+import CircleBlur from '@/../public/circleBlur.webp';
 
 gsap.registerPlugin(ScrollTrigger);
 
