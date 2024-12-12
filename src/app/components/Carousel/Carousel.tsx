@@ -13,8 +13,6 @@ import { gsap } from 'gsap';
 import { useAtom } from 'jotai';
 import bgElementFixedAtom from '@/store/bgCircleFollow.atom';
 import { usePathname } from 'next/navigation';
-import CircleBlur from '@/../public/circleBlur.webp';
-import Image from 'next/image';
 
 interface CarouselProps {
   images: string[];
@@ -160,6 +158,7 @@ export const Carousel: React.FC<CarouselProps> = ({ images }) => {
         sx={{
           position: 'absolute',
           top: '6rem',
+          background: '#00598F02',
           right: {
             xs: '-10%',
             md: '-10%',
@@ -172,7 +171,6 @@ export const Carousel: React.FC<CarouselProps> = ({ images }) => {
             lg: '22%',
             xl: '22%',
           },
-
           pointerEvents: 'none',
         }}
       >
@@ -202,20 +200,7 @@ export const Carousel: React.FC<CarouselProps> = ({ images }) => {
               borderRadius: '2000px',
             }}
           ></Box>
-        ) : (
-          <Image
-            src={CircleBlur}
-            alt={'circle blur'}
-            style={{
-              width: '100%',
-              height: '100%',
-              left: 0,
-              top: 0,
-              zIndex: -1,
-              position: 'absolute',
-            }}
-          />
-        )}
+        ) : null}
       </Box>
       {/* Carousel */}
       <Box sx={{ position: 'relative', width: '100%' }}>

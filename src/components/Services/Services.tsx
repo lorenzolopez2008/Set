@@ -39,6 +39,8 @@ export const Services = () => {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
+            height: 'clamp(20.375rem,  35.3261vw, 40.6875rem)',
+            overflow: 'hidden',
           }}
         >
           <Image
