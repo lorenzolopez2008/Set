@@ -1,12 +1,9 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import ThemeRegistryProvider from '../providers/ThemeRegistryProvider';
-import Loader from '@/components/Loader/Loader';
-import { Navbar } from '@/components/Navbar';
+
 import { GsapProvider } from '@/providers/GsapProvider';
 import { VisibilityProvider } from '@/providers/Testing';
-import DevTools from '@/hooks/Panel';
-import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Set',
@@ -22,15 +19,8 @@ export default function RootLayout({
     <html lang="es">
       <body>
         <VisibilityProvider disabled>
-          <Loader />
           <ThemeRegistryProvider>
-            <GsapProvider>
-              <Navbar />
-              {children}
-              <Footer />
-            </GsapProvider>
-
-            <DevTools />
+            <GsapProvider>{children}</GsapProvider>
           </ThemeRegistryProvider>
         </VisibilityProvider>
       </body>
